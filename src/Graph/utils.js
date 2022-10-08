@@ -58,6 +58,10 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const isDid = (iri) => {
+  return iri.startsWith('did:');
+};
+
 const uriToLabel = (iri) => {
   if (iri.match(/:/g).length > 1) {
     return 'Resource';
@@ -75,4 +79,5 @@ module.exports = {
   uriToLabel,
 
   getNodeType,
+  isDid,
 };

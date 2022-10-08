@@ -10,6 +10,7 @@ const {
   isBlankNode,
   predicateToPropertyName,
   getPrimitiveTypeFromObject,
+  isDid,
 } = require('./utils');
 
 const patchGraph = ({subject, predicate, object, graph}) => {
@@ -48,7 +49,10 @@ const patchGraph = ({subject, predicate, object, graph}) => {
       graph.nodes[object] = {
         ...(graph.nodes[object] || {id: object}),
       };
-      const label = predicateToPropertyName(object);
+      let label = predicateToPropertyName(object);
+      if (isDid(label)) {
+        label = 'controller';
+      }
       // add edge
       graph.links.push({
         source: removeAngleBrackets(predicate),
