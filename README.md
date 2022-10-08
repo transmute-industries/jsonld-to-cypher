@@ -1,5 +1,7 @@
 # JSON-LD to Cypher
 
+A tool to convert JSON-LD to Cypher.
+
 <img src="./transmute-banner.png" />
 
 #### [Questions? Contact Transmute](https://transmute.typeform.com/to/RshfIw?typeform-source=did-eqt)
@@ -15,6 +17,8 @@ npm i -g @transmute/jsonld-to-cypher@latest
 ```
 jsonld-to-cypher convert ./docs/vc.jwt  --type jwt
 ```
+
+<img src="./example.png" />
 
 ### Testing Library
 
