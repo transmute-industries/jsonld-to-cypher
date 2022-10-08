@@ -1,5 +1,5 @@
 {
-  "name": "@ransmute/jsonld-to-cipher",
+  "name": "@ransmute/jsonld-to-cypher",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/transmute-industries/jsonld-to-cipher.git"
+    "url": "git+https://github.com/transmute-industries/jsonld-to-cypher.git"
   },
   "author": "Orie Steele",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/transmute-industries/jsonld-to-cipher/issues"
+    "url": "https://github.com/transmute-industries/jsonld-to-cypher/issues"
   },
-  "homepage": "https://github.com/transmute-industries/jsonld-to-cipher#readme",
+  "homepage": "https://github.com/transmute-industries/jsonld-to-cypher#readme",
   "dependencies": {
     "yargs": "^17.5.1"
   },

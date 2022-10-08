@@ -22,7 +22,7 @@ const {hideBin} = require('yargs/helpers');
 // };
 
 yargs(hideBin(process.argv))
-    .scriptName('jsonld-to-cipher')
+    .scriptName('jsonld-to-cypher')
     .command(
         'convert',
         'transform jsonld into cypher query',
