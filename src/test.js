@@ -33,7 +33,7 @@ const {Graph, documentLoader} = require('./index')
   const cypher = await Graph.graphToCypher(intermediate);
   const markdown =
     '# Clear Database\n```cypher\nMATCH (n) DETACH DELETE n\n```\n# Generated Cypher\n```cypher\n' +
-    cypher.query +
+    cypher +
     '```';
   fs.writeFileSync('./docs/cypher-query.md', markdown);
 })();
