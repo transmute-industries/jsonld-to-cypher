@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable max-len */
 
-const {predicateToPropertyName, uriToLabel} = require('./utils');
+const {predicateToPropertyName, nodeToNodeLabel} = require('./utils');
 
 const moment = require('moment');
 const lodash = require('lodash');
@@ -39,9 +39,9 @@ const graphToCypher = async (graph) => {
       const typedProperties = rps.join(', ');
       query += `MERGE ( ${nodeName} :Resource { uri: "${node.id}", ${typedProperties} } )\n`;
     } else {
-      const nodeType = uriToLabel(node.id);
+      const nodeLabel = nodeToNodeLabel(node);
 
-      query += `MERGE ( ${nodeName} :${nodeType} { uri: "${node.id}" } )\n`;
+      query += `MERGE ( ${nodeName} :${nodeLabel} { uri: "${node.id}" } )\n`;
     }
     nodesMerged.push(nodeName);
   }

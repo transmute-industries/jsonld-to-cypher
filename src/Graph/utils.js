@@ -62,11 +62,25 @@ const isDid = (iri) => {
   return iri.startsWith('did:');
 };
 
-const uriToLabel = (iri) => {
-  if (iri.match(/:/g).length >= 1) {
-    return 'Resource';
+const isUrn = (iri) => {
+  return iri.startsWith('urn:');
+};
+
+const isUrl = (iri) => {
+  return iri.startsWith('http');
+};
+
+const nodeToNodeLabel = (node) => {
+  if (isDid(node.id)) {
+    return 'DecentralizedIdentifier';
   }
-  return capitalizeFirstLetter(predicateToPropertyName(iri));
+  if (isUrn(node.id)) {
+    return 'UniforResourceName';
+  }
+  if (isUrl(node.id)) {
+    return capitalizeFirstLetter(predicateToPropertyName(node.id));
+  }
+  return 'Resource';
 };
 
 module.exports = {
@@ -76,7 +90,7 @@ module.exports = {
   isBlankNode,
   predicateToPropertyName,
   getPrimitiveTypeFromObject,
-  uriToLabel,
+  nodeToNodeLabel,
 
   getNodeType,
   isDid,

@@ -120,7 +120,7 @@
     },
     {
       "source": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336",
-      "label": "subject",
+      "label": "credentialSubject",
       "target": "did:example:123"
     },
     {
