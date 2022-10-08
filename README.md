@@ -6,6 +6,16 @@
 
 #### 🚧 Warning Experimental 🔥
 
+## Usage
+
+```
+npm i -g @transmute/jsonld-to-cypher@latest
+```
+
+```
+jsonld-to-cypher convert ./docs/vc.jwt  --type jwt
+```
+
 ### Testing Library
 
 ```

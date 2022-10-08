@@ -28,7 +28,6 @@ const patchGraph = ({subject, predicate, object, graph}) => {
       target: removeAngleBrackets(object),
     });
   }
-
   if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
     object = removeAngleBrackets(object);
     graph.links.push({
@@ -61,6 +60,53 @@ const patchGraph = ({subject, predicate, object, graph}) => {
     graph.nodes[object] = {
       ...(graph.nodes[object] || {id: object}),
     };
+  } else if (
+    predicate ===
+    'https://w3id.org/vc-revocation-list-2020#revocationListCredential'
+  ) {
+    object = removeAngleBrackets(object);
+    graph.links.push({
+      source: subject,
+      label: 'revocationListCredential',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+  } else if (
+    predicate === 'https://www.w3.org/2018/credentials#credentialStatus'
+  ) {
+    object = removeAngleBrackets(object);
+    graph.links.push({
+      source: subject,
+      label: 'credentialStatus',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+  } else if (predicate === 'https://w3id.org/security#proof') {
+    object = removeAngleBrackets(object);
+    // console.log({subject, predicate, object});
+    graph.links.push({
+      source: subject,
+      label: 'proof',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+  } else if (predicate === 'https://w3id.org/security#verificationMethod') {
+    object = removeAngleBrackets(object);
+    // console.log({subject, predicate, object});
+    graph.links.push({
+      source: subject,
+      label: 'verificationMethod',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
   } else {
     graph.nodes[predicate] = {
       ...(graph.nodes[predicate] || {id: predicate}),
@@ -71,7 +117,9 @@ const patchGraph = ({subject, predicate, object, graph}) => {
       graph.nodes[object] = {
         ...(graph.nodes[object] || {id: object}),
       };
+
       let label = predicateToPropertyName(object);
+
       if (isDid(label)) {
         label = 'controller';
       }
@@ -118,20 +166,34 @@ const documentToGraph = async (doc, {documentLoader}) => {
       .split('\n')
       .filter((r) => r !== '')
       .map((r) => {
-        return r.substring(0, r.length - 2); // remove the " ." from every line...
+        return r.substring(0, r.length - 2);
       });
 
   for (const row of rows) {
     const match = row.match(
         /^(?<subject>(<([^<>]+)>|^_:c14n\d+)) (?<predicate>(<([^<>]+)>)) (?<object>(.+))/,
     );
+
     let {subject, predicate, object} = match.groups;
+
+    if (object.includes('_:c14n')) {
+      const objectParts = object.split('_:c14n');
+      const objectValue = objectParts[0].trim();
+      // TODO: handle proof sets / proof chains...
+      // const objectGraph = object.replace(objectValue + ' ', '');
+      // console.log({objectValue, objectGraph});
+      object = objectValue;
+      if (object === '') {
+        object = '_:c14n' + objectParts[1];
+      }
+    }
     if (subject.startsWith('_:c14n')) {
       subject = `${id}:${subject}`;
     }
     if (object.startsWith('_:c14n')) {
       object = `${id}:${object}`;
     }
+
     patchGraph({subject, predicate, object, graph});
   }
 

@@ -63,7 +63,7 @@ const isDid = (iri) => {
 };
 
 const uriToLabel = (iri) => {
-  if (iri.match(/:/g).length > 1) {
+  if (iri.match(/:/g).length >= 1) {
     return 'Resource';
   }
   return capitalizeFirstLetter(predicateToPropertyName(iri));
