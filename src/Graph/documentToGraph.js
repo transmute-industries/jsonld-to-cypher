@@ -4,11 +4,78 @@ const jsonld = require('jsonld');
 const uuid = require('uuid');
 const pointer = require('json-pointer');
 
-const removeAngleBrackets = (str) => {
-  if (str.startsWith('<') && str.endsWith('>')) {
-    return str.substring(1, str.length - 1);
+const {
+  isRdfNode,
+  removeAngleBrackets,
+  removeEscapedQuotes,
+  isBlankNode,
+  predicateToPropertyName,
+} = require('./utils');
+
+const patchGraph = ({subject, predicate, object, graph}) => {
+  subject = removeAngleBrackets(subject);
+  predicate = removeAngleBrackets(predicate);
+
+  graph.nodes[subject] = {
+    ...(graph.nodes[subject] || {id: subject}),
+  };
+
+  if (isBlankNode(subject) && isBlankNode(object)) {
+    // console.log({subject, predicate, object});
+    graph.links.push({
+      source: removeAngleBrackets(subject),
+      label: predicateToPropertyName(predicate),
+      target: removeAngleBrackets(object),
+    });
   }
-  return str;
+
+  if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
+    object = removeAngleBrackets(object);
+    graph.links.push({
+      source: subject,
+      label: 'type',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+  } else {
+    graph.nodes[predicate] = {
+      ...(graph.nodes[predicate] || {id: predicate}),
+    };
+    if (isRdfNode(object)) {
+      object = removeAngleBrackets(object);
+      // add node
+      graph.nodes[object] = {
+        ...(graph.nodes[object] || {id: object}),
+      };
+      const label = predicateToPropertyName(object);
+      // add edge
+      graph.links.push({
+        source: removeAngleBrackets(predicate),
+        label,
+        target: removeAngleBrackets(object),
+      });
+    } else {
+      let label = predicateToPropertyName(predicate);
+      if (isBlankNode(subject)) {
+        label = 'has';
+      }
+      graph.links.push({
+        source: removeAngleBrackets(subject),
+        label,
+        target: removeAngleBrackets(predicate),
+      });
+      // add predicate as subject property
+      if (!graph.nodes[object]) {
+        graph.nodes[subject] = {
+          ...graph.nodes[subject],
+          [predicateToPropertyName(removeAngleBrackets(predicate))]:
+            removeEscapedQuotes(object),
+        };
+      }
+    }
+  }
 };
 
 const documentToGraph = async (doc, {documentLoader}) => {
@@ -17,10 +84,11 @@ const documentToGraph = async (doc, {documentLoader}) => {
     format: 'application/n-quads',
     documentLoader,
   });
-
-  const nodes = {};
+  // console.log(canonized);
+  const id = `urn:uuid:${uuid.v4()}`;
+  const nodes = {[id]: {id}};
   const links = [];
-
+  const graph = {id, nodes, links};
   const rows = canonized
       .split('\n')
       .filter((r) => r !== '')
@@ -28,80 +96,38 @@ const documentToGraph = async (doc, {documentLoader}) => {
         return r.substring(0, r.length - 2); // remove the " ." from every line...
       });
 
-  const graphId = `urn:uuid:${uuid.v4()}`;
-
   for (const row of rows) {
     const match = row.match(
         /^(?<subject>(<([^<>]+)>|^_:c14n\d+)) (?<predicate>(<([^<>]+)>)) (?<object>(.+))/,
     );
     let {subject, predicate, object} = match.groups;
-    // console.log({ subject, predicate, object });
-
-    // rewrite all blank node ids to compound IRIs
-
     if (subject.startsWith('_:c14n')) {
-      subject = `<${graphId}:${subject}>`;
+      subject = `${id}:${subject}`;
     }
     if (object.startsWith('_:c14n')) {
-      object = `<${graphId}:${object}>`;
+      object = `${id}:${object}`;
     }
-
-    subject = removeAngleBrackets(subject);
-
-    if (!nodes[subject]) {
-      // node does not yet exist, add it
-      nodes[subject] = {
-        id: subject,
-        value: subject,
-      };
-    } else {
-      // node exists already, see its object has properties
-      if (!object.startsWith('<')) {
-        nodes[subject] = {
-          ...nodes[subject],
-          [predicate]: object,
-        };
-      }
-    }
-
-    if (predicate.startsWith('<')) {
-      predicate = removeAngleBrackets(predicate);
-      if (!nodes[predicate]) {
-        nodes[predicate] = {
-          id: predicate,
-          value: predicate,
-        };
-      }
-    } else {
-      console.error('Never expected a predicate like this', predicate);
-    }
-
-    links.push({
-      source: subject,
-      target: predicate,
-    });
-
-    if (object.startsWith('<') || object.startsWith('_:c14n')) {
-      // object is another node (which contains properties)
-
-      object = removeAngleBrackets(object);
-      if (!nodes[object]) {
-        nodes[object] = {
-          id: object,
-          value: object,
-        };
-      }
-
-      links.push({
-        source: predicate,
-        target: object,
-      });
-    } else {
-      // object is properties... of a subject.
-    }
+    patchGraph({subject, predicate, object, graph});
   }
   const dict = pointer.dict(doc);
-  return {id: graphId, dict, nodes: Object.values(nodes), links};
+
+  let lastRoot = id;
+  graph.links.forEach((link) => {
+    if (link.source.includes(id)) {
+      lastRoot = link.source;
+    }
+  });
+
+  const finalNodes = Object.values(graph.nodes);
+  finalNodes.splice(0, 1);
+
+  return {
+    id: lastRoot,
+    doc,
+    dict,
+    nodes: finalNodes,
+    links: graph.links,
+  };
 };
 
 module.exports = documentToGraph;

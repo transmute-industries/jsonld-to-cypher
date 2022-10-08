@@ -1,0 +1,78 @@
+{
+  "id": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+  "doc": {
+    "@context": {
+      "@vocab": "https://schema.org/"
+    },
+    "@type": "Product",
+    "offers": {
+      "@type": "Offer",
+      "price": "55.00",
+      "priceCurrency": "USD"
+    }
+  },
+  "dict": {
+    "/@context/@vocab": "https://schema.org/",
+    "/@type": "Product",
+    "/offers/@type": "Offer",
+    "/offers/price": "55.00",
+    "/offers/priceCurrency": "USD"
+  },
+  "nodes": [
+    {
+      "id": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "price": "55.00",
+      "priceCurrency": "USD"
+    },
+    {
+      "id": "https://schema.org/Offer"
+    },
+    {
+      "id": "https://schema.org/price"
+    },
+    {
+      "id": "https://schema.org/priceCurrency"
+    },
+    {
+      "id": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1"
+    },
+    {
+      "id": "https://schema.org/Product"
+    },
+    {
+      "id": "https://schema.org/offers"
+    }
+  ],
+  "links": [
+    {
+      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "label": "type",
+      "target": "https://schema.org/Offer"
+    },
+    {
+      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "label": "has",
+      "target": "https://schema.org/price"
+    },
+    {
+      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "label": "has",
+      "target": "https://schema.org/priceCurrency"
+    },
+    {
+      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+      "label": "type",
+      "target": "https://schema.org/Product"
+    },
+    {
+      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+      "label": "offers",
+      "target": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0"
+    },
+    {
+      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+      "label": "has",
+      "target": "https://schema.org/offers"
+    }
+  ]
+}
