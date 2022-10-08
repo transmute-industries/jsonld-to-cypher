@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
+  "@type": "Product",
+  "offers": {
+    "@type": "Offer",
+    "price": 55.0,
+    "priceCurrency": "USD"
+  }
+}
