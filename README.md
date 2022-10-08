@@ -14,8 +14,16 @@ npm t
 
 ### Testing CLI
 
+#### Convert a JSON File
+
 ```
-npm run jsonld-to-cypher convert ./docs/example.json
+npm run --silent jsonld-to-cypher convert ./docs/advanced-types.json --  --type json > ./docs/advanced-types.cypher
+```
+
+#### Convert a VC-JWT
+
+```
+npm run --silent jsonld-to-cypher convert ./docs/vc.jwt --  --type jwt > ./docs/vc.jwt.cypher
 ```
 
 ### Installing Neo4j Desktop

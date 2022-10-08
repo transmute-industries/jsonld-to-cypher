@@ -36,6 +36,11 @@ const getPrimitiveTypeFromObject = (str) => {
     if (str.includes('http://www.w3.org/2001/XMLSchema#boolean')) {
       return removeEscapedQuotes(primitive) === 'true';
     }
+
+    if (str.includes('http://www.w3.org/2001/XMLSchema#dateTime')) {
+      return removeEscapedQuotes(primitive);
+    }
+
     return `${str.replace(/'/g, '\\\'')}`;
   } catch (e) {
     return `${str.replace(/'/g, '\\\'')}`;
