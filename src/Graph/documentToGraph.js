@@ -2,6 +2,14 @@
 /* eslint-disable max-len */
 const jsonld = require('jsonld');
 const uuid = require('uuid');
+const pointer = require('json-pointer');
+
+const removeAngleBrackets = (str) => {
+  if (str.startsWith('<') && str.endsWith('>')) {
+    return str.substring(1, str.length - 1);
+  }
+  return str;
+};
 
 const documentToGraph = async (doc, {documentLoader}) => {
   const canonized = await jsonld.canonize(doc, {
@@ -38,6 +46,8 @@ const documentToGraph = async (doc, {documentLoader}) => {
       object = `<${graphId}:${object}>`;
     }
 
+    subject = removeAngleBrackets(subject);
+
     if (!nodes[subject]) {
       // node does not yet exist, add it
       nodes[subject] = {
@@ -55,6 +65,7 @@ const documentToGraph = async (doc, {documentLoader}) => {
     }
 
     if (predicate.startsWith('<')) {
+      predicate = removeAngleBrackets(predicate);
       if (!nodes[predicate]) {
         nodes[predicate] = {
           id: predicate,
@@ -72,6 +83,8 @@ const documentToGraph = async (doc, {documentLoader}) => {
 
     if (object.startsWith('<') || object.startsWith('_:c14n')) {
       // object is another node (which contains properties)
+
+      object = removeAngleBrackets(object);
       if (!nodes[object]) {
         nodes[object] = {
           id: object,
@@ -87,7 +100,8 @@ const documentToGraph = async (doc, {documentLoader}) => {
       // object is properties... of a subject.
     }
   }
-  return {id: graphId, nodes: Object.values(nodes), links};
+  const dict = pointer.dict(doc);
+  return {id: graphId, dict, nodes: Object.values(nodes), links};
 };
 
 module.exports = documentToGraph;
