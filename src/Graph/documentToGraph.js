@@ -113,10 +113,14 @@ const documentToGraph = async (doc, {documentLoader}) => {
     patchGraph({subject, predicate, object, graph});
   }
 
-  let lastRoot = id;
   graph.links.forEach((link) => {
-    if (link.source.includes(id)) {
-      lastRoot = link.source;
+    if (link.source.includes('_:c14n')) {
+      console.log;
+      // graph.links.push({
+      //   source: id,
+      //   label: 'includes',
+      //   target: link.source,
+      // });
     }
   });
 
@@ -124,7 +128,7 @@ const documentToGraph = async (doc, {documentLoader}) => {
   finalNodes.splice(0, 1);
 
   return {
-    id: lastRoot,
+    id,
     doc,
     nodes: finalNodes,
     links: graph.links,

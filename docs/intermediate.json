@@ -1,5 +1,5 @@
 {
-  "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5",
+  "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665",
   "doc": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
@@ -47,7 +47,7 @@
   "nodes": [
     {
       "id": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
-      "credentialSubject": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
+      "credentialSubject": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "issuanceDate": "2010-01-01T19:23:24Z"
     },
     {
@@ -66,7 +66,7 @@
       "id": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
     },
     {
-      "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n0",
+      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
       "latitude": "40.75",
       "longitude": "-73.98"
     },
@@ -80,8 +80,8 @@
       "id": "https://schema.org/longitude"
     },
     {
-      "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
-      "offers": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5"
+      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
+      "offers": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5"
     },
     {
       "id": "https://schema.org/Product"
@@ -90,9 +90,9 @@
       "id": "https://schema.org/offers"
     },
     {
-      "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "availabilityEnds": "2022-10-08T18:52:38.220Z",
-      "offeredBy": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n3",
+      "offeredBy": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
       "price": 100,
       "priceCurrency": "USD"
     },
@@ -112,8 +112,8 @@
       "id": "https://schema.org/priceCurrency"
     },
     {
-      "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n3",
-      "foundingLocation": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4"
+      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
+      "foundingLocation": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4"
     },
     {
       "id": "https://schema.org/Organization"
@@ -122,7 +122,7 @@
       "id": "https://schema.org/foundingLocation"
     },
     {
-      "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4",
+      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
       "name": "Empire State Building"
     },
     {
@@ -135,7 +135,7 @@
       "id": "https://schema.org/name"
     },
     {
-      "id": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5",
+      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
       "isFamilyFriendly": false,
       "price": 99.99,
       "priceCurrency": "EUR"
@@ -166,127 +166,127 @@
       "target": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n0",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
       "label": "type",
       "target": "https://schema.org/GeoCoordinates"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n0",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
       "label": "has",
       "target": "https://schema.org/latitude"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n0",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
       "label": "has",
       "target": "https://schema.org/longitude"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "label": "type",
       "target": "https://schema.org/Product"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "label": "offers",
-      "target": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2"
+      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "label": "has",
       "target": "https://schema.org/offers"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "label": "offers",
-      "target": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5"
+      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n1",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "label": "has",
       "target": "https://schema.org/offers"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "label": "type",
       "target": "https://schema.org/Offer"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "label": "has",
       "target": "https://schema.org/availabilityEnds"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "label": "offeredBy",
-      "target": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n3"
+      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "label": "has",
       "target": "https://schema.org/offeredBy"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "label": "has",
       "target": "https://schema.org/price"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n2",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
       "label": "has",
       "target": "https://schema.org/priceCurrency"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n3",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
       "label": "type",
       "target": "https://schema.org/Organization"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n3",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
       "label": "foundingLocation",
-      "target": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4"
+      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n3",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
       "label": "has",
       "target": "https://schema.org/foundingLocation"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
       "label": "type",
       "target": "https://schema.org/Place"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
       "label": "geo",
-      "target": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n0"
+      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
       "label": "has",
       "target": "https://schema.org/geo"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n4",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
       "label": "has",
       "target": "https://schema.org/name"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
       "label": "type",
       "target": "https://schema.org/Offer"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
       "label": "has",
       "target": "https://schema.org/isFamilyFriendly"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
       "label": "has",
       "target": "https://schema.org/price"
     },
     {
-      "source": "urn:uuid:06543d4b-2d7d-4308-9da1-bdebb8184403:_:c14n5",
+      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
       "label": "has",
       "target": "https://schema.org/priceCurrency"
     }
