@@ -32,11 +32,7 @@ const graphToCypher = async (graph) => {
       const typedProperties = rps.join(', ');
       query += `MERGE ( ${nodeName} :Resource { uri: "${node.id}", ${typedProperties} } )\n`;
     } else {
-      let nodeType = 'Resource';
-      const maybeNewName = predicateToPropertyName(node.id);
-      if (maybeNewName[0] !== maybeNewName[0].toLowerCase()) {
-        nodeType = maybeNewName;
-      }
+      const nodeType = predicateToPropertyName(node.id);
       query += `MERGE ( ${nodeName} :${nodeType} { uri: "${node.id}" } )\n`;
     }
     nodesMerged.push(nodeName);
