@@ -3,9 +3,8 @@ const documentLoader = require('./documentLoader');
 
 const convert = async (document) => {
   const g = await Graph.documentToGraph(document, {documentLoader});
-
-  console.log(g);
-  return '';
+  const c = await Graph.graphToCypher(g);
+  return c;
 };
 
 module.exports = convert;
