@@ -27,7 +27,10 @@ const patchGraph = ({subject, predicate, object, graph}) => {
       label: predicateToPropertyName(predicate),
       target: removeAngleBrackets(object),
     });
+
+    console.log({subject, predicate, object});
   }
+
   if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
     object = removeAngleBrackets(object);
     graph.links.push({
@@ -87,7 +90,6 @@ const patchGraph = ({subject, predicate, object, graph}) => {
     };
   } else if (predicate === 'https://w3id.org/security#proof') {
     object = removeAngleBrackets(object);
-    // console.log({subject, predicate, object});
     graph.links.push({
       source: subject,
       label: 'proof',
@@ -98,7 +100,6 @@ const patchGraph = ({subject, predicate, object, graph}) => {
     };
   } else if (predicate === 'https://w3id.org/security#verificationMethod') {
     object = removeAngleBrackets(object);
-    // console.log({subject, predicate, object});
     graph.links.push({
       source: subject,
       label: 'verificationMethod',
