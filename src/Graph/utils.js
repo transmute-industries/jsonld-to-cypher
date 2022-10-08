@@ -41,6 +41,17 @@ const getNodeType = (graph, node) => {
   return predicateToPropertyName(link.target);
 };
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const uriToLabel = (iri) => {
+  if (iri.match(/:/g).length > 1) {
+    return 'Resource';
+  }
+  return capitalizeFirstLetter(predicateToPropertyName(iri));
+};
+
 module.exports = {
   isRdfNode,
   removeAngleBrackets,
@@ -48,6 +59,7 @@ module.exports = {
   isBlankNode,
   predicateToPropertyName,
   getPrimitiveTypeFromObject,
+  uriToLabel,
 
   getNodeType,
 };

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const fs = require('fs');
 const {Graph, documentLoader} = require('./index')
 
@@ -15,6 +16,9 @@ const {Graph, documentLoader} = require('./index')
 
   const cypher = await Graph.graphToCypher(intermediate);
 
-  const markdown = '# Generated Cypher\n```cypher\n' + cypher.query + '```';
+  const markdown =
+    '# Clear Database\n```cypher\nMATCH (n) DETACH DELETE n\n```\n# Generated Cypher\n```cypher\n' +
+    cypher.query +
+    '```';
   fs.writeFileSync('./docs/cypher-query.md', markdown);
 })();

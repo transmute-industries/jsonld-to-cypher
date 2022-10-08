@@ -21,7 +21,6 @@ const patchGraph = ({subject, predicate, object, graph}) => {
   };
 
   if (isBlankNode(subject) && isBlankNode(object)) {
-    // console.log({subject, predicate, object});
     graph.links.push({
       source: removeAngleBrackets(subject),
       label: predicateToPropertyName(predicate),

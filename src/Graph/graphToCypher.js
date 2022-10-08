@@ -1,11 +1,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable max-len */
 
-const {
-  getPrimitiveTypeFromObject,
-  predicateToPropertyName,
-  getNodeType,
-} = require('./utils');
+const {getPrimitiveTypeFromObject, uriToLabel} = require('./utils');
 
 const graphToCypher = async (graph) => {
   const args = {};
@@ -32,7 +28,8 @@ const graphToCypher = async (graph) => {
       const typedProperties = rps.join(', ');
       query += `MERGE ( ${nodeName} :Resource { uri: "${node.id}", ${typedProperties} } )\n`;
     } else {
-      const nodeType = predicateToPropertyName(node.id);
+      const nodeType = uriToLabel(node.id);
+
       query += `MERGE ( ${nodeName} :${nodeType} { uri: "${node.id}" } )\n`;
     }
     nodesMerged.push(nodeName);
@@ -43,12 +40,10 @@ const graphToCypher = async (graph) => {
     const sourceName = nodeIdToNodeName[edge.source];
     const targetName = nodeIdToNodeName[edge.target];
     if (targetName) {
-      query += `CREATE (${sourceName})-[${edgeName}: ${edge.label} ]->(${targetName})\n`;
+      query += `CREATE (${sourceName})-[${edgeName}: ${edge.label.toUpperCase()} ]->(${targetName})\n`;
     }
   }
-  query += `CREATE (g)-[namedGraphEdge: CONTAINS ]->(${
-    nodeIdToNodeName[graph.id]
-  })\n`;
+  query += `CREATE (g)-[nge: CONTAINS ]->(${nodeIdToNodeName[graph.id]})\n`;
   query += `RETURN g,${nodesMerged}\n`;
   return {query, args};
 };

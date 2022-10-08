@@ -1,5 +1,5 @@
 {
-  "id": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+  "id": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
   "doc": {
     "@context": {
       "@vocab": "https://schema.org/"
@@ -20,7 +20,7 @@
   },
   "nodes": [
     {
-      "id": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "id": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
       "price": "55.00",
       "priceCurrency": "USD"
     },
@@ -34,7 +34,7 @@
       "id": "https://schema.org/priceCurrency"
     },
     {
-      "id": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1"
+      "id": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1"
     },
     {
       "id": "https://schema.org/Product"
@@ -45,32 +45,32 @@
   ],
   "links": [
     {
-      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
       "label": "type",
       "target": "https://schema.org/Offer"
     },
     {
-      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
       "label": "has",
       "target": "https://schema.org/price"
     },
     {
-      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0",
+      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
       "label": "has",
       "target": "https://schema.org/priceCurrency"
     },
     {
-      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
       "label": "type",
       "target": "https://schema.org/Product"
     },
     {
-      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
       "label": "offers",
-      "target": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n0"
+      "target": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0"
     },
     {
-      "source": "urn:uuid:4269a864-5fdd-4957-ac1d-ce0a7afc6b1a:_:c14n1",
+      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
       "label": "has",
       "target": "https://schema.org/offers"
     }
