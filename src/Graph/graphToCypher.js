@@ -4,6 +4,7 @@
 const {predicateToPropertyName, uriToLabel} = require('./utils');
 
 const moment = require('moment');
+const lodash = require('lodash');
 
 const graphToCypher = async (graph) => {
   let query = `CREATE ( g:Graph { uri: "${graph.id}" } )\n`;
@@ -50,7 +51,10 @@ const graphToCypher = async (graph) => {
     const sourceName = nodeIdToNodeName[edge.source];
     const targetName = nodeIdToNodeName[edge.target];
     if (targetName) {
-      query += `CREATE (${sourceName})-[${edgeName}: ${edge.label.toUpperCase()} ]->(${targetName})\n`;
+      query += `CREATE (${sourceName})-[${edgeName}: ${lodash
+          .startCase(edge.label)
+          .replace(/\s+/g, '_')
+          .toUpperCase()} ]->(${targetName})\n`;
     }
   }
   query += `CREATE (g)-[nge: CONTAINS ]->(${nodeIdToNodeName[graph.id]})\n`;

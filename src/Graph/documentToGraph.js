@@ -109,7 +109,7 @@ const documentToGraph = async (doc, {documentLoader}) => {
     format: 'application/n-quads',
     documentLoader,
   });
-  console.log(canonized);
+  // console.log(canonized);
   const id = doc.id || `urn:uuid:${uuid.v4()}`;
   const nodes = {[id]: {id}};
   const links = [];
@@ -143,7 +143,10 @@ const documentToGraph = async (doc, {documentLoader}) => {
   });
 
   const finalNodes = Object.values(graph.nodes);
-  // finalNodes.splice(0, 1);
+
+  if (!doc.id) {
+    finalNodes.splice(0, 1);
+  }
 
   return {
     id: lastRoot,
