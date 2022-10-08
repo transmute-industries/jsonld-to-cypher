@@ -3,9 +3,17 @@
     "@vocab": "https://schema.org/"
   },
   "@type": "Product",
-  "offers": {
-    "@type": "Offer",
-    "price": 55.0,
-    "priceCurrency": "USD"
-  }
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": 100,
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "price": 99.99,
+      "priceCurrency": "EUR",
+      "isFamilyFriendly": false
+    }
+  ]
 }

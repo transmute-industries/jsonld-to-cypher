@@ -2,7 +2,6 @@
 /* eslint-disable max-len */
 const jsonld = require('jsonld');
 const uuid = require('uuid');
-const pointer = require('json-pointer');
 
 const {
   isRdfNode,
@@ -10,6 +9,7 @@ const {
   removeEscapedQuotes,
   isBlankNode,
   predicateToPropertyName,
+  getPrimitiveTypeFromObject,
 } = require('./utils');
 
 const patchGraph = ({subject, predicate, object, graph}) => {
@@ -70,7 +70,7 @@ const patchGraph = ({subject, predicate, object, graph}) => {
         graph.nodes[subject] = {
           ...graph.nodes[subject],
           [predicateToPropertyName(removeAngleBrackets(predicate))]:
-            removeEscapedQuotes(object),
+            getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
         };
       }
     }
@@ -108,7 +108,6 @@ const documentToGraph = async (doc, {documentLoader}) => {
     }
     patchGraph({subject, predicate, object, graph});
   }
-  const dict = pointer.dict(doc);
 
   let lastRoot = id;
   graph.links.forEach((link) => {
@@ -123,7 +122,6 @@ const documentToGraph = async (doc, {documentLoader}) => {
   return {
     id: lastRoot,
     doc,
-    dict,
     nodes: finalNodes,
     links: graph.links,
   };

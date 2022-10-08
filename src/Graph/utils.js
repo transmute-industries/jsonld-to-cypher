@@ -25,13 +25,21 @@ const predicateToPropertyName = (predicate) => {
 };
 
 const getPrimitiveTypeFromObject = (str) => {
-  if (str.includes('<http://www.w3.org/2001/XMLSchema#integer>')) {
-    const v = str.split('^^')[0];
-    return parseInt(v.replace(/"/g, ''), 10);
+  const [primitive] = str.split('^^');
+  try {
+    if (str.includes('http://www.w3.org/2001/XMLSchema#integer')) {
+      return parseInt(removeEscapedQuotes(primitive));
+    }
+    if (str.includes('http://www.w3.org/2001/XMLSchema#double')) {
+      return parseFloat(removeEscapedQuotes(primitive));
+    }
+    if (str.includes('http://www.w3.org/2001/XMLSchema#boolean')) {
+      return removeEscapedQuotes(primitive) === 'true';
+    }
+    return `${str.replace(/'/g, '\\\'')}`;
+  } catch (e) {
+    return `${str.replace(/'/g, '\\\'')}`;
   }
-
-  const str2 = str.replace(/'/g, '\\\'');
-  return `"${str2}"`;
 };
 
 const getNodeType = (graph, node) => {

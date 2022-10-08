@@ -1,27 +1,28 @@
 {
-  "id": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
+  "id": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2",
   "doc": {
     "@context": {
       "@vocab": "https://schema.org/"
     },
     "@type": "Product",
-    "offers": {
-      "@type": "Offer",
-      "price": "55.00",
-      "priceCurrency": "USD"
-    }
-  },
-  "dict": {
-    "/@context/@vocab": "https://schema.org/",
-    "/@type": "Product",
-    "/offers/@type": "Offer",
-    "/offers/price": "55.00",
-    "/offers/priceCurrency": "USD"
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": 100,
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "price": 99.99,
+        "priceCurrency": "EUR",
+        "isFamilyFriendly": false
+      }
+    ]
   },
   "nodes": [
     {
-      "id": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
-      "price": "55.00",
+      "id": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n0",
+      "price": 100,
       "priceCurrency": "USD"
     },
     {
@@ -34,45 +35,85 @@
       "id": "https://schema.org/priceCurrency"
     },
     {
-      "id": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1"
+      "id": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n1",
+      "offers": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2"
     },
     {
       "id": "https://schema.org/Product"
     },
     {
       "id": "https://schema.org/offers"
+    },
+    {
+      "id": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2",
+      "isFamilyFriendly": false,
+      "price": 99.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "id": "https://schema.org/isFamilyFriendly"
     }
   ],
   "links": [
     {
-      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n0",
       "label": "type",
       "target": "https://schema.org/Offer"
     },
     {
-      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n0",
       "label": "has",
       "target": "https://schema.org/price"
     },
     {
-      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0",
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n0",
       "label": "has",
       "target": "https://schema.org/priceCurrency"
     },
     {
-      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n1",
       "label": "type",
       "target": "https://schema.org/Product"
     },
     {
-      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n1",
       "label": "offers",
-      "target": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n0"
+      "target": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n0"
     },
     {
-      "source": "urn:uuid:2ee0ad2d-255f-4498-bbe8-707c6cf77c15:_:c14n1",
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n1",
       "label": "has",
       "target": "https://schema.org/offers"
+    },
+    {
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n1",
+      "label": "offers",
+      "target": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2"
+    },
+    {
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n1",
+      "label": "has",
+      "target": "https://schema.org/offers"
+    },
+    {
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2",
+      "label": "type",
+      "target": "https://schema.org/Offer"
+    },
+    {
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2",
+      "label": "has",
+      "target": "https://schema.org/isFamilyFriendly"
+    },
+    {
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2",
+      "label": "has",
+      "target": "https://schema.org/price"
+    },
+    {
+      "source": "urn:uuid:766320b3-89be-410b-b184-d1b85d21506b:_:c14n2",
+      "label": "has",
+      "target": "https://schema.org/priceCurrency"
     }
   ]
 }

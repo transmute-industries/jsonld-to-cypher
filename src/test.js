@@ -23,7 +23,7 @@ const {Graph, documentLoader} = require('./index')
 ;(async () => {
   console.log('🌴 testing library...');
   const intermediate = await Graph.documentToGraph(
-      require('../docs/advanced-types.json.json'),
+      require('../docs/advanced-types.json'),
       {documentLoader},
   );
   fs.writeFileSync(

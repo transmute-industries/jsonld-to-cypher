@@ -1,29 +1,33 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable max-len */
 
-const {getPrimitiveTypeFromObject, uriToLabel} = require('./utils');
+const {predicateToPropertyName, uriToLabel} = require('./utils');
 
 const graphToCypher = async (graph) => {
   const args = {};
-  const keys = JSON.stringify(Object.keys(graph.dict));
-  const values = JSON.stringify(Object.values(graph.dict));
 
-  let query = `CREATE ( g:Graph { uri: "${graph.id}", keys: ${keys}, values: ${values} } )\n`;
+  let query = `CREATE ( g:Graph { uri: "${graph.id}" } )\n`;
   const nodesMerged = [];
   const nodeIdToNodeName = {};
+
+  // console.log(graph);
   for (const nodeIndex in graph.nodes) {
     const node = graph.nodes[nodeIndex];
     const nodeName = `n${nodeIndex}`;
     nodeIdToNodeName[node.id] = nodeName;
-    if (Object.keys(node).length > 2) {
-      const {id, value, ...props} = node;
+    if (Object.keys(node).length > 1) {
+      const {id, ...props} = node;
+
       const propKeys = Object.keys(props);
+
       const rps = [];
       for (const ki in propKeys) {
         const k = propKeys[ki];
         const v = props[k];
-        const niceName = k.split('/').pop().split('#').pop().replace('>', '');
-        rps.push(`${niceName}: ${getPrimitiveTypeFromObject(v)}`);
+        const niceName = predicateToPropertyName(k);
+        const niceValue = typeof v === 'string' ? `"${v}"` : v;
+
+        rps.push(`${niceName}: ${niceValue}`);
       }
       const typedProperties = rps.join(', ');
       query += `MERGE ( ${nodeName} :Resource { uri: "${node.id}", ${typedProperties} } )\n`;
