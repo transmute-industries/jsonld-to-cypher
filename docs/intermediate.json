@@ -1,12 +1,11 @@
 {
-  "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665",
+  "id": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
   "doc": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       {
         "@vocab": "https://schema.org/"
-      },
-      "https://www.w3.org/2018/credentials/v1"
+      }
     ],
     "id": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
     "type": [
@@ -15,136 +14,37 @@
     "issuer": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL",
     "issuanceDate": "2010-01-01T19:23:24Z",
     "credentialSubject": {
-      "type": "Product",
-      "offers": [
-        {
-          "type": "Offer",
-          "price": 100,
-          "priceCurrency": "USD",
-          "availabilityEnds": "2022-10-08T18:52:38.220Z",
-          "offeredBy": {
-            "@type": "Organization",
-            "foundingLocation": {
-              "@type": "Place",
-              "name": "Empire State Building",
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "40.75",
-                "longitude": "-73.98"
-              }
-            }
-          }
-        },
-        {
-          "type": "Offer",
-          "price": 99.99,
-          "priceCurrency": "EUR",
-          "isFamilyFriendly": false
-        }
-      ]
+      "id": "did:example:123",
+      "type": "Product"
     }
   },
   "nodes": [
     {
       "id": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
-      "credentialSubject": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
       "issuanceDate": "2010-01-01T19:23:24Z"
     },
     {
-      "id": "https://www.w3.org/2018/credentials#VerifiableCredential"
-    },
-    {
-      "id": "https://www.w3.org/2018/credentials#credentialSubject"
-    },
-    {
-      "id": "https://www.w3.org/2018/credentials#issuanceDate"
-    },
-    {
-      "id": "https://www.w3.org/2018/credentials#issuer"
-    },
-    {
-      "id": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
-    },
-    {
-      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
-      "latitude": "40.75",
-      "longitude": "-73.98"
-    },
-    {
-      "id": "https://schema.org/GeoCoordinates"
-    },
-    {
-      "id": "https://schema.org/latitude"
-    },
-    {
-      "id": "https://schema.org/longitude"
-    },
-    {
-      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
-      "offers": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5"
+      "id": "did:example:123"
     },
     {
       "id": "https://schema.org/Product"
     },
     {
-      "id": "https://schema.org/offers"
+      "id": "https://www.w3.org/2018/credentials#VerifiableCredential"
     },
     {
-      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "availabilityEnds": "2022-10-08T18:52:38.220Z",
-      "offeredBy": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
-      "price": 100,
-      "priceCurrency": "USD"
+      "id": "https://www.w3.org/2018/credentials#issuanceDate"
     },
     {
-      "id": "https://schema.org/Offer"
-    },
-    {
-      "id": "https://schema.org/availabilityEnds"
-    },
-    {
-      "id": "https://schema.org/offeredBy"
-    },
-    {
-      "id": "https://schema.org/price"
-    },
-    {
-      "id": "https://schema.org/priceCurrency"
-    },
-    {
-      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
-      "foundingLocation": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4"
-    },
-    {
-      "id": "https://schema.org/Organization"
-    },
-    {
-      "id": "https://schema.org/foundingLocation"
-    },
-    {
-      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
-      "name": "Empire State Building"
-    },
-    {
-      "id": "https://schema.org/Place"
-    },
-    {
-      "id": "https://schema.org/geo"
-    },
-    {
-      "id": "https://schema.org/name"
-    },
-    {
-      "id": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
-      "isFamilyFriendly": false,
-      "price": 99.99,
-      "priceCurrency": "EUR"
-    },
-    {
-      "id": "https://schema.org/isFamilyFriendly"
+      "id": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
     }
   ],
   "links": [
+    {
+      "source": "did:example:123",
+      "label": "type",
+      "target": "https://schema.org/Product"
+    },
     {
       "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
       "label": "type",
@@ -152,8 +52,8 @@
     },
     {
       "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
-      "label": "credentialSubject",
-      "target": "https://www.w3.org/2018/credentials#credentialSubject"
+      "label": "subject",
+      "target": "did:example:123"
     },
     {
       "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
@@ -161,134 +61,9 @@
       "target": "https://www.w3.org/2018/credentials#issuanceDate"
     },
     {
-      "source": "https://www.w3.org/2018/credentials#issuer",
-      "label": "controller",
+      "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
+      "label": "issuer",
       "target": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
-      "label": "type",
-      "target": "https://schema.org/GeoCoordinates"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
-      "label": "has",
-      "target": "https://schema.org/latitude"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0",
-      "label": "has",
-      "target": "https://schema.org/longitude"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
-      "label": "type",
-      "target": "https://schema.org/Product"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
-      "label": "offers",
-      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
-      "label": "has",
-      "target": "https://schema.org/offers"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
-      "label": "offers",
-      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n1",
-      "label": "has",
-      "target": "https://schema.org/offers"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "label": "type",
-      "target": "https://schema.org/Offer"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "label": "has",
-      "target": "https://schema.org/availabilityEnds"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "label": "offeredBy",
-      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "label": "has",
-      "target": "https://schema.org/offeredBy"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "label": "has",
-      "target": "https://schema.org/price"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n2",
-      "label": "has",
-      "target": "https://schema.org/priceCurrency"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
-      "label": "type",
-      "target": "https://schema.org/Organization"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
-      "label": "foundingLocation",
-      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n3",
-      "label": "has",
-      "target": "https://schema.org/foundingLocation"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
-      "label": "type",
-      "target": "https://schema.org/Place"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
-      "label": "geo",
-      "target": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n0"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
-      "label": "has",
-      "target": "https://schema.org/geo"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n4",
-      "label": "has",
-      "target": "https://schema.org/name"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
-      "label": "type",
-      "target": "https://schema.org/Offer"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
-      "label": "has",
-      "target": "https://schema.org/isFamilyFriendly"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
-      "label": "has",
-      "target": "https://schema.org/price"
-    },
-    {
-      "source": "urn:uuid:672c51dd-f66b-46b1-a38e-beec486c8665:_:c14n5",
-      "label": "has",
-      "target": "https://schema.org/priceCurrency"
     }
   ]
 }

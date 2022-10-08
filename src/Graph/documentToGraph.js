@@ -39,6 +39,28 @@ const patchGraph = ({subject, predicate, object, graph}) => {
     graph.nodes[object] = {
       ...(graph.nodes[object] || {id: object}),
     };
+  } else if (predicate === 'https://www.w3.org/2018/credentials#issuer') {
+    object = removeAngleBrackets(object);
+    graph.links.push({
+      source: subject,
+      label: 'issuer',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+  } else if (
+    predicate === 'https://www.w3.org/2018/credentials#credentialSubject'
+  ) {
+    object = removeAngleBrackets(object);
+    graph.links.push({
+      source: subject,
+      label: 'subject',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
   } else {
     graph.nodes[predicate] = {
       ...(graph.nodes[predicate] || {id: predicate}),
@@ -87,8 +109,8 @@ const documentToGraph = async (doc, {documentLoader}) => {
     format: 'application/n-quads',
     documentLoader,
   });
-  // console.log(canonized);
-  const id = `urn:uuid:${uuid.v4()}`;
+  console.log(canonized);
+  const id = doc.id || `urn:uuid:${uuid.v4()}`;
   const nodes = {[id]: {id}};
   const links = [];
   const graph = {id, nodes, links};
@@ -113,22 +135,18 @@ const documentToGraph = async (doc, {documentLoader}) => {
     patchGraph({subject, predicate, object, graph});
   }
 
+  let lastRoot = id;
   graph.links.forEach((link) => {
-    if (link.source.includes('_:c14n')) {
-      console.log;
-      // graph.links.push({
-      //   source: id,
-      //   label: 'includes',
-      //   target: link.source,
-      // });
+    if (link.source.includes(id)) {
+      lastRoot = link.source;
     }
   });
 
   const finalNodes = Object.values(graph.nodes);
-  finalNodes.splice(0, 1);
+  // finalNodes.splice(0, 1);
 
   return {
-    id,
+    id: lastRoot,
     doc,
     nodes: finalNodes,
     links: graph.links,

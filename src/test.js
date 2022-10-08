@@ -26,9 +26,10 @@ const readFile = (filePath) => {
       JSON.stringify(intermediate, null, 2),
   );
   const cypher = await Graph.graphToCypher(intermediate);
+  console.log(cypher);
   const markdown =
     '# Clear Database\n```cypher\nMATCH (n) DETACH DELETE n\n```\n# Generated Cypher\n```cypher\n' +
-    cypher.query +
+    cypher +
     '```';
   fs.writeFileSync('./docs/cypher-simple-vc-query.md', markdown);
 })();
