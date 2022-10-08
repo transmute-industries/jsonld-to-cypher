@@ -13,6 +13,49 @@ const {
   isDid,
 } = require('./utils');
 
+const toxic = require('./toxic-handler');
+
+const handleSimple = ({subject, predicate, object, graph}) => {
+  graph.nodes[predicate] = {
+    ...(graph.nodes[predicate] || {id: predicate}),
+  };
+  if (isRdfNode(object)) {
+    object = removeAngleBrackets(object);
+    // add node
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+    let label = predicateToPropertyName(object);
+    if (isDid(label)) {
+      label = 'controller';
+    }
+    // add edge
+    graph.links.push({
+      source: removeAngleBrackets(predicate),
+      label,
+      target: removeAngleBrackets(object),
+    });
+  } else {
+    let label = predicateToPropertyName(predicate);
+    if (isBlankNode(subject)) {
+      label = 'has';
+    }
+    graph.links.push({
+      source: removeAngleBrackets(subject),
+      label,
+      target: removeAngleBrackets(predicate),
+    });
+    // add predicate as subject property
+    if (!graph.nodes[object]) {
+      graph.nodes[subject] = {
+        ...graph.nodes[subject],
+        [predicateToPropertyName(removeAngleBrackets(predicate))]:
+          getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
+      };
+    }
+  }
+};
+
 const patchGraph = ({subject, predicate, object, graph}) => {
   subject = removeAngleBrackets(subject);
   predicate = removeAngleBrackets(predicate);
@@ -29,142 +72,13 @@ const patchGraph = ({subject, predicate, object, graph}) => {
     });
   }
 
-  if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'type',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-  } else if (predicate === 'https://www.w3.org/2018/credentials#issuer') {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'issuer',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-  } else if (
-    predicate === 'https://www.w3.org/2018/credentials#credentialSubject'
+  if (
+    toxic.littleNasties.includes(predicate) ||
+    toxic.bigNasties.includes(predicate)
   ) {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'subject',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-  } else if (
-    predicate ===
-    'https://w3id.org/vc-revocation-list-2020#revocationListCredential'
-  ) {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'revocationListCredential',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-  } else if (
-    predicate === 'https://www.w3.org/2018/credentials#credentialStatus'
-  ) {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'credentialStatus',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-  } else if (predicate === 'https://w3id.org/security#proof') {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'proof',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-
-    // because we know we don't support proof chains / proof sets...
-    graph.links.push({
-      source: object,
-      label: 'proof',
-      target: object.replace('c14n0', 'c14n1'),
-    });
-  } else if (predicate === 'https://w3id.org/security#proofPurpose') {
-    // console.log({subject, predicate, object});
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'proofPurpose',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
-  } else if (predicate === 'https://w3id.org/security#verificationMethod') {
-    object = removeAngleBrackets(object);
-    graph.links.push({
-      source: subject,
-      label: 'verificationMethod',
-      target: object,
-    });
-    graph.nodes[object] = {
-      ...(graph.nodes[object] || {id: object}),
-    };
+    toxic.handleSnowFlake({subject, predicate, object, graph});
   } else {
-    graph.nodes[predicate] = {
-      ...(graph.nodes[predicate] || {id: predicate}),
-    };
-    if (isRdfNode(object)) {
-      object = removeAngleBrackets(object);
-      // add node
-      graph.nodes[object] = {
-        ...(graph.nodes[object] || {id: object}),
-      };
-
-      let label = predicateToPropertyName(object);
-
-      if (isDid(label)) {
-        label = 'controller';
-      }
-      // add edge
-      graph.links.push({
-        source: removeAngleBrackets(predicate),
-        label,
-        target: removeAngleBrackets(object),
-      });
-    } else {
-      let label = predicateToPropertyName(predicate);
-      if (isBlankNode(subject)) {
-        label = 'has';
-      }
-      graph.links.push({
-        source: removeAngleBrackets(subject),
-        label,
-        target: removeAngleBrackets(predicate),
-      });
-      // add predicate as subject property
-      if (!graph.nodes[object]) {
-        graph.nodes[subject] = {
-          ...graph.nodes[subject],
-          [predicateToPropertyName(removeAngleBrackets(predicate))]:
-            getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
-        };
-      }
-    }
+    handleSimple({subject, predicate, object, graph});
   }
 };
 
