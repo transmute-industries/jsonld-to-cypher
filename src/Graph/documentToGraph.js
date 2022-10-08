@@ -27,8 +27,6 @@ const patchGraph = ({subject, predicate, object, graph}) => {
       label: predicateToPropertyName(predicate),
       target: removeAngleBrackets(object),
     });
-
-    console.log({subject, predicate, object});
   }
 
   if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
@@ -93,6 +91,24 @@ const patchGraph = ({subject, predicate, object, graph}) => {
     graph.links.push({
       source: subject,
       label: 'proof',
+      target: object,
+    });
+    graph.nodes[object] = {
+      ...(graph.nodes[object] || {id: object}),
+    };
+
+    // because we know we don't support proof chains / proof sets...
+    graph.links.push({
+      source: object,
+      label: 'proof',
+      target: object.replace('c14n0', 'c14n1'),
+    });
+  } else if (predicate === 'https://w3id.org/security#proofPurpose') {
+    // console.log({subject, predicate, object});
+    object = removeAngleBrackets(object);
+    graph.links.push({
+      source: subject,
+      label: 'proofPurpose',
       target: object,
     });
     graph.nodes[object] = {
@@ -199,6 +215,7 @@ const documentToGraph = async (doc, {documentLoader}) => {
   }
 
   let lastRoot = id;
+
   graph.links.forEach((link) => {
     if (link.source.includes(id)) {
       lastRoot = link.source;
@@ -212,7 +229,7 @@ const documentToGraph = async (doc, {documentLoader}) => {
   }
 
   return {
-    id: lastRoot,
+    id: doc.id ? doc.id : lastRoot,
     doc,
     nodes: finalNodes,
     links: graph.links,

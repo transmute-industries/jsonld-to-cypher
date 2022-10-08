@@ -1,5 +1,5 @@
 {
-  "id": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336:_:c14n1",
+  "id": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336",
   "doc": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
@@ -76,9 +76,6 @@
       "id": "https://w3id.org/security#jws"
     },
     {
-      "id": "https://w3id.org/security#proofPurpose"
-    },
-    {
       "id": "https://w3id.org/security#assertionMethod"
     },
     {
@@ -110,6 +107,11 @@
       "source": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336",
       "label": "proof",
       "target": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336:_:c14n0"
+    },
+    {
+      "source": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336:_:c14n0",
+      "label": "proof",
+      "target": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336:_:c14n1"
     },
     {
       "source": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336",
@@ -147,8 +149,8 @@
       "target": "https://w3id.org/security#jws"
     },
     {
-      "source": "https://w3id.org/security#proofPurpose",
-      "label": "assertionMethod",
+      "source": "urn:uuid:1e61e0e0-ee5e-4767-8481-81179d382336:_:c14n1",
+      "label": "proofPurpose",
       "target": "https://w3id.org/security#assertionMethod"
     },
     {
