@@ -1,0 +1,35 @@
+{
+  "name": "@ransmute/jsonld-to-cipher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./src/test.js",
+    "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
+    "jsonld-to-cypher": "node ./src/cli.js"
+  },
+  "bin": {
+    "jsonld-to-cypher": "./src/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transmute-industries/jsonld-to-cipher.git"
+  },
+  "author": "Orie Steele",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/transmute-industries/jsonld-to-cipher/issues"
+  },
+  "homepage": "https://github.com/transmute-industries/jsonld-to-cipher#readme",
+  "dependencies": {
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-google": "^0.14.0",
+    "prettier": "^2.7.1"
+  }
+}
