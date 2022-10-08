@@ -1,6 +1,6 @@
 # JSON-LD to Cypher
 
-A tool to convert JSON-LD to Cypher.
+Compile JSON-LD (Decentralized Identifiers and Verifiable Credentials) to Cypher.
 
 <img src="./transmute-banner.png" />
 
@@ -27,6 +27,10 @@ npm t
 ```
 
 ### Testing CLI
+
+```
+npm i
+```
 
 #### Convert a JSON File
 
