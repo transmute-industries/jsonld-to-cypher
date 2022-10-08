@@ -6,6 +6,12 @@
 
 #### 🚧 Warning Experimental 🔥
 
+### Testing Library
+
+```
+npm t
+```
+
 ### Testing CLI
 
 ```
