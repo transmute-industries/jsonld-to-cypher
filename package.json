@@ -26,6 +26,7 @@
   "homepage": "https://github.com/transmute-industries/jsonld-to-cypher#readme",
   "dependencies": {
     "axios": "^1.1.2",
+    "base64url": "^3.0.1",
     "json-pointer": "^0.6.2",
     "jsonld": "^8.1.0",
     "lodash": "^4.17.21",

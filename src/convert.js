@@ -1,19 +1,17 @@
 const Graph = require('./Graph');
+const VerifiableCredentials = require('./VerifiableCredentials');
 const documentLoader = require('./documentLoader');
 
 const convert = async (document, type = 'json') => {
-  let g;
-
   if (type === 'json') {
-    g = await Graph.documentToGraph(document, {documentLoader});
+    const g = await Graph.documentToGraph(document, {documentLoader});
+    const c = await Graph.graphToCypher(g);
+    return c;
   }
 
   if (type === 'jwt') {
-    g = await Graph.jwsToGraph(document, {documentLoader});
+    return VerifiableCredentials.toCypher(document, {documentLoader});
   }
-
-  const c = await Graph.graphToCypher(g);
-  return c;
 };
 
 module.exports = convert;
