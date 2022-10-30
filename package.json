@@ -1,12 +1,12 @@
 {
   "name": "@transmute/jsonld-to-cypher",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "transform a document into a cypher query",
   "main": "./src/index.js",
   "scripts": {
     "test": "NODE_NO_WARNINGS=1 NODE_OPTIONS=--experimental-vm-modules jest",
     "test-ci": "NODE_NO_WARNINGS=1  NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
-    "shove": "git add -A ; git commit -m ':rocket:' ; git push origin feat/refactor",
+    "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
     "jsonld-to-cypher": "node ./src/cli.js"
   },
   "bin": {
@@ -27,10 +27,7 @@
   "homepage": "https://github.com/transmute-industries/jsonld-to-cypher#readme",
   "dependencies": {
     "axios": "^1.1.2",
-    "base64url": "^3.0.1",
-    "json-pointer": "^0.6.2",
     "jsonld": "^8.1.0",
-    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "ts-graphviz": "^1.2.3",
     "uuid": "^9.0.0",

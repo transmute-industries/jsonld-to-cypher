@@ -3,8 +3,8 @@
 
 const moment = require('moment');
 
-const {predicateToPropertyName} = require('../utils');
-const preferences = require('../../preferences');
+const {predicateToPropertyName} = require('./utils');
+const preferences = require('./preferences');
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -63,7 +63,7 @@ const linkToEdgeLabel = (link) => {
   return capitalizeFirstLetter(predicateToPropertyName(link.label));
 };
 
-const graphToCypher = async (graph) => {
+const jsonGraphToCypher = async (graph) => {
   let query = ``;
   const nodesMerged = [];
   const nodeIdToNodeName = {};
@@ -108,4 +108,4 @@ const graphToCypher = async (graph) => {
   return query;
 };
 
-module.exports = {graphToCypher};
+module.exports = jsonGraphToCypher;

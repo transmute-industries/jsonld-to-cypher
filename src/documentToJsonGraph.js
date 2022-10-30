@@ -13,7 +13,7 @@ const {
   getPrimitiveTypeFromObject,
 } = require('./utils');
 
-const preferences = require('../preferences');
+const preferences = require('./preferences');
 
 const documentToRows = async (document, documentLoader) => {
   const canonized = await jsonld.canonize(document, {
@@ -95,10 +95,6 @@ const addRowsToGraph = (rows, graph) => {
 const rowToIntermediateObject = (id, row) => {
   const match = row.match(tripleRegex);
   let {subject, predicate, object} = match.groups;
-  // subject = removeAngleBrackets(subject);
-  // predicate = removeAngleBrackets(predicate);
-  // what is happening here...
-  // pretty sure this is related to `@container`.
   if (object.includes('_:c14n')) {
     const objectParts = object.split('_:c14n');
     const objectValue = objectParts[0].trim();
@@ -144,7 +140,7 @@ const hasInbound = (target, graph) => {
   );
 };
 
-const toJsonLdGraph = async (doc, {documentLoader}) => {
+const documentToJsonGraph = async (doc, {documentLoader}) => {
   const id = doc.id || `urn:uuid:${uuid.v4()}`;
   const rows = await documentToRows(doc, documentLoader);
   const nodes = {[id]: {id}};
@@ -152,7 +148,7 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
   const graph = {id, nodes, links};
   addRowsToGraph(rows, graph);
   // record all relationships as originating
-  // from this graph
+  // from this graph...
   graph.nodes.forEach((node) => {
     if (
       id !== node.id &&
@@ -160,7 +156,6 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
       !hasBackEdge(id, node.id, graph) &&
       !hasInbound(node.id, graph)
     ) {
-      // does target already have an edge?
       graph.links.push({
         source: id,
         label: preferences.defaultRelationship,
@@ -176,5 +171,5 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
     links: graph.links.sort(linkSort),
   };
 };
-const document = {toJsonLdGraph};
-module.exports = document;
+
+module.exports = documentToJsonGraph;

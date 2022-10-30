@@ -1,11 +1,11 @@
 const fs = require('fs');
-const {toGraphViz} = require('../transformers/graphviz');
-const {graphToCypher} = require('../transformers/cypher');
+const jsonGraphToDot = require('../jsonGraphToDot');
+const jsonGraphToCypher = require('../jsonGraphToCypher');
 
 const preview = async (intermediate, name = 'preview') => {
   // console.log(JSON.stringify(intermediate, null, 2));
-  const dot = toGraphViz(intermediate);
-  const cypher = await graphToCypher(intermediate);
+  const dot = jsonGraphToDot(intermediate);
+  const cypher = await jsonGraphToCypher(intermediate);
   fs.writeFileSync(`./examples/${name}.dot`, dot);
   fs.writeFileSync(
       `./examples/${name}.json`,

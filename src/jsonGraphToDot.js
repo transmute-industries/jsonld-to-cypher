@@ -19,7 +19,7 @@ const nodeToLabel = (node) => {
   return lines.slice(1, lines.length - 1).join('\n');
 };
 
-const toGraphViz = (intermediate) => {
+const jsonGraphToDot = (intermediate) => {
   const G = new Digraph();
   const A = new Subgraph('A');
   const internalNodeMap = {};
@@ -48,4 +48,4 @@ const toGraphViz = (intermediate) => {
   return toDot(G);
 };
 
-module.exports = {toGraphViz};
+module.exports = jsonGraphToDot;
