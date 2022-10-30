@@ -2,6 +2,14 @@
 
 Compile JSON-LD (Decentralized Identifiers and Verifiable Credentials) to Cypher.
 
+[![CI](https://github.com/transmute-industries/jsonld-to-cypher/actions/workflows/ci.yml/badge.svg)](https://github.com/transmute-industries/jsonld-to-cypher/actions/workflows/ci.yml)
+![Branches](./badges/coverage-branches.svg)
+![Functions](./badges/coverage-functions.svg)
+![Lines](./badges/coverage-lines.svg)
+![Statements](./badges/coverage-statements.svg)
+![Jest coverage](./badges/coverage-jest%20coverage.svg)
+[![NPM](https://nodei.co/npm/@transmute/jsonld-to-cypher.png?mini=true)](https://npmjs.org/package/@transmute/jsonld-to-cypher)
+
 <img src="./transmute-banner.png" />
 
 #### [Questions? Contact Transmute](https://transmute.typeform.com/to/RshfIw?typeform-source=jsonld-to-cypher)
