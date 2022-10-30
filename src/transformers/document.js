@@ -63,72 +63,32 @@ const rowToIntermediateObject = (id, row) => {
   return {subject, predicate, object};
 };
 
-const patchGraph = ({subject, predicate, object, graph}) => {
-  graph.nodes[subject] = {
-    ...(graph.nodes[subject] || {id: subject}),
-  };
-
-  if (isBlankNode(subject) && isBlankNode(object)) {
-    graph.links.push({
-      source: removeAngleBrackets(subject),
-      label: predicateToPropertyName(predicate),
-      target: removeAngleBrackets(object),
-    });
-  }
-  addTripleToGraph({subject, predicate, object, graph});
-};
-
 const label = '';
-const addObjectAsNode = ({object, predicate, graph}) => {
-  object = removeAngleBrackets(object);
-  // add node
-  graph.nodes[object] = {
-    ...(graph.nodes[object] || {id: object}),
-  };
-  // const label = predicateToPropertyName(object);
-  // add edge
-  graph.links.push({
-    source: removeAngleBrackets(predicate),
-    label,
-    target: removeAngleBrackets(object),
-  });
-};
+const patchGraph = ({subject, predicate, object, graph}) => {
+  console.log({subject, predicate, object});
+  // graph.nodes[subject] = {
+  //   ...(graph.nodes[subject] || {id: subject}),
+  // };
 
-const addObjectAsProperty = ({subject, predicate, object, graph}) => {
-  // const label = predicateToPropertyName(predicate);
-  graph.links.push({
-    source: removeAngleBrackets(subject),
-    label,
-    target: removeAngleBrackets(predicate),
-  });
-  // add predicate as subject property
-  graph.nodes[subject] = {
-    ...graph.nodes[subject],
-    [predicateToPropertyName(removeAngleBrackets(predicate))]:
-      getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
-  };
-};
-const addTripleToGraph = ({subject, predicate, object, graph}) => {
-  graph.nodes[predicate] = {
-    ...(graph.nodes[predicate] || {id: predicate}),
-  };
-  if (isRdfNode(object)) {
-    addObjectAsNode({object, predicate, graph});
-  } else {
-    addObjectAsProperty({subject, predicate, object, graph});
-  }
-};
+  // if (isBlankNode(subject) && isBlankNode(object)) {
+  //   graph.links.push({
+  //     source: removeAngleBrackets(subject),
+  //     label: predicateToPropertyName(predicate),
+  //     target: removeAngleBrackets(object),
+  //   });
+  // }
 
-// the only node that includes the graph id that is not targeted.
-const getRoot = (graph) => {
-  let lastRoot = graph.id;
-  const targets = graph.links.map((link) => link.target);
-  graph.links.forEach((link) => {
-    if (link.source.includes(graph.id) && !targets.includes(link.source)) {
-      lastRoot = link.source;
-    }
-  });
-  return lastRoot;
+  // graph.links.push({
+  //   source: removeAngleBrackets(subject),
+  //   label: removeAngleBrackets(predicate),
+  //   target: removeAngleBrackets(object),
+  // });
+  // // add predicate as subject property
+  // graph.nodes[subject] = {
+  //   ...graph.nodes[subject],
+  //   [predicateToPropertyName(removeAngleBrackets(predicate))]:
+  //     getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
+  // };
 };
 
 const nodeSort = (a, b) => {
@@ -147,6 +107,8 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
   const graph = {id, nodes, links};
   addRowsToGraph(rows, graph);
 
+  // record all relationships as originating
+  // from this graph
   graph.nodes.forEach((node) => {
     if (id !== node.id) {
       graph.links.push({

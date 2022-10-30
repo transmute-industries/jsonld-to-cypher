@@ -74,7 +74,7 @@ const graphToCypher = async (graph) => {
     const edgeName = `e${edgeIndex}`;
     const sourceName = nodeIdToNodeName[edge.source];
     const targetName = nodeIdToNodeName[edge.target];
-
+    // console.log(edge);
     if (targetName) {
       query += `CREATE (${sourceName})-[${edgeName}: Relationship { id : "${graph.id}" } ]->(${targetName})\n`;
     }
