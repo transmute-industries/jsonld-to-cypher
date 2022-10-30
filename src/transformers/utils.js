@@ -1,3 +1,5 @@
+const tripleRegex =
+  /^(?<subject>(<([^<>]+)>|^_:c14n\d+)) (?<predicate>(<([^<>]+)>)) (?<object>(.+))/;
 const isRdfNode = (str) => {
   return str.startsWith('<') && str.endsWith('>');
 };
@@ -84,6 +86,7 @@ const nodeToNodeLabel = (node) => {
 };
 
 module.exports = {
+  tripleRegex,
   isRdfNode,
   removeAngleBrackets,
   removeEscapedQuotes,

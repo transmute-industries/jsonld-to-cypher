@@ -1,11 +1,7 @@
-const Graph = require('./Graph');
-const VerifiableCredentials = require('./VerifiableCredentials');
+const transformers = require('./transformers');
 const documentLoader = require('./documentLoader');
-const convert = require('./convert');
 
 module.exports = {
-  VerifiableCredentials,
-  Graph,
+  transformers,
   documentLoader,
-  convert,
 };
