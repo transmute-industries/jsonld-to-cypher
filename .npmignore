@@ -1,7 +1,11 @@
-test.js
 
-docs
+
 
 .vscode
 .prettierrc.yaml
 .eslintrc.js
+
+badges
+src/__fixtures__
+src/__tests__
+jest.config.js 
