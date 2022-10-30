@@ -3,6 +3,13 @@
 
 const moment = require('moment');
 
+const {predicateToPropertyName} = require('../utils');
+const preferences = require('../../preferences');
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const isDid = (iri) => {
   return iri.startsWith('did:');
 };
@@ -34,6 +41,16 @@ const getTypedValue = (v) => {
     niceValue = `datetime("${v}")`;
   }
   return niceValue;
+};
+
+const linkToEdgeLabel = (link) => {
+  if (link.label.includes(preferences.defaultPredicate)) {
+    return 'Predicate';
+  }
+  if (link.label.includes(preferences.defaultRelationship)) {
+    return 'Relationship';
+  }
+  return capitalizeFirstLetter(predicateToPropertyName(link.label));
 };
 
 const graphToCypher = async (graph) => {
@@ -69,14 +86,15 @@ const graphToCypher = async (graph) => {
     query += `MERGE ( ${nodeName} : ${nodeLabel} { id: "${node.id}" ${typedProperties} } )\n`;
     nodesMerged.push(nodeName);
   }
-  for (const edgeIndex in graph.links) {
-    const edge = graph.links[edgeIndex];
-    const edgeName = `e${edgeIndex}`;
-    const sourceName = nodeIdToNodeName[edge.source];
-    const targetName = nodeIdToNodeName[edge.target];
+  for (const linkIndex in graph.links) {
+    const link = graph.links[linkIndex];
+    const edgeName = `e${linkIndex}`;
+    const sourceName = nodeIdToNodeName[link.source];
+    const targetName = nodeIdToNodeName[link.target];
     // console.log(edge);
+    const linkLabel = linkToEdgeLabel(link);
     if (targetName) {
-      query += `CREATE (${sourceName})-[${edgeName}: Relationship { id : "${graph.id}" } ]->(${targetName})\n`;
+      query += `CREATE (${sourceName})-[${edgeName}: ${linkLabel} { id : "${graph.id}", predicate: "${link.label}" } ]->(${targetName})\n`;
     }
   }
   query += `RETURN ${nodesMerged}\n`;

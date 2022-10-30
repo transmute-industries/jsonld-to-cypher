@@ -1,5 +1,5 @@
 {
-  "id": "urn:uuid:bacf5ea9-dfcc-491a-97ad-b10db958797f",
+  "id": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
   "doc": {
     "@context": {
       "@vocab": "https://vocabulary.transmute.industries/ns/dynamic/#"
@@ -18,8 +18,150 @@
   },
   "nodes": [
     {
-      "id": "urn:uuid:bacf5ea9-dfcc-491a-97ad-b10db958797f"
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#alg"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#boolean"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#number"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#object"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader"
+    },
+    {
+      "id": "https://vocabulary.transmute.industries/ns/dynamic/#string"
+    },
+    {
+      "id": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951"
+    },
+    {
+      "id": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0",
+      "foo": "🙋‍♀️"
+    },
+    {
+      "id": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1",
+      "alg": "ES256"
+    },
+    {
+      "id": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2"
+    },
+    {
+      "id": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3",
+      "boolean": true,
+      "number": 42.5,
+      "string": "It’s a dangerous business, Frodo, going out your door."
     }
   ],
-  "links": []
+  "links": [
+    {
+      "source": "https://vocabulary.transmute.industries/ns/dynamic/#alg",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1"
+    },
+    {
+      "source": "https://vocabulary.transmute.industries/ns/dynamic/#boolean",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3"
+    },
+    {
+      "source": "https://vocabulary.transmute.industries/ns/dynamic/#foo",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0"
+    },
+    {
+      "source": "https://vocabulary.transmute.industries/ns/dynamic/#number",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3"
+    },
+    {
+      "source": "https://vocabulary.transmute.industries/ns/dynamic/#string",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#alg"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#boolean"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#number"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#object"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
+      "target": "https://vocabulary.transmute.industries/ns/dynamic/#string"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1"
+    },
+    {
+      "source": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3",
+      "label": "https://vocabulary.transmute.industries/ns/dynamic/#object",
+      "target": "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0"
+    }
+  ]
 }

@@ -13,6 +13,8 @@ const {
   getPrimitiveTypeFromObject,
 } = require('./utils');
 
+const preferences = require('../preferences');
+
 const documentToRows = async (document, documentLoader) => {
   const canonized = await jsonld.canonize(document, {
     algorithm: 'URDNA2015',
@@ -28,13 +30,64 @@ const documentToRows = async (document, documentLoader) => {
   return rows;
 };
 
+const addSubjectToGraph = ({subject, graph}) => {
+  subject = removeAngleBrackets(subject);
+  graph.nodes[subject] = {
+    ...(graph.nodes[subject] || {id: subject}),
+  };
+};
+
+const addPredicateToGraph = ({predicate, graph}) => {
+  predicate = removeAngleBrackets(predicate);
+  graph.nodes[predicate] = {
+    ...(graph.nodes[predicate] || {id: predicate}),
+  };
+};
+
+const addObjectToGraph = ({object, graph}) => {
+  object = removeAngleBrackets(object);
+  graph.nodes[object] = {
+    ...(graph.nodes[object] || {id: object}),
+  };
+};
+
+const addObjectAsPropertiesOfSubject = ({
+  subject,
+  predicate,
+  object,
+  graph,
+}) => {
+  subject = removeAngleBrackets(subject);
+  graph.nodes[subject] = {
+    ...graph.nodes[subject],
+    [predicateToPropertyName(removeAngleBrackets(predicate))]:
+      getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
+  };
+};
+
 const addRowsToGraph = (rows, graph) => {
   for (const row of rows) {
     const {subject, predicate, object} = rowToIntermediateObject(
         graph.id,
         row,
     );
-    patchGraph({subject, predicate, object, graph});
+    addSubjectToGraph({subject, graph});
+    addPredicateToGraph({predicate, graph});
+    if (isRdfNode(object)) {
+      addObjectToGraph({object, graph});
+      graph.links.push({
+        source: removeAngleBrackets(subject),
+        label: removeAngleBrackets(predicate),
+        target: removeAngleBrackets(object),
+      });
+    } else {
+      addObjectAsPropertiesOfSubject({subject, predicate, object, graph});
+      graph.links.push({
+        source: removeAngleBrackets(predicate),
+        label: preferences.defaultPredicate,
+        target: removeAngleBrackets(subject),
+      });
+    }
   }
   graph.nodes = Object.values(graph.nodes);
 };
@@ -55,43 +108,12 @@ const rowToIntermediateObject = (id, row) => {
     }
   }
   if (isBlankNode(subject)) {
-    subject = `${id}:${subject}`;
+    subject = `<${id}:${subject}>`;
   }
   if (isBlankNode(object)) {
-    object = `${id}:${object}`;
+    object = `<${id}:${object}>`;
   }
   return {subject, predicate, object};
-};
-
-const label = '';
-
-const addSubjectToGraph = ({subject, graph}) => {};
-
-const patchGraph = ({subject, predicate, object, graph}) => {
-  console.log({subject, predicate, object});
-  // graph.nodes[subject] = {
-  //   ...(graph.nodes[subject] || {id: subject}),
-  // };
-
-  // if (isBlankNode(subject) && isBlankNode(object)) {
-  //   graph.links.push({
-  //     source: removeAngleBrackets(subject),
-  //     label: predicateToPropertyName(predicate),
-  //     target: removeAngleBrackets(object),
-  //   });
-  // }
-
-  // graph.links.push({
-  //   source: removeAngleBrackets(subject),
-  //   label: removeAngleBrackets(predicate),
-  //   target: removeAngleBrackets(object),
-  // });
-  // // add predicate as subject property
-  // graph.nodes[subject] = {
-  //   ...graph.nodes[subject],
-  //   [predicateToPropertyName(removeAngleBrackets(predicate))]:
-  //     getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
-  // };
 };
 
 const nodeSort = (a, b) => {
@@ -103,20 +125,19 @@ const linkSort = (a, b) => {
 };
 
 const toJsonLdGraph = async (doc, {documentLoader}) => {
-  const id = `urn:uuid:${uuid.v4()}`;
+  const id = doc.id || `urn:uuid:${uuid.v4()}`;
   const rows = await documentToRows(doc, documentLoader);
   const nodes = {[id]: {id}};
   const links = [];
   const graph = {id, nodes, links};
   addRowsToGraph(rows, graph);
-
   // record all relationships as originating
   // from this graph
   graph.nodes.forEach((node) => {
     if (id !== node.id) {
       graph.links.push({
         source: id,
-        label,
+        label: preferences.defaultRelationship,
         target: node.id,
       });
     }

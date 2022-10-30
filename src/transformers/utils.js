@@ -50,17 +50,6 @@ const getPrimitiveTypeFromObject = (str) => {
   }
 };
 
-const getNodeType = (graph, node) => {
-  const link = graph.links.find((link) => {
-    return link.source === node && link.label === 'type';
-  });
-  return predicateToPropertyName(link.target);
-};
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 module.exports = {
   tripleRegex,
   isRdfNode,
@@ -69,6 +58,4 @@ module.exports = {
   isBlankNode,
   predicateToPropertyName,
   getPrimitiveTypeFromObject,
-
-  getNodeType,
 };

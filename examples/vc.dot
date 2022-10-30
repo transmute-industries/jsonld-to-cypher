@@ -1,9 +1,302 @@
 digraph {
   subgraph "A" {
-    "urn:uuid:d8544f57-5178-45d4-bc03-10329e68b69f" [
+    "did:example:123" [
       shape = "rectangle";
       color = "red";
-      label = "  \"id\": \"urn:uuid:d8544f57-5178-45d4-bc03-10329e68b69f\"";
+      label = "  \"id\": \"did:example:123\"";
+    ];
+    "did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz\"";
+    ];
+    "http://purl.org/dc/terms/created" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"http://purl.org/dc/terms/created\"";
+    ];
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\"";
+    ];
+    "https://vendor.example/subjects/123" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"https://vendor.example/subjects/123\",\n  \"boolean\": true,\n  \"image\": \"https://source.unsplash.com/category/nature/896x896\",\n  \"number\": 42.5,\n  \"string\": \"It’s a dangerous business, Frodo, going out your door.\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#Brand" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#Brand\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#boolean\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#foo\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#image" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#image\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#number" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#number\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#object" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#object\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#string" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#string\"";
+    ];
+    "https://w3id.org/security#Ed25519Signature2018" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://w3id.org/security#Ed25519Signature2018\"";
+    ];
+    "https://w3id.org/security#assertionMethod" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://w3id.org/security#assertionMethod\"";
+    ];
+    "https://w3id.org/security#jws" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://w3id.org/security#jws\"";
+    ];
+    "https://w3id.org/security#proof" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://w3id.org/security#proof\"";
+    ];
+    "https://w3id.org/security#proofPurpose" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://w3id.org/security#proofPurpose\"";
+    ];
+    "https://w3id.org/security#verificationMethod" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://w3id.org/security#verificationMethod\"";
+    ];
+    "https://www.w3.org/2018/credentials#VerifiableCredential" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://www.w3.org/2018/credentials#VerifiableCredential\"";
+    ];
+    "https://www.w3.org/2018/credentials#credentialSubject" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://www.w3.org/2018/credentials#credentialSubject\"";
+    ];
+    "https://www.w3.org/2018/credentials#issuanceDate" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://www.w3.org/2018/credentials#issuanceDate\"";
+    ];
+    "https://www.w3.org/2018/credentials#issuer" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://www.w3.org/2018/credentials#issuer\"";
+    ];
+    "urn:uuid:11111111111" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"urn:uuid:11111111111\",\n  \"issuanceDate\": \"2010-01-01T19:23:24Z\"";
+    ];
+    "urn:uuid:11111111111:_:c14n0" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"urn:uuid:11111111111:_:c14n0\",\n  \"created\": \"2022-10-29T16:36:26Z\",\n  \"jws\": \"eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..A--05OBGky5rtBJBiWUTx77p3BK2rUaeKJRVMqyQVwOZR4_zE8XNQsH7Vrgae143VpGuGCbMNl_5QgvZkPO1Dw\"";
+    ];
+    "urn:uuid:11111111111:_:c14n1" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"urn:uuid:11111111111:_:c14n1\",\n  \"foo\": \"🙋‍♀️\"";
+    ];
+    "urn:uuid:11111111111:_:c14n2" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"urn:uuid:11111111111:_:c14n2\"";
+    ];
+    "http://purl.org/dc/terms/created" -> "urn:uuid:11111111111:_:c14n0" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vendor.example/subjects/123" -> "https://vocabulary.transmute.industries/ns/dynamic/#Brand" [
+      label = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+      color = "gray";
+    ];
+    "https://vendor.example/subjects/123" -> "urn:uuid:11111111111:_:c14n1" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#object";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#boolean" -> "https://vendor.example/subjects/123" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#foo" -> "urn:uuid:11111111111:_:c14n1" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#image" -> "https://vendor.example/subjects/123" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#number" -> "https://vendor.example/subjects/123" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#string" -> "https://vendor.example/subjects/123" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://w3id.org/security#jws" -> "urn:uuid:11111111111:_:c14n0" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://www.w3.org/2018/credentials#issuanceDate" -> "urn:uuid:11111111111" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#VerifiableCredential" [
+      label = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "urn:uuid:11111111111:_:c14n2" [
+      label = "https://w3id.org/security#proof";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vendor.example/subjects/123" [
+      label = "https://www.w3.org/2018/credentials#credentialSubject";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "did:example:123" [
+      label = "https://www.w3.org/2018/credentials#issuer";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vendor.example/subjects/123" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#Brand" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#image" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "urn:uuid:11111111111:_:c14n1" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#VerifiableCredential" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://w3id.org/security#proof" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "urn:uuid:11111111111:_:c14n2" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#credentialSubject" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#issuanceDate" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#issuer" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "did:example:123" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "urn:uuid:11111111111:_:c14n0" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "http://purl.org/dc/terms/created" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://w3id.org/security#Ed25519Signature2018" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://w3id.org/security#jws" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://w3id.org/security#proofPurpose" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://w3id.org/security#assertionMethod" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://w3id.org/security#verificationMethod" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111:_:c14n0" -> "https://w3id.org/security#Ed25519Signature2018" [
+      label = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111:_:c14n0" -> "https://w3id.org/security#assertionMethod" [
+      label = "https://w3id.org/security#proofPurpose";
+      color = "gray";
+    ];
+    "urn:uuid:11111111111:_:c14n0" -> "did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz" [
+      label = "https://w3id.org/security#verificationMethod";
+      color = "gray";
     ];
   }
 }

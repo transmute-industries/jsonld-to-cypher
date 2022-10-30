@@ -1,9 +1,149 @@
 digraph {
   subgraph "A" {
-    "urn:uuid:bacf5ea9-dfcc-491a-97ad-b10db958797f" [
+    "https://vocabulary.transmute.industries/ns/dynamic/#alg" [
       shape = "rectangle";
       color = "red";
-      label = "  \"id\": \"urn:uuid:bacf5ea9-dfcc-491a-97ad-b10db958797f\"";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#alg\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#boolean\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#foo\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#number" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#number\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#object" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#object\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#string" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#string\"";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951\"";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0\",\n  \"foo\": \"🙋‍♀️\"";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1\",\n  \"alg\": \"ES256\"";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2" [
+      shape = "rectangle";
+      color = "red";
+      label = "  \"id\": \"urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2\"";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" [
+      shape = "rectangle";
+      color = "blue";
+      label = "  \"id\": \"urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3\",\n  \"boolean\": true,\n  \"number\": 42.5,\n  \"string\": \"It’s a dangerous business, Frodo, going out your door.\"";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#alg" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#boolean" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#foo" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#number" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "https://vocabulary.transmute.industries/ns/dynamic/#string" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedPredicate";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#alg" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n2" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n1" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader";
+      color = "gray";
+    ];
+    "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n3" -> "urn:uuid:c506cafc-09af-480c-8200-b418f2ad9951:_:c14n0" [
+      label = "https://vocabulary.transmute.industries/ns/dynamic/#object";
+      color = "gray";
     ];
   }
 }
