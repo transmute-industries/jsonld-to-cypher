@@ -1,4 +1,6 @@
 const documentLoader = require('../documentLoader');
+
+const preview = require('./preview');
 const {jws} = require('./jws.json');
 const publicKeyJwk = require('./publicKeyJwk.json');
 
@@ -24,4 +26,12 @@ const exampleDocument = {
   },
 };
 
-module.exports = {jws, publicKeyJwk, alg, claimSet, exampleDocument};
+module.exports = {
+  jws,
+  publicKeyJwk,
+  alg,
+  claimSet,
+  exampleDocument,
+  preview,
+  documentLoader,
+};

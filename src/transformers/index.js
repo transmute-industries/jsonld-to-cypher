@@ -1,3 +1,4 @@
 const jws = require('./jws');
 const document = require('./document');
-module.exports = {jws, document};
+const graphviz = require('./graphviz');
+module.exports = {jws, document, graphviz};

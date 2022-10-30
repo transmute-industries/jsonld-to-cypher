@@ -121,7 +121,7 @@ const addTripleToGraph = ({subject, predicate, object, graph}) => {
 const toJsonLdGraph = async (doc, {documentLoader}) => {
   const id = `urn:uuid:${uuid.v4()}`;
   const rows = await documentToRows(doc, documentLoader);
-  const nodes = {[id]: {id}};
+  const nodes = {};
   const links = [];
   const graph = {id, nodes, links};
   addRowsToGraph(rows, graph);
