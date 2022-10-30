@@ -42,8 +42,8 @@ const addRowsToGraph = (rows, graph) => {
 const rowToIntermediateObject = (id, row) => {
   const match = row.match(tripleRegex);
   let {subject, predicate, object} = match.groups;
-  subject = removeAngleBrackets(subject);
-  predicate = removeAngleBrackets(predicate);
+  // subject = removeAngleBrackets(subject);
+  // predicate = removeAngleBrackets(predicate);
   // what is happening here...
   // pretty sure this is related to `@container`.
   if (object.includes('_:c14n')) {
@@ -64,6 +64,9 @@ const rowToIntermediateObject = (id, row) => {
 };
 
 const label = '';
+
+const addSubjectToGraph = ({subject, graph}) => {};
+
 const patchGraph = ({subject, predicate, object, graph}) => {
   console.log({subject, predicate, object});
   // graph.nodes[subject] = {
