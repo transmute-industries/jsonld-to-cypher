@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+const tripleRegex =
+  /^(?<subject>(<([^<>]+)>|^_:c14n\d+)) (?<predicate>(<([^<>]+)>)) (?<object>(.+))/;
 const isRdfNode = (str) => {
   return str.startsWith('<') && str.endsWith('>');
 };
@@ -47,51 +50,12 @@ const getPrimitiveTypeFromObject = (str) => {
   }
 };
 
-const getNodeType = (graph, node) => {
-  const link = graph.links.find((link) => {
-    return link.source === node && link.label === 'type';
-  });
-  return predicateToPropertyName(link.target);
-};
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-const isDid = (iri) => {
-  return iri.startsWith('did:');
-};
-
-const isUrn = (iri) => {
-  return iri.startsWith('urn:');
-};
-
-const isUrl = (iri) => {
-  return iri.startsWith('http');
-};
-
-const nodeToNodeLabel = (node) => {
-  if (isDid(node.id)) {
-    return 'DecentralizedIdentifier';
-  }
-  if (isUrn(node.id)) {
-    return 'UniforResourceName';
-  }
-  if (isUrl(node.id)) {
-    return capitalizeFirstLetter(predicateToPropertyName(node.id));
-  }
-  return 'Resource';
-};
-
 module.exports = {
+  tripleRegex,
   isRdfNode,
   removeAngleBrackets,
   removeEscapedQuotes,
   isBlankNode,
   predicateToPropertyName,
   getPrimitiveTypeFromObject,
-  nodeToNodeLabel,
-
-  getNodeType,
-  isDid,
 };

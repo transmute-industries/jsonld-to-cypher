@@ -47,11 +47,12 @@ yargs(hideBin(process.argv))
           let cypher = '';
           if (type === 'json') {
             doc = readJsonFromPath(argv, 'document');
+            cypher = await lib.Cypher.fromDocument(doc);
           }
-          if (type === 'jwt') {
+          if (type === 'jws') {
             doc = readFile(argv, 'document');
+            cypher = await lib.Cypher.fromJsonWebSignature(doc);
           }
-          cypher = await lib.convert(doc, type);
           console.log(cypher);
         },
     )
