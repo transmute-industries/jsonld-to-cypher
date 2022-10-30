@@ -118,18 +118,45 @@ const addTripleToGraph = ({subject, predicate, object, graph}) => {
   }
 };
 
+// the only node that includes the graph id that is not targeted.
+const getRoot = (graph) => {
+  let lastRoot = graph.id;
+  const targets = graph.links.map((link) => link.target);
+  graph.links.forEach((link) => {
+    if (link.source.includes(graph.id) && !targets.includes(link.source)) {
+      lastRoot = link.source;
+    }
+  });
+  return lastRoot;
+};
+
+const nodeSort = (a, b) => {
+  return a.id >= b.id ? 1 : -1;
+};
+
+const linkSort = (a, b) => {
+  return a.source >= b.source ? 1 : -1;
+};
+
 const toJsonLdGraph = async (doc, {documentLoader}) => {
   const id = `urn:uuid:${uuid.v4()}`;
   const rows = await documentToRows(doc, documentLoader);
-  const nodes = {};
+  const nodes = {[id]: {id}};
   const links = [];
   const graph = {id, nodes, links};
   addRowsToGraph(rows, graph);
+
+  graph.links.push({
+    source: id,
+    label: 'contains',
+    target: getRoot(graph),
+  });
+
   return {
     id,
     doc,
-    nodes: graph.nodes,
-    links: graph.links,
+    nodes: graph.nodes.sort(nodeSort),
+    links: graph.links.sort(linkSort),
   };
 };
 const document = {toJsonLdGraph};

@@ -1,4 +1,5 @@
 const jws = require('./jws');
 const document = require('./document');
 const graphviz = require('./graphviz');
-module.exports = {jws, document, graphviz};
+const cypher = require('./cypher');
+module.exports = {jws, document, graphviz, cypher};
