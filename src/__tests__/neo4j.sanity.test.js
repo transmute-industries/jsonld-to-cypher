@@ -24,10 +24,9 @@ it('test', async () => {
   );
   const session = driver.session();
   const graph = await lib.transformers.document.toJsonLdGraph(
-      fixtures.exampleDocument,
+      fixtures.injectedVocabExample,
       {documentLoader: fixtures.documentLoader},
   );
-
   await session.run(
       `
   MATCH (n)

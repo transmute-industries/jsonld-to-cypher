@@ -78,13 +78,14 @@ const patchGraph = ({subject, predicate, object, graph}) => {
   addTripleToGraph({subject, predicate, object, graph});
 };
 
+const label = '';
 const addObjectAsNode = ({object, predicate, graph}) => {
   object = removeAngleBrackets(object);
   // add node
   graph.nodes[object] = {
     ...(graph.nodes[object] || {id: object}),
   };
-  const label = predicateToPropertyName(object);
+  // const label = predicateToPropertyName(object);
   // add edge
   graph.links.push({
     source: removeAngleBrackets(predicate),
@@ -94,7 +95,7 @@ const addObjectAsNode = ({object, predicate, graph}) => {
 };
 
 const addObjectAsProperty = ({subject, predicate, object, graph}) => {
-  const label = predicateToPropertyName(predicate);
+  // const label = predicateToPropertyName(predicate);
   graph.links.push({
     source: removeAngleBrackets(subject),
     label,
@@ -146,10 +147,12 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
   const graph = {id, nodes, links};
   addRowsToGraph(rows, graph);
 
-  graph.links.push({
-    source: id,
-    label: 'contains',
-    target: getRoot(graph),
+  graph.nodes.forEach((node) => {
+    graph.links.push({
+      source: id,
+      label,
+      target: node.id,
+    });
   });
 
   return {

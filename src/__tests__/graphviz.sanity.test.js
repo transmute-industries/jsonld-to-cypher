@@ -1,10 +1,18 @@
 const lib = require('..');
 const fixtures = require('../__fixtures__');
 
-it('graphviz', async () => {
+it('injectedVocabExample', async () => {
   const graph = await lib.transformers.document.toJsonLdGraph(
-      fixtures.exampleDocument,
+      fixtures.injectedVocabExample,
       {documentLoader: fixtures.documentLoader},
   );
-  fixtures.preview(graph);
+  fixtures.preview(graph, 'injected-jws');
+});
+
+it('example verifiable credential', async () => {
+  const graph = await lib.transformers.document.toJsonLdGraph(
+      fixtures.verifiableCredential,
+      {documentLoader: fixtures.documentLoader},
+  );
+  fixtures.preview(graph, 'vc');
 });
