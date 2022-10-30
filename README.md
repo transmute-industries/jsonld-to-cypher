@@ -20,16 +20,16 @@ jsonld-to-cypher convert ./docs/vc.jwt  --type jwt
 
 <img src="./example.png" />
 
-### Testing Library
-
-```
-npm t
-```
-
 ### Testing CLI
 
 ```
 npm i
+```
+
+### Testing Library
+
+```
+npm t
 ```
 
 #### Convert a JSON File
