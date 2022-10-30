@@ -148,11 +148,13 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
   addRowsToGraph(rows, graph);
 
   graph.nodes.forEach((node) => {
-    graph.links.push({
-      source: id,
-      label,
-      target: node.id,
-    });
+    if (id !== node.id) {
+      graph.links.push({
+        source: id,
+        label,
+        target: node.id,
+      });
+    }
   });
 
   return {

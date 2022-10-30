@@ -34,6 +34,7 @@ it('test', async () => {
   `,
   );
   const cypher = await lib.transformers.cypher.graphToCypher(graph);
+  console.log(cypher);
   await session.run(cypher);
   await driver.close();
 });

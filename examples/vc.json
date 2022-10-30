@@ -1,5 +1,5 @@
 {
-  "id": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+  "id": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
   "doc": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
@@ -50,7 +50,7 @@
       "boolean": true,
       "image": "https://source.unsplash.com/category/nature/896x896",
       "number": 42.5,
-      "object": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n1",
+      "object": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n1",
       "string": "It’s a dangerous business, Frodo, going out your door."
     },
     {
@@ -106,19 +106,19 @@
     },
     {
       "id": "urn:uuid:11111111111",
-      "proof": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n2",
+      "proof": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n2",
       "issuanceDate": "2010-01-01T19:23:24Z"
     },
     {
-      "id": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d"
+      "id": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32"
     },
     {
-      "id": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n0",
+      "id": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n0",
       "created": "2022-10-29T16:36:26Z",
       "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..A--05OBGky5rtBJBiWUTx77p3BK2rUaeKJRVMqyQVwOZR4_zE8XNQsH7Vrgae143VpGuGCbMNl_5QgvZkPO1Dw"
     },
     {
-      "id": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n1",
+      "id": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n1",
       "foo": "🙋‍♀️"
     }
   ],
@@ -194,147 +194,142 @@
       "target": "https://www.w3.org/2018/credentials#issuanceDate"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
-      "label": "",
-      "target": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d"
-    },
-    {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vendor.example/subjects/123"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#Brand"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#boolean"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#image"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#number"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#object"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#string"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "urn:uuid:11111111111"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://www.w3.org/2018/credentials#VerifiableCredential"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://w3id.org/security#proof"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://www.w3.org/2018/credentials#credentialSubject"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://www.w3.org/2018/credentials#issuanceDate"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://www.w3.org/2018/credentials#issuer"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "did:example:123"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
-      "target": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n0"
+      "target": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n0"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "http://purl.org/dc/terms/created"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://w3id.org/security#Ed25519Signature2018"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://w3id.org/security#jws"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://w3id.org/security#proofPurpose"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://w3id.org/security#assertionMethod"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://w3id.org/security#verificationMethod"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
-      "target": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n1"
+      "target": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n1"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n0",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n0",
       "label": "",
       "target": "http://purl.org/dc/terms/created"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n0",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n0",
       "label": "",
       "target": "https://w3id.org/security#jws"
     },
     {
-      "source": "urn:uuid:5e880dfa-6066-4948-924a-c1f71b54206d:_:c14n1",
+      "source": "urn:uuid:942e2b3d-ec11-48b4-acee-c3f2ca279d32:_:c14n1",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
     }

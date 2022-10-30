@@ -6,7 +6,7 @@ it('injectedVocabExample', async () => {
       fixtures.injectedVocabExample,
       {documentLoader: fixtures.documentLoader},
   );
-  fixtures.preview(graph, 'injected-jws');
+  await fixtures.preview(graph, 'injected-jws');
 });
 
 it('example verifiable credential', async () => {
@@ -14,5 +14,5 @@ it('example verifiable credential', async () => {
       fixtures.verifiableCredential,
       {documentLoader: fixtures.documentLoader},
   );
-  fixtures.preview(graph, 'vc');
+  await fixtures.preview(graph, 'vc');
 });

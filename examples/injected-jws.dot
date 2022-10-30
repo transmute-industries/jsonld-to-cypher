@@ -40,124 +40,120 @@ digraph {
       color = "red";
       label = "  \"id\": \"https://vocabulary.transmute.industries/ns/dynamic/#string\"";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" [
       shape = "rectangle";
       color = "red";
-      label = "  \"id\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df\"";
+      label = "  \"id\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6\"";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0" [
       shape = "rectangle";
       color = "blue";
-      label = "  \"id\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0\",\n  \"foo\": \"🙋‍♀️\"";
+      label = "  \"id\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0\",\n  \"foo\": \"🙋‍♀️\"";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1" [
       shape = "rectangle";
       color = "blue";
-      label = "  \"id\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1\",\n  \"alg\": \"ES256\"";
+      label = "  \"id\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1\",\n  \"alg\": \"ES256\"";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2" [
       shape = "rectangle";
       color = "blue";
-      label = "  \"id\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2\",\n  \"protectedClaimSet\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3\",\n  \"protectedHeader\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1\"";
+      label = "  \"id\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2\",\n  \"protectedClaimSet\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3\",\n  \"protectedHeader\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1\"";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" [
       shape = "rectangle";
       color = "blue";
-      label = "  \"id\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3\",\n  \"boolean\": true,\n  \"number\": 42.5,\n  \"object\": \"urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0\",\n  \"string\": \"It’s a dangerous business, Frodo, going out your door.\"";
+      label = "  \"id\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3\",\n  \"boolean\": true,\n  \"number\": 42.5,\n  \"object\": \"urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0\",\n  \"string\": \"It’s a dangerous business, Frodo, going out your door.\"";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#alg" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#alg" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1" -> "https://vocabulary.transmute.industries/ns/dynamic/#alg" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1" -> "https://vocabulary.transmute.industries/ns/dynamic/#alg" [
-      label = "";
-      color = "gray";
-    ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" [
       label = "protectedClaimSet";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1" [
       label = "protectedHeader";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2" -> "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" -> "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" -> "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0" [
       label = "object";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
       label = "";
       color = "gray";
     ];
-    "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
+    "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
       label = "";
       color = "gray";
     ];

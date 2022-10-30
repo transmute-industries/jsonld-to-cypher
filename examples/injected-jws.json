@@ -1,5 +1,5 @@
 {
-  "id": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+  "id": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
   "doc": {
     "@context": {
       "@vocab": "https://vocabulary.transmute.industries/ns/dynamic/#"
@@ -42,147 +42,142 @@
       "id": "https://vocabulary.transmute.industries/ns/dynamic/#string"
     },
     {
-      "id": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df"
+      "id": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6"
     },
     {
-      "id": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0",
+      "id": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0",
       "foo": "🙋‍♀️"
     },
     {
-      "id": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1",
+      "id": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1",
       "alg": "ES256"
     },
     {
-      "id": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2",
-      "protectedClaimSet": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
-      "protectedHeader": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1"
+      "id": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2",
+      "protectedClaimSet": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
+      "protectedHeader": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1"
     },
     {
-      "id": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
+      "id": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
       "boolean": true,
       "number": 42.5,
-      "object": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0",
+      "object": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0",
       "string": "It’s a dangerous business, Frodo, going out your door."
     }
   ],
   "links": [
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
-      "label": "",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0"
-    },
-    {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#alg"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#boolean"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#number"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#object"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#string"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#alg"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2",
       "label": "protectedClaimSet",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#protectedClaimSet"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2",
       "label": "protectedHeader",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n1"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n1"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n2",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n2",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#protectedHeader"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#boolean"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#number"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
       "label": "object",
-      "target": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n0"
+      "target": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n0"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#object"
     },
     {
-      "source": "urn:uuid:f8badb73-15a3-4c28-b8e8-5a2babb448df:_:c14n3",
+      "source": "urn:uuid:99dbd5a1-d915-4921-bb72-84d0a3997ef6:_:c14n3",
       "label": "",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#string"
     }
