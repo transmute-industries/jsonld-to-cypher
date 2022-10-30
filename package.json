@@ -1,6 +1,6 @@
 {
   "name": "@transmute/jsonld-to-cypher",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "transform a document into a cypher query",
   "main": "./src/index.js",
   "scripts": {
@@ -31,13 +31,13 @@
     "moment": "^2.29.4",
     "ts-graphviz": "^1.2.3",
     "uuid": "^9.0.0",
-    "yargs": "^17.5.1"
+    "yargs": "^17.5.1",
+    "jose": "^4.10.4"
   },
   "devDependencies": {
     "eslint": "^8.23.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^29.0.3",
-    "jose": "^4.10.4",
     "neo4j-driver": "^5.0.0-beta01",
     "prettier": "^2.7.1"
   }
