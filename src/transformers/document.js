@@ -124,6 +124,26 @@ const linkSort = (a, b) => {
   return a.source >= b.source ? 1 : -1;
 };
 
+const hasEdge = (source, target, graph) => {
+  return (
+    graph.links.find((link) => {
+      return link.source === source && link.target === target;
+    }) !== undefined
+  );
+};
+
+const hasBackEdge = (source, target, graph) => {
+  return hasEdge(target, source, graph);
+};
+
+const hasInbound = (target, graph) => {
+  return (
+    graph.links.find((link) => {
+      return link.target === target;
+    }) !== undefined
+  );
+};
+
 const toJsonLdGraph = async (doc, {documentLoader}) => {
   const id = doc.id || `urn:uuid:${uuid.v4()}`;
   const rows = await documentToRows(doc, documentLoader);
@@ -134,7 +154,13 @@ const toJsonLdGraph = async (doc, {documentLoader}) => {
   // record all relationships as originating
   // from this graph
   graph.nodes.forEach((node) => {
-    if (id !== node.id) {
+    if (
+      id !== node.id &&
+      !hasEdge(id, node.id, graph) &&
+      !hasBackEdge(id, node.id, graph) &&
+      !hasInbound(node.id, graph)
+    ) {
+      // does target already have an edge?
       graph.links.push({
         source: id,
         label: preferences.defaultRelationship,

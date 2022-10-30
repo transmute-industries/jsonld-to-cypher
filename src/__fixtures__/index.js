@@ -4,7 +4,7 @@ const documentLoader = require('../documentLoader');
 const preview = require('./preview');
 const {jws} = require('./jws.json');
 const publicKeyJwk = require('./publicKeyJwk.json');
-
+const revocableCredential = require('./revocableCredential.json');
 const alg = 'ES256';
 
 const claimSet = {
@@ -64,6 +64,7 @@ module.exports = {
   claimSet,
   injectedVocabExample,
   verifiableCredential,
+  revocableCredential,
   preview,
   documentLoader,
 };

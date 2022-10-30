@@ -10,8 +10,15 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const isDidUrl = (iri) => {
+  return (
+    iri.startsWith('did:') &&
+    (iri.includes('#') || iri.includes('/') || iri.includes('?'))
+  );
+};
+
 const isDid = (iri) => {
-  return iri.startsWith('did:');
+  return iri.startsWith('did:') && !isDidUrl(iri);
 };
 
 const isUrn = (iri) => {
@@ -25,6 +32,9 @@ const isUrl = (iri) => {
 const nodeToNodeLabel = (node) => {
   if (isDid(node.id)) {
     return 'DecentralizedIdentifier';
+  }
+  if (isDidUrl(node.id)) {
+    return 'DecentralizedIdentifierResource';
   }
   if (isUrn(node.id)) {
     return 'UniformResourceName';
@@ -91,11 +101,8 @@ const graphToCypher = async (graph) => {
     const edgeName = `e${linkIndex}`;
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
-    // console.log(edge);
     const linkLabel = linkToEdgeLabel(link);
-    if (targetName) {
-      query += `CREATE (${sourceName})-[${edgeName}: ${linkLabel} { id : "${graph.id}", predicate: "${link.label}" } ]->(${targetName})\n`;
-    }
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { id : "${graph.id}", predicate: "${link.label}" } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;

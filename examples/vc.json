@@ -194,11 +194,6 @@
     {
       "source": "urn:uuid:11111111111",
       "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://vendor.example/subjects/123"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
       "target": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
     },
     {
@@ -209,32 +204,12 @@
     {
       "source": "urn:uuid:11111111111",
       "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://vocabulary.transmute.industries/ns/dynamic/#boolean"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://vocabulary.transmute.industries/ns/dynamic/#image"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://vocabulary.transmute.industries/ns/dynamic/#number"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
       "target": "https://vocabulary.transmute.industries/ns/dynamic/#object"
     },
     {
       "source": "urn:uuid:11111111111",
       "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
       "target": "urn:uuid:11111111111:_:c14n1"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://vocabulary.transmute.industries/ns/dynamic/#string"
     },
     {
       "source": "urn:uuid:11111111111",
@@ -259,11 +234,6 @@
     {
       "source": "urn:uuid:11111111111",
       "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://www.w3.org/2018/credentials#issuanceDate"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
       "target": "https://www.w3.org/2018/credentials#issuer"
     },
     {
@@ -274,22 +244,7 @@
     {
       "source": "urn:uuid:11111111111",
       "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "urn:uuid:11111111111:_:c14n0"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "http://purl.org/dc/terms/created"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
       "target": "https://w3id.org/security#Ed25519Signature2018"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://w3id.org/security#jws"
     },
     {
       "source": "urn:uuid:11111111111",
@@ -310,11 +265,6 @@
       "source": "urn:uuid:11111111111",
       "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
       "target": "did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz"
-    },
-    {
-      "source": "urn:uuid:11111111111",
-      "label": "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship",
-      "target": "https://vocabulary.transmute.industries/ns/dynamic/#foo"
     },
     {
       "source": "urn:uuid:11111111111:_:c14n0",

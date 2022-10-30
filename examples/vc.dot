@@ -186,10 +186,6 @@ digraph {
       label = "https://www.w3.org/2018/credentials#issuer";
       color = "gray";
     ];
-    "urn:uuid:11111111111" -> "https://vendor.example/subjects/123" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
     "urn:uuid:11111111111" -> "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" [
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
@@ -198,27 +194,11 @@ digraph {
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
-    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#boolean" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
-    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#image" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
-    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#number" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
     "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#object" [
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
     "urn:uuid:11111111111" -> "urn:uuid:11111111111:_:c14n1" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
-    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#string" [
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
@@ -238,10 +218,6 @@ digraph {
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
-    "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#issuanceDate" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
     "urn:uuid:11111111111" -> "https://www.w3.org/2018/credentials#issuer" [
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
@@ -250,19 +226,7 @@ digraph {
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
-    "urn:uuid:11111111111" -> "urn:uuid:11111111111:_:c14n0" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
-    "urn:uuid:11111111111" -> "http://purl.org/dc/terms/created" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
     "urn:uuid:11111111111" -> "https://w3id.org/security#Ed25519Signature2018" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
-    "urn:uuid:11111111111" -> "https://w3id.org/security#jws" [
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
@@ -279,10 +243,6 @@ digraph {
       color = "gray";
     ];
     "urn:uuid:11111111111" -> "did:example:123#z6Mks97GYazoL5eaSwidTSumYVsoaJn1qZ9AMPF7idY3TjSz" [
-      label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
-      color = "gray";
-    ];
-    "urn:uuid:11111111111" -> "https://vocabulary.transmute.industries/ns/dynamic/#foo" [
       label = "https://vocabulary.transmute.industries/ns/dynamic/#disclosedRelationship";
       color = "gray";
     ];
