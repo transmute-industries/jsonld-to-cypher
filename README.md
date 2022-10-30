@@ -16,7 +16,19 @@ Compile JSON-LD (Decentralized Identifiers and Verifiable Credentials) to Cypher
 
 #### 🚧 Warning Experimental 🔥
 
+<img src="./example.png" />
+
 ## Usage
+
+### Command Line
+
+```
+npm i -g @transmute/jsonld-to-cypher@latest
+```
+
+```
+jsonld-to-cypher convert ./src/__fixtures__/vc.jwt  --type jws
+```
 
 ### Library
 
@@ -144,18 +156,6 @@ MERGE (n23)-[e23: ProofPurpose { id : "urn:uuid:4d432bf3-ca45-4070-999a-eb48c4f3
 MERGE (n23)-[e24: VerificationMethod { id : "urn:uuid:4d432bf3-ca45-4070-999a-eb48c4f3f416", predicate: "https://w3id.org/security#verificationMethod" } ]->(n2)
 RETURN n0,n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23
 ```
-
-### Command Line
-
-```
-npm i -g @transmute/jsonld-to-cypher@latest
-```
-
-```
-jsonld-to-cypher convert ./src/__fixtures__/vc.jwt  --type jws
-```
-
-<img src="./example.png" />
 
 ### Development
 
