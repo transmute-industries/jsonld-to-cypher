@@ -4,7 +4,7 @@
   "description": "transform a document into a cypher query",
   "main": "./src/index.js",
   "scripts": {
-    "test": "NODE_NO_WARNINGS=1 NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "source .env && NEO4J_URI=$NEO4J_URI NEO4J_USERNAME=$NEO4J_USERNAME NEO4J_PASSWORD=$NEO4J_PASSWORD NODE_NO_WARNINGS=1 NODE_OPTIONS=--experimental-vm-modules jest",
     "test-ci": "NODE_NO_WARNINGS=1  NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
     "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
     "jsonld-to-cypher": "node ./src/cli.js",
