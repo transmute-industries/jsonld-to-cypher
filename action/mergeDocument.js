@@ -1,5 +1,5 @@
 const neo4j = require('neo4j-driver');
-const {Cypher} = require('../..');
+const {Cypher} = require('../src');
 
 const mergeDocument = async (document, {url, username, password}) => {
   const driver = neo4j.driver(url, neo4j.auth.basic(username, password));
