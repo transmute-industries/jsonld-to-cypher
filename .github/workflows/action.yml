@@ -1,0 +1,75 @@
+name: Action
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Cache Save
+        id: cache-save
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./*
+          key: ${{ github.sha }}
+          # TODO: be more like:
+          # path: |
+          #     ./dist/*
+          #     ./action.yml
+          #   key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+  merge:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    name: Merge
+    outputs:
+      json: ${{ steps.merge.outputs.json }}
+    steps:
+      - name: Cache Restore
+        uses: actions/cache@v3
+        id: cache-restore
+        with:
+          path: |
+            ./*
+          key: ${{ github.sha }}
+      - name: Merge Query from Document
+        uses: ./ # Use a "private unpublished github action in the current repository"
+        id: merge
+        with:
+          neo4j-url: ${{ secrets.NEO4J_URL }}
+          neo4j-user: ${{ secrets.NEO4J_USER }}
+          neo4j-password: ${{ secrets.NEO4J_PASSWORD }}
+          operation: merge
+          document: |
+            {
+              "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                "https://w3id.org/vc-revocation-list-2020/v1"
+              ],
+              "id": "urn:uuid:4d432bf3-ca45-4070-999a-eb48c4f3f416",
+              "type": ["VerifiableCredential"],
+              "issuer": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+              "issuanceDate": "2010-01-01T19:23:24Z",
+              "credentialStatus": {
+                "id": "https://api.did.actor/revocation-lists/1.json#0",
+                "type": "RevocationList2020Status",
+                "revocationListIndex": 0,
+                "revocationListCredential": "https://api.did.actor/revocation-lists/1.json"
+              },
+              "credentialSubject": { "id": "did:example:123" },
+              "proof": {
+                "type": "Ed25519Signature2018",
+                "created": "2022-10-30T20:15:27Z",
+                "verificationMethod": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+                "proofPurpose": "assertionMethod",
+                "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..eQrU_BmLRp0CtI_gTKTl5UqcbKNy7n7hCtt0dvsYVdx0hR2Mbm4g53apLJ4fApy-dNvrvaJPpIC0OY_xG_e_Bg"
+              }
+            }
