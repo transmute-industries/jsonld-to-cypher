@@ -16,3 +16,7 @@ it('tests', async () => {
   // console.log(d1);
   expect(d1).toBeDefined();
 });
+
+afterAll((done) => {
+  setTimeout(done, 0);
+});
