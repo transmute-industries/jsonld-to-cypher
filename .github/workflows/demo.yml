@@ -1,6 +1,6 @@
-name: Action
+name: Demo
 
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -20,11 +20,6 @@ jobs:
           path: |
             ./*
           key: ${{ github.sha }}
-          # TODO: be more like:
-          # path: |
-          #     ./dist/*
-          #     ./action.yml
-          #   key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
   merge:
     needs:
       - build
@@ -41,7 +36,7 @@ jobs:
             ./*
           key: ${{ github.sha }}
       - name: Merge Query from Document
-        uses: ./ # Use a "private unpublished github action in the current repository"
+        uses: transmute-industries/jsonld-to-cypher@v0.1.2
         id: merge
         with:
           neo4j-uri: ${{ secrets.NEO4J_URI }}
