@@ -2,7 +2,7 @@ const mergeDocument = require('./mergeDocument');
 const mergeOperation = async (env) => {
   const parsedDocument = JSON.parse(env.document);
   await mergeDocument(parsedDocument, {
-    url: env.neo4j_url,
+    url: env.neo4j_uri,
     username: env.neo4j_user,
     password: env.neo4j_password,
   });

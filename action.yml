@@ -2,7 +2,7 @@ name: 'Transmute JSON-LD to Cypher Action'
 description: |
   This action enables JSON-LD to Cypher within GitHub Workflows.
 inputs:
-  neo4j-url:
+  neo4j-uri:
     description: |
       Neo4j Connection URL.
     require: true

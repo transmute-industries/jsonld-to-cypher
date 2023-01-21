@@ -4,7 +4,7 @@ const operationSwitch = require('./operationSwitch');
 
 const getOpts = () => {
   return {
-    neo4j_url: core.getInput('neo4j-url'),
+    neo4j_uri: core.getInput('neo4j-uri'),
     neo4j_user: core.getInput('neo4j-user'),
     neo4j_password: core.getInput('neo4j-password'),
     operation: core.getInput('operation'),
