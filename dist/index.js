@@ -33,7 +33,7 @@ const mergeDocument = __nccwpck_require__(97744);
 const mergeOperation = async (env) => {
   const parsedDocument = JSON.parse(env.document);
   await mergeDocument(parsedDocument, {
-    url: env.neo4j_url,
+    url: env.neo4j_uri,
     username: env.neo4j_user,
     password: env.neo4j_password,
   });
@@ -89382,7 +89382,7 @@ const operationSwitch = __nccwpck_require__(31859);
 
 const getOpts = () => {
   return {
-    neo4j_url: core.getInput('neo4j-url'),
+    neo4j_uri: core.getInput('neo4j-uri'),
     neo4j_user: core.getInput('neo4j-user'),
     neo4j_password: core.getInput('neo4j-password'),
     operation: core.getInput('operation'),
