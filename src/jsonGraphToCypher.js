@@ -60,7 +60,7 @@ const linkToEdgeLabel = (link) => {
   if (link.label.includes(preferences.defaultRelationship)) {
     return 'Relationship';
   }
-  return capitalizeFirstLetter(predicateToPropertyName(link.label));
+  return `\`${link.predicate}\``;
 };
 
 const jsonGraphToCypher = async (graph) => {

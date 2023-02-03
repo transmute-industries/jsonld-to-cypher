@@ -17,9 +17,7 @@ const Cypher = {
   },
   fromJsonWebSignature: async (jws, options = {documentLoader}) => {
     const document = await jsonWebSigantureToDocument(jws);
-    const intermediate = await documentToJsonGraph(document, options);
-    const cypher = await jsonGraphToCypher(intermediate);
-    return cypher;
+    return this.fromDocument(document, options);
   },
 };
 

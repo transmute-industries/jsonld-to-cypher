@@ -15,10 +15,10 @@ DETACH DELETE n
 // RETURN n
 // `;
 
-it.skip('application/credential+ld+json', async () => {
+it('application/credential+ld+json', async () => {
   const driver = neo4j.driver(
-      'bolt://127.0.0.1:11003',
-      neo4j.auth.basic('neo4j', 'password'),
+      process.env.NEO4J_URI,
+      neo4j.auth.basic(process.env.NEO4J_USERNAME, process.env.NEO4J_PASSWORD),
   );
   const session = driver.session();
   await session.run(dropTables);
@@ -27,7 +27,6 @@ it.skip('application/credential+ld+json', async () => {
     // No params => injection vulnerable...
     // nameParam: 'Alice',
   });
-  // console.log(result);
   await session.close();
   await driver.close();
 });
