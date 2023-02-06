@@ -23,6 +23,7 @@ it('application/credential+ld+json', async () => {
   const session = driver.session();
   await session.run(dropTables);
   const query = await Cypher.fromDocument(fixtures.revocableCredential);
+  console.log(query);
   await session.run(query, {
     // No params => injection vulnerable...
     // nameParam: 'Alice',

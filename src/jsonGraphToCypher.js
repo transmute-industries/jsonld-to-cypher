@@ -102,7 +102,7 @@ const jsonGraphToCypher = async (graph) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { id : "${graph.id}", predicate: "${link.label}" } ]->(${targetName})\n`;
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}" } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
