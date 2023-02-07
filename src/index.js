@@ -10,15 +10,21 @@ const jsonGraphToCypher = require('./jsonGraphToCypher');
 const jsonGraphToDot = require('./jsonGraphToDot');
 
 const Cypher = {
-  fromDocument: async (document, options = {documentLoader}) => {
+  fromDocument: async (
+      document,
+      options = {documentLoader, sourceGraphId: false},
+  ) => {
     const intermediate = await documentToJsonGraph(document, options);
-    const cypher = await jsonGraphToCypher(intermediate);
+    const cypher = await jsonGraphToCypher(intermediate, options.sourceGraphId);
     return cypher;
   },
-  fromJsonWebSignature: async (jws, options = {documentLoader}) => {
+  fromJsonWebSignature: async (
+      jws,
+      options = {documentLoader, sourceGraphId: false},
+  ) => {
     const document = await jsonWebSigantureToDocument(jws);
     const intermediate = await documentToJsonGraph(document, options);
-    const cypher = await jsonGraphToCypher(intermediate);
+    const cypher = await jsonGraphToCypher(intermediate, options.sourceGraphId);
     return cypher;
   },
 };
