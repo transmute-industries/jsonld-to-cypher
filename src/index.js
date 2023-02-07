@@ -18,10 +18,13 @@ const Cypher = {
     const cypher = await jsonGraphToCypher(intermediate, options.sourceGraphId);
     return cypher;
   },
-  fromJsonWebSignature: async (jws, options = {documentLoader}) => {
+  fromJsonWebSignature: async (
+      jws,
+      options = {documentLoader, sourceGraphId: false},
+  ) => {
     const document = await jsonWebSigantureToDocument(jws);
     const intermediate = await documentToJsonGraph(document, options);
-    const cypher = await jsonGraphToCypher(intermediate);
+    const cypher = await jsonGraphToCypher(intermediate, options.sourceGraphId);
     return cypher;
   },
 };

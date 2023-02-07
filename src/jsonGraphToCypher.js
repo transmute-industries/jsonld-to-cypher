@@ -81,7 +81,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
   let sourceGraphInfo = ``;
   if (hasSource) {
     const sourceTimestamp = new Date().toISOString();
-    sourceGraphInfo = `sourceGraphId: "${sourceGraphId}", sourceTimestamp: "${sourceTimestamp}"`;
+    sourceGraphInfo = `, sourceGraphId: "${sourceGraphId}", sourceTimestamp: "${sourceTimestamp}"`;
   }
   let query = ``;
   const nodesMerged = [];
