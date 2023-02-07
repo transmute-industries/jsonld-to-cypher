@@ -40,6 +40,11 @@ const nodeToNodeLabel = (node) => {
     return 'UniformResourceName';
   }
   if (isUrl(node.id)) {
+    const splitChar = node.id.indexOf('#') >= 0 ? '#' : '/';
+    const label = node.id.split(splitChar).pop();
+    if (label) {
+      return `${label}`;
+    }
     return 'UniformResourceLocator';
   }
   return 'InternationalizedResourceIdentifier';
@@ -63,8 +68,21 @@ const linkToEdgeLabel = (link) => {
   return `\`${link.predicate}\``;
 };
 
-const jsonGraphToCypher = async (graph) => {
-  const sourceTimestamp = new Date().toISOString();
+const isTypeNode = (node, links) => {
+  const [link] = links.filter((link) => link.target === node.id);
+  if (link?.label === 'type') {
+    return true;
+  }
+  return false;
+};
+
+const jsonGraphToCypher = async (graph, sourceGraphId) => {
+  const hasSource = sourceGraphId !== false;
+  let sourceGraphInfo = ``;
+  if (hasSource) {
+    const sourceTimestamp = new Date().toISOString();
+    sourceGraphInfo = `sourceGraphId: "${sourceGraphId}", sourceTimestamp: "${sourceTimestamp}"`;
+  }
   let query = ``;
   const nodesMerged = [];
   const nodeIdToNodeName = {};
@@ -94,7 +112,13 @@ const jsonGraphToCypher = async (graph) => {
       typedProperties = `,  ${rps.join(', ')}`;
     }
     const nodeLabel = nodeToNodeLabel(node);
-    query += `MERGE ( ${nodeName} : ${nodeLabel} { id: "${node.id}" ${typedProperties}, sourceTimestamp: "${sourceTimestamp}" } )\n`;
+    const typeNode = isTypeNode(node, graph.links);
+    if (typeNode) {
+      query += `MERGE ( ${nodeName} : \`Type\` { type: "${node.id.split('/').pop().split('#').pop()}", id: "${node.id}" ${typedProperties} ${sourceGraphInfo} } )\n`;
+    } else {
+      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" ${typedProperties}  ${sourceGraphInfo} } )\n`;
+    }
+
     nodesMerged.push(nodeName);
   }
   for (const linkIndex in graph.links) {
@@ -103,10 +127,11 @@ const jsonGraphToCypher = async (graph) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}", sourceTimestamp: "${sourceTimestamp}" } ]->(${targetName})\n`;
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}" ${sourceGraphInfo} } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
 };
+
 
 module.exports = jsonGraphToCypher;

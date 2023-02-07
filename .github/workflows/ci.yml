@@ -13,8 +13,7 @@ jobs:
       - name: Install
         run: npm i
       - name: Test
-        
-        run: npm run test-ci
+        run: npm run test && npm run test-ci
       - name: Badges
         uses: jpb06/jest-badges-action@latest
         with:
