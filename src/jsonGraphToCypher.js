@@ -100,7 +100,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
         const v = props[k];
         const niceName = k;
         const niceValue = getTypedValue(v);
-        rps.push(`${niceName}: ${niceValue}`);
+        rps.push(`\`${niceName}\`: ${niceValue}`);
       }
       const isLocation =
         propKeys.includes('latitude') && propKeys.includes('longitude');

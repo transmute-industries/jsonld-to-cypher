@@ -112,7 +112,7 @@ const autograph = async (object, {documentLoader, id}) => {
     subject = removeAngleBrackets(subject);
     graph.nodes[subject] = {
       ...graph.nodes[subject],
-      [predicateToPropertyName(removeAngleBrackets(predicate))]:
+      [removeAngleBrackets(predicate)]:
         getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
     };
   };
