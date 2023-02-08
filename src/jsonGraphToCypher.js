@@ -79,16 +79,17 @@ const isTypeNode = (node, links) => {
 const jsonGraphToCypher = async (graph, sourceGraphId) => {
   const hasSource = sourceGraphId !== false;
   let sourceGraphInfo = ``;
-  if (hasSource) {
-    const sourceTimestamp = new Date().toISOString();
-    sourceGraphInfo = `, sourceGraphId: "${sourceGraphId}", sourceTimestamp: "${sourceTimestamp}"`;
-  }
+  let sourceGraphInfo2 = ``;
   let query = ``;
   const nodesMerged = [];
   const nodeIdToNodeName = {};
   for (const nodeIndex in graph.nodes) {
     const node = graph.nodes[nodeIndex];
     const nodeName = `n${nodeIndex}`;
+    if (hasSource) {
+      sourceGraphInfo = `, ${nodeName}.sourceGraphId = "${sourceGraphId}" `;
+      sourceGraphInfo2 = `, sourceGraphId: "${sourceGraphId}" `;
+    }
     nodeIdToNodeName[node.id] = nodeName;
     let typedProperties = '';
     if (Object.keys(node).length > 1) {
@@ -100,25 +101,22 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
         const v = props[k];
         const niceName = k;
         const niceValue = getTypedValue(v);
-        rps.push(`\`${niceName}\`: ${niceValue}`);
+        rps.push(`${nodeName}.\`${niceName}\` = ${niceValue}`);
       }
       const isLocation =
         propKeys.includes('latitude') && propKeys.includes('longitude');
       if (isLocation) {
-        rps.push(
-            `point: point({latitude:toFloat(${props.latitude}), longitude:toFloat(${props.longitude})})`,
-        );
+        rps.push(`${nodeName}.point = point({latitude:toFloat(${props.latitude}), longitude:toFloat(${props.longitude})})`);
       }
-      typedProperties = `,  ${rps.join(', ')}`;
+      typedProperties = `${rps.join(', ')}, `;
     }
     const nodeLabel = nodeToNodeLabel(node);
     const typeNode = isTypeNode(node, graph.links);
     if (typeNode) {
-      query += `MERGE ( ${nodeName} : \`Type\` { type: "${node.id.split('/').pop().split('#').pop()}", id: "${node.id}" ${typedProperties} ${sourceGraphInfo} } )\n`;
+      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo}\n`;
     } else {
-      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" ${typedProperties}  ${sourceGraphInfo} } )\n`;
+      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties}${nodeName}.sourceTimestamp = datetime()\n`;
     }
-
     nodesMerged.push(nodeName);
   }
   for (const linkIndex in graph.links) {
@@ -127,7 +125,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}" ${sourceGraphInfo2} } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
