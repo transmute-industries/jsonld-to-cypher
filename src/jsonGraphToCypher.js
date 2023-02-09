@@ -65,12 +65,16 @@ const linkToEdgeLabel = (link) => {
   return `\`${link.predicate}\``;
 };
 
-const isTypeNode = (node, links) => {
+const findNodeLink = (node, links) => {
   const [link] = links.filter((link) => link.target === node.id);
-  if (link?.label === 'type') {
-    return [true, link];
+  return link;
+};
+
+const isTypeNode = (nodeLink) => {
+  if (nodeLink?.label === 'type') {
+    return true;
   }
-  return [false, link];
+  return false;
 };
 
 const jsonGraphToCypher = async (graph, sourceGraphId) => {
@@ -105,7 +109,8 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       }
       typedProperties = `,  ${rps.join(', ')}`.trim();
     }
-    const [typeNode, nodeLink] = isTypeNode(node, graph.links);
+    const nodeLink = findNodeLink(node, graph.links);
+    const typeNode = isTypeNode(nodeLink);
     const nodeLabel = nodeToNodeLabel(node, nodeLink);
     if (typeNode) {
       query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
