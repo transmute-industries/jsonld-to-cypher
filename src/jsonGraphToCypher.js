@@ -29,7 +29,10 @@ const isUrl = (iri) => {
   return iri.startsWith('http');
 };
 
-const nodeToNodeLabel = (node) => {
+const nodeToNodeLabel = (node, link) => {
+  if (link !== undefined) {
+    return link.predicate.split('/').pop().split('#').pop();
+  }
   if (isDid(node.id)) {
     return 'DecentralizedIdentifier';
   }
@@ -71,9 +74,9 @@ const linkToEdgeLabel = (link) => {
 const isTypeNode = (node, links) => {
   const [link] = links.filter((link) => link.target === node.id);
   if (link?.label === 'type') {
-    return true;
+    return [true, link];
   }
-  return false;
+  return [false, link];
 };
 
 const jsonGraphToCypher = async (graph, sourceGraphId) => {
@@ -106,14 +109,14 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       if (isLocation) {
         rps.push(`${nodeName}.point = point({latitude:toFloat(${props.latitude}), longitude:toFloat(${props.longitude})})`);
       }
-      typedProperties = `${rps.join(', ')}, `;
+      typedProperties = `,  ${rps.join(', ')}`.trim();
     }
-    const nodeLabel = nodeToNodeLabel(node);
-    const typeNode = isTypeNode(node, graph.links);
+    const [typeNode, nodeLink] = isTypeNode(node, graph.links);
+    const nodeLabel = nodeToNodeLabel(node, nodeLink);
     if (typeNode) {
-      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : \`Type\` { type: "${nodeLink.predicate.split('/').pop().split('#').pop()}", id: "${node.id}"${typedProperties}${sourceGraphInfo} } )\n`;
     } else {
-      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties}${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}"${typedProperties}${sourceGraphInfo} } )\n`;
     }
     nodesMerged.push(nodeName);
   }
