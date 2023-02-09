@@ -2,13 +2,7 @@
 /* eslint-disable max-len */
 
 const moment = require('moment');
-
-const {predicateToPropertyName} = require('./utils');
 const preferences = require('./preferences');
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 const isDidUrl = (iri) => {
   return (
@@ -114,9 +108,9 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const [typeNode, nodeLink] = isTypeNode(node, graph.links);
     const nodeLabel = nodeToNodeLabel(node, nodeLink);
     if (typeNode) {
-      query += `MERGE ( ${nodeName} : \`Type\` { type: "${nodeLink.predicate.split('/').pop().split('#').pop()}", id: "${node.id}"${typedProperties}${sourceGraphInfo} } )\n`;
+      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
-      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}"${typedProperties}${sourceGraphInfo} } )\n`;
+      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     }
     nodesMerged.push(nodeName);
   }
@@ -126,7 +120,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}" ${sourceGraphInfo} } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
