@@ -2,13 +2,7 @@
 /* eslint-disable max-len */
 
 const moment = require('moment');
-
-const {predicateToPropertyName} = require('./utils');
 const preferences = require('./preferences');
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 const isDidUrl = (iri) => {
   return (
@@ -29,7 +23,10 @@ const isUrl = (iri) => {
   return iri.startsWith('http');
 };
 
-const nodeToNodeLabel = (node) => {
+const nodeToNodeLabel = (node, link) => {
+  if (link !== undefined && link.predicate) {
+    return link.predicate.split('/').pop().split('#').pop();
+  }
   if (isDid(node.id)) {
     return 'DecentralizedIdentifier';
   }
@@ -68,9 +65,13 @@ const linkToEdgeLabel = (link) => {
   return `\`${link.predicate}\``;
 };
 
-const isTypeNode = (node, links) => {
+const findNodeLink = (node, links) => {
   const [link] = links.filter((link) => link.target === node.id);
-  if (link?.label === 'type') {
+  return link;
+};
+
+const isTypeNode = (nodeLink) => {
+  if (nodeLink?.label === 'type') {
     return true;
   }
   return false;
@@ -106,14 +107,15 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       if (isLocation) {
         rps.push(`${nodeName}.point = point({latitude:toFloat(${props.latitude}), longitude:toFloat(${props.longitude})})`);
       }
-      typedProperties = `${rps.join(', ')}, `;
+      typedProperties = `,  ${rps.join(', ')}`.trim();
     }
-    const nodeLabel = nodeToNodeLabel(node);
-    const typeNode = isTypeNode(node, graph.links);
+    const nodeLink = findNodeLink(node, graph.links);
+    const typeNode = isTypeNode(nodeLink);
+    const nodeLabel = nodeToNodeLabel(node, nodeLink);
     if (typeNode) {
       query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
-      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties}${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     }
     nodesMerged.push(nodeName);
   }
@@ -123,7 +125,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}", predicate: "${link.label}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}" ${sourceGraphInfo} } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
