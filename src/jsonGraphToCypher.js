@@ -24,7 +24,7 @@ const isUrl = (iri) => {
 };
 
 const nodeToNodeLabel = (node, link) => {
-  if (link !== undefined) {
+  if (link !== undefined && link.predicate) {
     return link.predicate.split('/').pop().split('#').pop();
   }
   if (isDid(node.id)) {
