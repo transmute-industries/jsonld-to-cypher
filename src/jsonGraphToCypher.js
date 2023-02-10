@@ -28,7 +28,6 @@ const nodeToNodeLabel = (node, link) => {
     return link.predicate.split('/').pop().split('#').pop();
   }
   if (isDid(node.id)) {
-    console.log('data', node, link);
     return 'DecentralizedIdentifier';
   }
   if (isDidUrl(node.id)) {
