@@ -28,6 +28,7 @@ const nodeToNodeLabel = (node, link) => {
     return link.predicate.split('/').pop().split('#').pop();
   }
   if (isDid(node.id)) {
+    console.log('data', node, link);
     return 'DecentralizedIdentifier';
   }
   if (isDidUrl(node.id)) {
@@ -125,7 +126,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${graph.id}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${linkLabel.replace('`', '')}" ${sourceGraphInfo} } ]->(${targetName})\n`;
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
