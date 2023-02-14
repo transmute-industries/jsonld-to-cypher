@@ -25,7 +25,7 @@ const isUrl = (iri) => {
 
 const nodeToNodeLabel = (node, links) => {
   if (links[0] !== undefined && links[0].target) {
-    let label = label = links[0].target.split('/').pop().split('#').pop();
+    let label = links[0].target.split('/').pop().split('#').pop();
 
     if (links[1] !== undefined && links[1].target) {
       const secondPossibleLabel = links[1].target.split('/').pop().split('#').pop();
