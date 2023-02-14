@@ -23,12 +23,10 @@ const isUrl = (iri) => {
   return iri.startsWith('http');
 };
 
-const nodeToNodeLabel = (node, links, nodeIndex) => {
-  if (nodeIndex === '0') {
-    let label = '';
-    if (links[0] !== undefined && links[0].target) {
-      label = links[0].target.split('/').pop().split('#').pop();
-    }
+const nodeToNodeLabel = (node, links) => {
+  if (links[0] !== undefined && links[0].target) {
+    let label = label = links[0].target.split('/').pop().split('#').pop();
+
     if (links[1] !== undefined && links[1].target) {
       const secondPossibleLabel = links[1].target.split('/').pop().split('#').pop();
       if (secondPossibleLabel === 'VerifiableCredential') {
@@ -36,9 +34,6 @@ const nodeToNodeLabel = (node, links, nodeIndex) => {
       }
     }
     return `${label}`;
-  }
-  if (links[0] !== undefined && links[0].target) {
-    return links[0].target.split('/').pop().split('#').pop();
   }
   if (isDid(node.id)) {
     return 'DecentralizedIdentifier';
@@ -115,7 +110,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       typedProperties = `,  ${rps.join(', ')}`.trim();
     }
     const nodeLinks = findNodeLink(node, graph.links);
-    const nodeLabel = nodeToNodeLabel(node, nodeLinks, nodeIndex);
+    const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
     if (typeNode) {
       query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
