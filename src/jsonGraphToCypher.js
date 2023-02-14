@@ -23,9 +23,22 @@ const isUrl = (iri) => {
   return iri.startsWith('http');
 };
 
-const nodeToNodeLabel = (node, link) => {
-  if (link !== undefined && link.predicate) {
-    return link.predicate.split('/').pop().split('#').pop();
+const nodeToNodeLabel = (node, links, nodeIndex) => {
+  if (nodeIndex === '0') {
+    let label = '';
+    if (links[0] !== undefined && links[0].target) {
+      label = links[0].target.split('/').pop().split('#').pop();
+    }
+    if (links[1] !== undefined && links[1].target) {
+      const secondPossibleLabel = links[1].target.split('/').pop().split('#').pop();
+      if (secondPossibleLabel === 'VerifiableCredential') {
+        label += `:${secondPossibleLabel}`;
+      }
+    }
+    return `${label}`;
+  }
+  if (links[0] !== undefined && links[0].target) {
+    return links[0].target.split('/').pop().split('#').pop();
   }
   if (isDid(node.id)) {
     return 'DecentralizedIdentifier';
@@ -66,15 +79,7 @@ const linkToEdgeLabel = (link) => {
 };
 
 const findNodeLink = (node, links) => {
-  const [link] = links.filter((link) => link.target === node.id);
-  return link;
-};
-
-const isTypeNode = (nodeLink) => {
-  if (nodeLink?.label === 'type') {
-    return true;
-  }
-  return false;
+  return links.filter((link) => link.source === node.id);
 };
 
 const jsonGraphToCypher = async (graph, sourceGraphId) => {
@@ -109,9 +114,9 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       }
       typedProperties = `,  ${rps.join(', ')}`.trim();
     }
-    const nodeLink = findNodeLink(node, graph.links);
-    const typeNode = isTypeNode(nodeLink);
-    const nodeLabel = nodeToNodeLabel(node, nodeLink);
+    const nodeLinks = findNodeLink(node, graph.links);
+    const nodeLabel = nodeToNodeLabel(node, nodeLinks, nodeIndex);
+    const typeNode = nodeLinks.length === 0;
     if (typeNode) {
       query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
