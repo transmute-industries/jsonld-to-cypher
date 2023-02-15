@@ -113,9 +113,9 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
     if (typeNode) {
-      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : Type { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
-      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : ${nodeLabel.toString()} { id: "${node.id}" }) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     }
     nodesMerged.push(nodeName);
   }
