@@ -113,7 +113,7 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
     if (typeNode) {
-      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
       query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` { id: "${node.id}" }) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     }
@@ -125,7 +125,11 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${linkLabel.replace('`', '')}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    // We do not want to draw edges linking a node to itself.
+    const sourceToBlank = link.source === graph.id && link.target.indexOf('_:c14n') >= 0;
+    if (sourceName !== targetName && !sourceToBlank) {
+      query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${linkLabel.replace('`', '')}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    }
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
