@@ -3,6 +3,7 @@
 
 const moment = require('moment');
 const preferences = require('./preferences');
+const {isBlankNode} = require('./utils');
 
 const isDidUrl = (iri) => {
   return (
@@ -112,10 +113,12 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const nodeLinks = findNodeLink(node, graph.links);
     const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
+    const blanKNode = isBlankNode(node.id);
+    const nodeId = blanKNode ? '' : `{ id: "${node.id}" }`;
     if (typeNode) {
-      query += `MERGE ( ${nodeName} : \`Type\` { id: "${node.id}" }) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : \`Type\` ${nodeId}) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
-      query += `MERGE ( ${nodeName} : ${nodeLabel.toString()} { id: "${node.id}" }) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+      query += `MERGE ( ${nodeName} : ${nodeLabel.toString()} ${nodeId}) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     }
     nodesMerged.push(nodeName);
   }
