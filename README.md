@@ -39,7 +39,7 @@ npm i @transmute/jsonld-to-cypher@latest --save
 ```js
 const c1 = await Cypher.fromJsonWebSignature(
   'eyJhbGciOiJFUzI1NiJ9.eyJzdHJpbmciOiJJdOKAmXMgYSBkYW5nZXJvdXMgYnVzaW5lc3MsIEZyb2RvLCBnb2luZyBvdXQgeW91ciBkb29yLiIsIm51bWJlciI6NDIuNSwib2JqZWN0Ijp7ImZvbyI6IvCfmYvigI3imYDvuI8ifSwiYm9vbGVhbiI6dHJ1ZX0.ckTfCowf_aYnSae6fp2JMQNd94qtu3KfWMYD_WHTxfVSJzsE6j64CpryLrlJ3MMK7Zp2_NokWiLAL0JqIZPdWw'
-)
+);
 ```
 
 ```cypher
@@ -101,7 +101,7 @@ const c1 = await Cypher.fromDocument({
     proofPurpose: 'assertionMethod',
     jws: 'eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..eQrU_BmLRp0CtI_gTKTl5UqcbKNy7n7hCtt0dvsYVdx0hR2Mbm4g53apLJ4fApy-dNvrvaJPpIC0OY_xG_e_Bg',
   },
-})
+});
 ```
 
 ```cypher
@@ -169,3 +169,7 @@ npm run jsonld-to-cypher convert ./src/__fixtures__/vc.jwt  -- --type jws
 ### Installing Neo4j Desktop
 
 See [https://neo4j.com](https://neo4j.com/).
+
+### Act support
+
+act -j merge-local --secret-file .env

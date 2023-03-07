@@ -34,7 +34,7 @@
     "@actions/core": "^1.10.0",
     "axios": "^1.1.2",
     "jose": "^4.10.4",
-    "jsonld": "^8.1.0",
+    "jsonld": "^5.2.0",
     "moment": "^2.29.4",
     "ts-graphviz": "^1.2.3",
     "uuid": "^9.0.0",

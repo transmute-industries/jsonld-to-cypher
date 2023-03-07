@@ -3,29 +3,7 @@ name: Action
 on: [push, workflow_dispatch]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Build Action
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install
-        run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Cache Save
-        id: cache-save
-        uses: actions/cache@v3
-        with:
-          path: |
-            ./*
-          key: ${{ github.sha }}
-          # TODO: be more like:
-          # path: |
-          #     ./dist/*
-          #     ./action.yml
-          #   key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-  merge:
+  merge-local:
     needs:
       - build
     runs-on: ubuntu-latest
@@ -33,13 +11,10 @@ jobs:
     outputs:
       json: ${{ steps.merge.outputs.json }}
     steps:
-      - name: Cache Restore
-        uses: actions/cache@v3
-        id: cache-restore
-        with:
-          path: |
-            ./*
-          key: ${{ github.sha }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: npm install
       - name: Merge Query from Document
         uses: ./ # Use a "private unpublished github action in the current repository"
         id: merge
