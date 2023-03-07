@@ -4,8 +4,6 @@ on: [push, workflow_dispatch]
 
 jobs:
   merge-local:
-    needs:
-      - build
     runs-on: ubuntu-latest
     name: Merge
     outputs:
