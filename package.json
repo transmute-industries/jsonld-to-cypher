@@ -4,8 +4,8 @@
   "description": "transform a document into a cypher query",
   "main": "./src/index.js",
   "scripts": {
-    "test": "dotenv -e .env -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest",
-    "test-ci": "dotenv -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
+    "test": "dotenv -e .env jest",
+    "test-ci": "dotenv jest --ci --coverage",
     "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
     "jsonld-to-cypher": "node ./src/cli.js",
     "build": "ncc build ./action/index.js --license licenses.txt",
