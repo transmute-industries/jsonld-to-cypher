@@ -32,13 +32,19 @@ module.exports = mergeDocument;
 const mergeDocument = __nccwpck_require__(97744);
 const mergeOperation = async (env) => {
   const parsedDocument = JSON.parse(env.document);
+  const errors = [];
   if (Array.isArray(parsedDocument)) {
-    for (const item of parsedDocument) {
-      await mergeDocument(item, {
-        url: env.neo4j_uri,
-        username: env.neo4j_user,
-        password: env.neo4j_password,
-      });
+    for (let i = 0; i < parsedDocument.length; i++) {
+      const item = parsedDocument[i];
+      try {
+        await mergeDocument(item, {
+          url: env.neo4j_uri,
+          username: env.neo4j_user,
+          password: env.neo4j_password,
+        });
+      } catch (err) {
+        errors.push(`document idx ${i}: ${err.message}`);
+      }
     }
   } else {
     await mergeDocument(parsedDocument, {
@@ -47,7 +53,9 @@ const mergeOperation = async (env) => {
       password: env.neo4j_password,
     });
   }
-
+  if (errors.length > 0) {
+    core.setOutput('errors', JSON.stringify(errors));
+  }
   return {};
 };
 
@@ -77269,6 +77277,7 @@ const autograph = async (object, {documentLoader, id}) => {
     algorithm: 'URDNA2015',
     format: 'application/n-quads',
     documentLoader,
+    safe: false, // lossy behavior but doesn't fail
   });
   const rows = canonized
       .split('\n')
