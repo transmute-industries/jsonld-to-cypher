@@ -1,3 +1,5 @@
+const core = require('@actions/core');
+
 const mergeDocument = require('./mergeDocument');
 const mergeOperation = async (env) => {
   const parsedDocument = JSON.parse(env.document);

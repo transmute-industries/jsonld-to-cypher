@@ -29,6 +29,8 @@ module.exports = mergeDocument;
 /***/ 31859:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
+const core = __nccwpck_require__(42186);
+
 const mergeDocument = __nccwpck_require__(97744);
 const mergeOperation = async (env) => {
   const parsedDocument = JSON.parse(env.document);
