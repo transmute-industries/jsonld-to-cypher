@@ -31,7 +31,7 @@ const nodeToNodeLabel = (node, links) => {
     if (links[1] !== undefined && links[1].target) {
       const secondPossibleLabel = links[1].target.split('/').pop().split('#').pop();
       if (secondPossibleLabel === 'VerifiableCredential') {
-        label += `:${secondPossibleLabel}`;
+        label += '`:`' + secondPossibleLabel;
       }
     }
     return `${label}`;
@@ -110,11 +110,17 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       }
       typedProperties = `,  ${rps.join(', ')}`.trim();
     }
+
+    // testing to get to our prob nodes
+    if (nodeName === 'n15') {
+      const here = '';
+    }
     const nodeLinks = findNodeLink(node, graph.links);
     const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
-    const blanKNode = isBlankNode(node.id);
+    const blanKNode = isBlankNode(nodeLabel);
     const nodeId = blanKNode ? '' : `{ id: "${node.id}" }`;
+
     if (typeNode) {
       query += `MERGE ( ${nodeName} : \`Type\` ${nodeId}) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
     } else {
