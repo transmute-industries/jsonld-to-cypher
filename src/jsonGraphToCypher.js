@@ -118,8 +118,20 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
     const nodeLinks = findNodeLink(node, graph.links);
     const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
-    const blanKNode = isBlankNode(nodeLabel);
-    const nodeId = blanKNode ? '' : `{ id: "${node.id}" }`;
+
+    // check if the node or nodelabel have blank node identifiers in them
+    const blanKNodeID = isBlankNode(node.id);
+    const blanKNodeLabel = isBlankNode(nodeLabel);
+
+    // if either nodeid or the nodelable have blank node identifiers then this is a blank node
+    const blankNode = blanKNodeID || blanKNodeLabel;
+
+    // old code left commented in place that made the merge statments have a blank string for their nodeid
+    // this makes the merge statements duplicate property creation accross all nodes of the same type
+    // and causes the merge statements to crash for even a single presentation.
+    // This needs to be evaluated and resolved differently.
+    // const nodeId = blankNode ? '' : `{ id: "${node.id}" }`;
+    const nodeId = `{ id: "${node.id}" }`;
 
     if (typeNode) {
       query += `MERGE ( ${nodeName} : \`Type\` ${nodeId}) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
