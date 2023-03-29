@@ -111,10 +111,6 @@ const jsonGraphToCypher = async (graph, sourceGraphId) => {
       typedProperties = `,  ${rps.join(', ')}`.trim();
     }
 
-    // testing to get to our prob nodes
-    if (nodeName === 'n15') {
-      const here = '';
-    }
     const nodeLinks = findNodeLink(node, graph.links);
     const nodeLabel = nodeToNodeLabel(node, nodeLinks);
     const typeNode = nodeLinks.length === 0;
