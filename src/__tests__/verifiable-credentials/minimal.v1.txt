@@ -1,0 +1,8 @@
+MERGE ( n0 : `Type` { id: "did:example:ebfeb1f712ebc6f1c276e12ec21" }) SET n0.type = "did:example:ebfeb1f712ebc6f1c276e12ec21",  n0.sourceTimestamp = datetime() 
+MERGE ( n1 : `Type` { id: "https://example.edu/issuers/565049" }) SET n1.type = "565049",  n1.sourceTimestamp = datetime() 
+MERGE ( n2 : `Type` { id: "https://www.w3.org/2018/credentials#VerifiableCredential" }) SET n2.type = "VerifiableCredential",  n2.sourceTimestamp = datetime() 
+MERGE ( n3 : `VerifiableCredential` { id: "urn:uuid:123" }) SET  n3.`https://www.w3.org/2018/credentials#issuanceDate` = datetime("2010-01-01T19:23:24Z"), n3.sourceTimestamp = datetime() 
+MERGE (n3)-[e0: `http://www.w3.org/1999/02/22-rdf-syntax-ns#type` { name: "type", id: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type`"  } ]->(n2)
+MERGE (n3)-[e1: `https://www.w3.org/2018/credentials#credentialSubject` { name: "credentialSubject", id: "https://www.w3.org/2018/credentials#credentialSubject`"  } ]->(n0)
+MERGE (n3)-[e2: `https://www.w3.org/2018/credentials#issuer` { name: "issuer", id: "https://www.w3.org/2018/credentials#issuer`"  } ]->(n1)
+RETURN n0,n1,n2,n3
