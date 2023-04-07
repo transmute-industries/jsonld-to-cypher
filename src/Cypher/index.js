@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 const documentLoader = require('../documentLoader');
 const autograph = require('../autograph');
-const jsonGraphToCypher = require('../jsonGraphToCypher');
+const autographToCypher = require('./autographToCypher');
 // const jsonWebSigantureToDocument = require('./jsonWebSigantureToDocument');
 
 const Cypher = {
@@ -10,7 +10,7 @@ const Cypher = {
       options = {documentLoader, sourceGraphId: false},
   ) => {
     const intermediate = await autograph(document, options);
-    const cypher = await jsonGraphToCypher(intermediate, options.sourceGraphId);
+    const cypher = await autographToCypher(intermediate, options);
     return cypher;
   },
   // fromJsonWebSignature: async (
