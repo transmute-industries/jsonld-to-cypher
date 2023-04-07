@@ -1,4 +1,4 @@
-const {Cypher, GraphViz} = require('..');
+const {Cypher, GraphViz} = require('../src');
 const fixtures = require('../__fixtures__');
 
 jest.setTimeout(10 * 1000);

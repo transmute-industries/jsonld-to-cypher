@@ -48,18 +48,18 @@ yargs(hideBin(process.argv))
           let cypher = '';
           if (type === 'json') {
             doc = readJsonFromPath(argv, 'document');
-            cypher = await lib.Cypher.fromDocument(
-                doc,
-                {documentLoader, sourceGraphId},
-            );
+            cypher = await lib.Cypher.fromDocument(doc, {
+              documentLoader,
+              sourceGraphId,
+            });
           }
-          if (type === 'jws') {
-            doc = readFile(argv, 'document');
-            cypher = await lib.Cypher.fromJsonWebSignature(
-                doc,
-                {documentLoader, sourceGraphId},
-            );
-          }
+          // if (type === 'jws') {
+          //   doc = readFile(argv, 'document');
+          //   cypher = await lib.Cypher.fromJsonWebSignature(
+          //       doc,
+          //       {documentLoader, sourceGraphId},
+          //   );
+          // }
           console.log(cypher);
         },
     )

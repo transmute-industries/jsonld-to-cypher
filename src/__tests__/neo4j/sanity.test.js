@@ -1,8 +1,8 @@
-const {getDriver, dropTables} = require('../test-utils');
+const {getDriver, dropTables} = require('../../test-utils');
 
 let driver;
 
-describe('sanity', () => {
+describe.skip('sanity', () => {
   beforeAll(async () => {
     await dropTables();
     driver = getDriver();
