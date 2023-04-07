@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 const jsonld = require('jsonld');
+const _ = require('lodash');
 
 const autograph = async (object, {documentLoader, id}) => {
   const nodes = {[id]: {id}};
@@ -93,15 +94,66 @@ const autograph = async (object, {documentLoader, id}) => {
     }
   };
 
+  const isDidUrl = (iri) => {
+    return (
+      iri.startsWith('did:') &&
+      (iri.includes('#') || iri.includes('/') || iri.includes('?'))
+    );
+  };
+
+  const isDid = (iri) => {
+    return iri.startsWith('did:') && !isDidUrl(iri);
+  };
+
+  const isUrn = (iri) => {
+    return iri.startsWith('urn:');
+  };
+
+  const isUrl = (iri) => {
+    return iri.startsWith('http');
+  };
+
+  const getLabelFromIri = (iri) => {
+    return _.startCase(iri.split('/').pop().split('#').pop());
+  };
+
+  const getNodeLabel = (node) => {
+    if (node.label) {
+      return node.label;
+    }
+    if (isDid(node.id)) {
+      return 'DID';
+    }
+    if (isDidUrl(node.id)) {
+      return 'DID URL';
+    }
+    if (isUrn(node.id)) {
+      return 'URN';
+    }
+    if (isUrl(node.id)) {
+      return 'URL';
+    }
+    return 'Resource';
+  };
+
+  const setNodeLabelFromEdges = (graph) => {
+    // add a label to RDF types for easier querying
+    // we could add more specific types here...
+    // but that is a mistake.
+    // That kind of thing belongs at a different layer
+    // like after importing data...
+    graph.links.forEach((link) => {
+      if (link.label === 'Type') {
+        graph.nodes[link.target].label = 'Type';
+      }
+    });
+  };
+
   const addObjectToGraph = ({object, graph}) => {
     object = removeAngleBrackets(object);
     graph.nodes[object] = {
       ...(graph.nodes[object] || {id: object}),
     };
-  };
-
-  const predicateToPropertyName = (predicate) => {
-    return predicate.split('/').pop().split('#').pop().replace('>', '');
   };
 
   const addObjectAsPropertiesOfSubject = ({
@@ -113,8 +165,9 @@ const autograph = async (object, {documentLoader, id}) => {
     subject = removeAngleBrackets(subject);
     graph.nodes[subject] = {
       ...graph.nodes[subject],
-      [removeAngleBrackets(predicate)]:
-        getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
+      [removeAngleBrackets(predicate)]: getPrimitiveTypeFromObject(
+          removeEscapedQuotes(object),
+      ),
     };
   };
 
@@ -123,9 +176,9 @@ const autograph = async (object, {documentLoader, id}) => {
     if (isBlankNode(subjectIri)) {
       const predicateIri = removeAngleBrackets(predicate);
       graph.links.push({
+        definition: predicateIri,
         source: subjectIri.split(':_:')[0],
-        label: predicateIri.split('/').pop().split('#').pop(),
-        predicate: predicateIri,
+        label: getLabelFromIri(predicateIri),
         target: subjectIri,
       });
     }
@@ -140,9 +193,9 @@ const autograph = async (object, {documentLoader, id}) => {
       addObjectToGraph({object, graph});
       const predicateIri = removeAngleBrackets(predicate);
       graph.links.push({
+        definition: predicateIri,
         source: removeAngleBrackets(subject),
-        label: predicateIri.split('/').pop().split('#').pop(),
-        predicate: predicateIri,
+        label: getLabelFromIri(predicateIri),
         target: removeAngleBrackets(object),
       });
     } else {
@@ -150,7 +203,12 @@ const autograph = async (object, {documentLoader, id}) => {
       maybeAddPredicateAsLink({subject, predicate, graph});
     }
   }
+
+  setNodeLabelFromEdges(graph);
   graph.nodes = Object.values(graph.nodes);
+  graph.nodes = graph.nodes.map((n) => {
+    return {...n, label: getNodeLabel(n)};
+  });
   return graph;
 };
 

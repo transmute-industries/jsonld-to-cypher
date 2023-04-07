@@ -4,7 +4,7 @@
   "description": "transform a document into a cypher query",
   "main": "./src/index.js",
   "scripts": {
-    "test": "dotenv -e .env -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "dotenv -e .env -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
     "test-ci": "dotenv -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
     "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
     "jsonld-to-cypher": "node ./src/cli.js",
@@ -35,6 +35,7 @@
     "axios": "^1.1.2",
     "jose": "^4.10.4",
     "jsonld": "^8.1.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "ts-graphviz": "^1.2.3",
     "uuid": "^9.0.0",

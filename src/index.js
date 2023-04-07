@@ -15,6 +15,7 @@ const Cypher = {
       options = {documentLoader, sourceGraphId: false},
   ) => {
     const intermediate = await documentToJsonGraph(document, options);
+    // console.log(JSON.stringify(intermediate, null, 2));
     const cypher = await jsonGraphToCypher(intermediate, options.sourceGraphId);
     return cypher;
   },

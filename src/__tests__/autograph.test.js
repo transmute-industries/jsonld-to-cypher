@@ -18,34 +18,46 @@ it('autograph', async () => {
   expect(dataset).toEqual({
     id: 'urn:uuid:123',
     nodes: [
-      {id: 'urn:uuid:123'},
-      {'id': 'did:example:123', 'https://industry.example/vocab#bar': 'baz'},
-      {'id': 'urn:uuid:123:_:c14n0', 'https://industry.example/vocab#property': 123},
-      {'id': 'urn:uuid:123:_:c14n1', 'https://industry.example/vocab#foo': true},
+      {id: 'urn:uuid:123', label: 'URN'},
+      {
+        'id': 'did:example:123',
+        'https://industry.example/vocab#bar': 'baz',
+        'label': 'DID',
+      },
+      {
+        'id': 'urn:uuid:123:_:c14n0',
+        'https://industry.example/vocab#property': 123,
+        'label': 'URN',
+      },
+      {
+        'id': 'urn:uuid:123:_:c14n1',
+        'https://industry.example/vocab#foo': true,
+        'label': 'URN',
+      },
     ],
     links: [
       {
+        definition: 'https://industry.example/vocab#list',
         source: 'urn:uuid:123:_:c14n0',
-        label: 'list',
-        predicate: 'https://industry.example/vocab#list',
+        label: 'List',
         target: 'did:example:123',
       },
       {
+        definition: 'https://industry.example/vocab#list',
         source: 'urn:uuid:123:_:c14n0',
-        label: 'list',
-        predicate: 'https://industry.example/vocab#list',
+        label: 'List',
         target: 'urn:uuid:123:_:c14n1',
       },
       {
+        definition: 'https://industry.example/vocab#property',
         source: 'urn:uuid:123',
-        label: 'property',
-        predicate: 'https://industry.example/vocab#property',
+        label: 'Property',
         target: 'urn:uuid:123:_:c14n0',
       },
       {
+        definition: 'https://industry.example/vocab#foo',
         source: 'urn:uuid:123',
-        label: 'foo',
-        predicate: 'https://industry.example/vocab#foo',
+        label: 'Foo',
         target: 'urn:uuid:123:_:c14n1',
       },
     ],

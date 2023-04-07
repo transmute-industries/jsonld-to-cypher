@@ -27,15 +27,11 @@ describe('minimal', () => {
   });
   it('v1 credential', async () => {
     const query = await Cypher.fromDocument(v1);
+    const session = driver.session();
+    await session.run(query);
+    await session.close();
     expect(query).toBe(expected);
   });
-
-  it('merge v1 credential', async () => {
-    const session = driver.session();
-    await session.run(expected);
-    await session.close();
-  });
-
   afterAll(async () => {
     await driver.close();
   });
