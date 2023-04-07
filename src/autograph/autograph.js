@@ -6,16 +6,7 @@ const autograph = async (doc, {documentLoader, id}) => {
   const nodes = {[id]: {id}};
   const links = [];
   const graph = {id, nodes, links};
-  if (doc.id === undefined) {
-    doc.id = id;
-  } else {
-    links.push({
-      definition: 'https://wikipedia.org/wiki/Named_graph',
-      source: id,
-      label: 'Named Graph',
-      target: doc.id,
-    });
-  }
+
   const canonized = await jsonld.canonize(doc, {
     algorithm: 'URDNA2015',
     format: 'application/n-quads',
@@ -186,7 +177,7 @@ const autograph = async (doc, {documentLoader, id}) => {
       const predicateIri = removeAngleBrackets(predicate);
       graph.links.push({
         definition: predicateIri,
-        source: subjectIri.split(':_:')[0],
+        source: subjectIri,
         label: getLabelFromIri(predicateIri),
         target: subjectIri,
       });
@@ -194,7 +185,7 @@ const autograph = async (doc, {documentLoader, id}) => {
   };
   for (const row of rows) {
     const {subject, predicate, object} = rowToIntermediateObject(
-        graph.id,
+        doc.id || graph.id,
         row,
     );
     addSubjectToGraph({subject, graph});
@@ -227,41 +218,61 @@ const autograph = async (doc, {documentLoader, id}) => {
     return a.source >= b.source ? 1 : -1;
   };
 
-  // const hasEdge = (source, target, graph) => {
-  //   return (
-  //     graph.links.find((link) => {
-  //       return link.source === source && link.target === target;
-  //     }) !== undefined
-  //   );
-  // };
+  const blankNodes = graph.nodes.filter((n) => isBlankNode(n.id)).sort(nodeSort);
 
-  // const hasBackEdge = (source, target, graph) => {
-  //   return hasEdge(target, source, graph);
-  // };
+  blankNodes.reduce((pv, cv, ci, arr) => {
+    if (pv) {
+      graph.links.push({
+        label: 'Blank Node',
+        source: pv.id,
+        definition: 'https://wikipedia.org/wiki/Blank_node',
+        target: cv.id,
+      });
+    }
+  });
 
-  // const hasInbound = (target, graph) => {
-  //   return (
-  //     graph.links.find((link) => {
-  //       return link.target === target;
-  //     }) !== undefined
-  //   );
-  // };
-  // // record all relationships as originating
-  // // from this graph...
-  // graph.nodes.forEach((node) => {
-  //   if (
-  //     id !== node.id &&
-  //     !hasEdge(id, node.id, graph) &&
-  //     !hasBackEdge(id, node.id, graph) &&
-  //     !hasInbound(node.id, graph)
-  //   ) {
-  //     graph.links.push({
-  //       source: id,
-  //       definition: '🔥',
-  //       target: node.id,
-  //     });
-  //   }
-  // });
+  const hasEdge = (source, target, graph) => {
+    return (
+      graph.links.find((link) => {
+        return link.source === source && link.target === target;
+      }) !== undefined
+    );
+  };
+
+  const hasInbound = (target, graph) => {
+    return (
+      graph.links.find((link) => {
+        return link.target === target;
+      }) !== undefined
+    );
+  };
+
+  // remove self edges for node properties
+  graph.links.forEach((link, i) => {
+    const node = graph.nodes.find((n) => {
+      return n.id === link.target;
+    });
+    if (node && link.source === link.target && node[link.definition]) {
+      graph.links.splice(i, 1);
+    }
+  });
+
+  // ensure the graph is connected.
+  graph.nodes.forEach((node) => {
+    if (
+      id !== node.id &&
+      !hasEdge(id, node.id, graph) &&
+      !hasEdge(node.id, id, graph) &&
+      !hasInbound(node.id, graph)
+    ) {
+      graph.links.push({
+        label: 'Named Graph',
+        source: id,
+        definition: 'https://wikipedia.org/wiki/Named_graph',
+        target: node.id,
+      });
+    }
+  });
 
   return {
     id,
