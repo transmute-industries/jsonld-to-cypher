@@ -10,6 +10,7 @@ const autograph = async (object, {documentLoader, id}) => {
     algorithm: 'URDNA2015',
     format: 'application/n-quads',
     documentLoader,
+    safe: false, // lossy behavior but doesn't fail
   });
   const rows = canonized
       .split('\n')
@@ -112,7 +113,7 @@ const autograph = async (object, {documentLoader, id}) => {
     subject = removeAngleBrackets(subject);
     graph.nodes[subject] = {
       ...graph.nodes[subject],
-      [predicateToPropertyName(removeAngleBrackets(predicate))]:
+      [removeAngleBrackets(predicate)]:
         getPrimitiveTypeFromObject(removeEscapedQuotes(object)),
     };
   };

@@ -19,9 +19,9 @@ it('autograph', async () => {
     id: 'urn:uuid:123',
     nodes: [
       {id: 'urn:uuid:123'},
-      {id: 'did:example:123', bar: 'baz'},
-      {id: 'urn:uuid:123:_:c14n0', property: 123},
-      {id: 'urn:uuid:123:_:c14n1', foo: true},
+      {'id': 'did:example:123', 'https://industry.example/vocab#bar': 'baz'},
+      {'id': 'urn:uuid:123:_:c14n0', 'https://industry.example/vocab#property': 123},
+      {'id': 'urn:uuid:123:_:c14n1', 'https://industry.example/vocab#foo': true},
     ],
     links: [
       {

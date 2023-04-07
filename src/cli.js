@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
 const {hideBin} = require('yargs/helpers');
+const documentLoader = require('./documentLoader');
 
 const lib = require('./index');
 
@@ -41,17 +42,23 @@ yargs(hideBin(process.argv))
         'transform a document into a cypher query',
         () => {},
         async (argv) => {
-          const {type} = argv;
+          const {type, sourceGraphId = false} = argv;
           let doc;
           // console.log(argv);
           let cypher = '';
           if (type === 'json') {
             doc = readJsonFromPath(argv, 'document');
-            cypher = await lib.Cypher.fromDocument(doc);
+            cypher = await lib.Cypher.fromDocument(
+                doc,
+                {documentLoader, sourceGraphId},
+            );
           }
           if (type === 'jws') {
             doc = readFile(argv, 'document');
-            cypher = await lib.Cypher.fromJsonWebSignature(doc);
+            cypher = await lib.Cypher.fromJsonWebSignature(
+                doc,
+                {documentLoader, sourceGraphId},
+            );
           }
           console.log(cypher);
         },

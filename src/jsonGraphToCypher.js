@@ -2,13 +2,8 @@
 /* eslint-disable max-len */
 
 const moment = require('moment');
-
-const {predicateToPropertyName} = require('./utils');
 const preferences = require('./preferences');
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+const {isBlankNode} = require('./utils');
 
 const isDidUrl = (iri) => {
   return (
@@ -29,7 +24,18 @@ const isUrl = (iri) => {
   return iri.startsWith('http');
 };
 
-const nodeToNodeLabel = (node) => {
+const nodeToNodeLabel = (node, links) => {
+  if (links[0] !== undefined && links[0].target) {
+    let label = links[0].target.split('/').pop().split('#').pop();
+
+    if (links[1] !== undefined && links[1].target) {
+      const secondPossibleLabel = links[1].target.split('/').pop().split('#').pop();
+      if (secondPossibleLabel === 'VerifiableCredential') {
+        label += '`:`' + secondPossibleLabel;
+      }
+    }
+    return `${label}`;
+  }
   if (isDid(node.id)) {
     return 'DecentralizedIdentifier';
   }
@@ -40,6 +46,11 @@ const nodeToNodeLabel = (node) => {
     return 'UniformResourceName';
   }
   if (isUrl(node.id)) {
+    const splitChar = node.id.indexOf('#') >= 0 ? '#' : '/';
+    const label = node.id.split(splitChar).pop();
+    if (label) {
+      return `${label}`;
+    }
     return 'UniformResourceLocator';
   }
   return 'InternationalizedResourceIdentifier';
@@ -60,16 +71,25 @@ const linkToEdgeLabel = (link) => {
   if (link.label.includes(preferences.defaultRelationship)) {
     return 'Relationship';
   }
-  return capitalizeFirstLetter(predicateToPropertyName(link.label));
+  return `\`${link.predicate}\``;
 };
 
-const jsonGraphToCypher = async (graph) => {
+const findNodeLink = (node, links) => {
+  return links.filter((link) => link.source === node.id);
+};
+
+const jsonGraphToCypher = async (graph, sourceGraphId) => {
+  const hasSource = sourceGraphId !== false;
+  let sourceGraphInfo = ``;
   let query = ``;
   const nodesMerged = [];
   const nodeIdToNodeName = {};
   for (const nodeIndex in graph.nodes) {
     const node = graph.nodes[nodeIndex];
     const nodeName = `n${nodeIndex}`;
+    if (hasSource) {
+      sourceGraphInfo = `, sourceGraphId: "${sourceGraphId}" `;
+    }
     nodeIdToNodeName[node.id] = nodeName;
     let typedProperties = '';
     if (Object.keys(node).length > 1) {
@@ -81,19 +101,39 @@ const jsonGraphToCypher = async (graph) => {
         const v = props[k];
         const niceName = k;
         const niceValue = getTypedValue(v);
-        rps.push(`${niceName}: ${niceValue}`);
+        rps.push(`${nodeName}.\`${niceName}\` = ${niceValue}`);
       }
       const isLocation =
         propKeys.includes('latitude') && propKeys.includes('longitude');
       if (isLocation) {
-        rps.push(
-            `point: point({latitude:toFloat(${props.latitude}), longitude:toFloat(${props.longitude})})`,
-        );
+        rps.push(`${nodeName}.point = point({latitude:toFloat(${props.latitude}), longitude:toFloat(${props.longitude})})`);
       }
-      typedProperties = `,  ${rps.join(', ')}`;
+      typedProperties = `,  ${rps.join(', ')}`.trim();
     }
-    const nodeLabel = nodeToNodeLabel(node);
-    query += `MERGE ( ${nodeName} : ${nodeLabel} { id: "${node.id}" ${typedProperties} } )\n`;
+
+    const nodeLinks = findNodeLink(node, graph.links);
+    const nodeLabel = nodeToNodeLabel(node, nodeLinks);
+    const typeNode = nodeLinks.length === 0;
+
+    // check if the node or nodelabel have blank node identifiers in them
+    const blanKNodeID = isBlankNode(node.id);
+    const blanKNodeLabel = isBlankNode(nodeLabel);
+
+    // if either nodeid or the nodelable have blank node identifiers then this is a blank node
+    const blankNode = blanKNodeID || blanKNodeLabel;
+
+    // old code left commented in place that made the merge statments have a blank string for their nodeid
+    // this makes the merge statements duplicate property creation accross all nodes of the same type
+    // and causes the merge statements to crash for even a single presentation.
+    // This needs to be evaluated and resolved differently.
+    // const nodeId = blankNode ? '' : `{ id: "${node.id}" }`;
+    const nodeId = `{ id: "${node.id}" }`;
+
+    if (typeNode) {
+      query += `MERGE ( ${nodeName} : \`Type\` ${nodeId}) SET ${nodeName}.type = "${node.id.split('/').pop().split('#').pop()}", ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+    } else {
+      query += `MERGE ( ${nodeName} : \`${nodeLabel.toString()}\` ${nodeId}) SET ${typedProperties && `${typedProperties.substring(2)},`} ${nodeName}.sourceTimestamp = datetime() ${sourceGraphInfo.replace(', ', `, ${nodeName}.`).replace(':', ` =`)}\n`;
+    }
     nodesMerged.push(nodeName);
   }
   for (const linkIndex in graph.links) {
@@ -102,10 +142,15 @@ const jsonGraphToCypher = async (graph) => {
     const sourceName = nodeIdToNodeName[link.source];
     const targetName = nodeIdToNodeName[link.target];
     const linkLabel = linkToEdgeLabel(link);
-    query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { id : "${graph.id}", predicate: "${link.label}" } ]->(${targetName})\n`;
+    // We do not want to draw edges linking a node to itself.
+    const sourceToBlank = link.source === graph.id && link.target.indexOf('_:c14n') >= 0;
+    if (sourceName !== targetName && !sourceToBlank) {
+      query += `MERGE (${sourceName})-[${edgeName}: ${linkLabel} { name: "${link.label}", id: "${linkLabel.replace('`', '')}" ${sourceGraphInfo} } ]->(${targetName})\n`;
+    }
   }
   query += `RETURN ${nodesMerged}\n`;
   return query;
 };
+
 
 module.exports = jsonGraphToCypher;

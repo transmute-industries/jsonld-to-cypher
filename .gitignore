@@ -3,3 +3,5 @@ node_modules
 example.json
 .bak
 .env
+*.cypher
+*.cli.json
