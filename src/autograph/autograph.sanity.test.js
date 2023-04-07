@@ -26,6 +26,3 @@ it('sanity', async () => {
       .toString();
   expect(dataset).toEqual(JSON.parse(expected1));
 });
-
-// required because of experimental esm
-afterAll(async () => {});

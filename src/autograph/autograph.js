@@ -6,7 +6,16 @@ const autograph = async (doc, {documentLoader, id}) => {
   const nodes = {[id]: {id}};
   const links = [];
   const graph = {id, nodes, links};
-
+  if (doc.id === undefined) {
+    doc.id = id;
+  } else {
+    links.push({
+      definition: 'https://wikipedia.org/wiki/Named_graph',
+      source: id,
+      label: 'Named Graph',
+      target: doc.id,
+    });
+  }
   const canonized = await jsonld.canonize(doc, {
     algorithm: 'URDNA2015',
     format: 'application/n-quads',
@@ -22,34 +31,6 @@ const autograph = async (doc, {documentLoader, id}) => {
 
   const isBlankNode = (iri) => {
     return iri.includes('_:c14n');
-  };
-
-  const nodeSort = (a, b) => {
-    return a.id >= b.id ? 1 : -1;
-  };
-
-  const linkSort = (a, b) => {
-    return a.source >= b.source ? 1 : -1;
-  };
-
-  const hasEdge = (source, target, graph) => {
-    return (
-      graph.links.find((link) => {
-        return link.source === source && link.target === target;
-      }) !== undefined
-    );
-  };
-
-  const hasBackEdge = (source, target, graph) => {
-    return hasEdge(target, source, graph);
-  };
-
-  const hasInbound = (target, graph) => {
-    return (
-      graph.links.find((link) => {
-        return link.target === target;
-      }) !== undefined
-    );
   };
 
   const tripleRegex =
@@ -238,22 +219,49 @@ const autograph = async (doc, {documentLoader, id}) => {
     return {...n, label: getNodeLabel(n)};
   });
 
-  // record all relationships as originating
-  // from this graph...
-  graph.nodes.forEach((node) => {
-    if (
-      id !== node.id &&
-      !hasEdge(id, node.id, graph) &&
-      !hasBackEdge(id, node.id, graph) &&
-      !hasInbound(node.id, graph)
-    ) {
-      graph.links.push({
-        source: id,
-        definition: '🔥',
-        target: node.id,
-      });
-    }
-  });
+  const nodeSort = (a, b) => {
+    return a.id >= b.id ? 1 : -1;
+  };
+
+  const linkSort = (a, b) => {
+    return a.source >= b.source ? 1 : -1;
+  };
+
+  // const hasEdge = (source, target, graph) => {
+  //   return (
+  //     graph.links.find((link) => {
+  //       return link.source === source && link.target === target;
+  //     }) !== undefined
+  //   );
+  // };
+
+  // const hasBackEdge = (source, target, graph) => {
+  //   return hasEdge(target, source, graph);
+  // };
+
+  // const hasInbound = (target, graph) => {
+  //   return (
+  //     graph.links.find((link) => {
+  //       return link.target === target;
+  //     }) !== undefined
+  //   );
+  // };
+  // // record all relationships as originating
+  // // from this graph...
+  // graph.nodes.forEach((node) => {
+  //   if (
+  //     id !== node.id &&
+  //     !hasEdge(id, node.id, graph) &&
+  //     !hasBackEdge(id, node.id, graph) &&
+  //     !hasInbound(node.id, graph)
+  //   ) {
+  //     graph.links.push({
+  //       source: id,
+  //       definition: '🔥',
+  //       target: node.id,
+  //     });
+  //   }
+  // });
 
   return {
     id,

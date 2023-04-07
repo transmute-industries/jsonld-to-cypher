@@ -7,14 +7,14 @@ const {getDriver, dropTables} = require('../test-utils');
 
 let driver;
 
-describe.skip('preview', () => {
+describe('preview', () => {
   beforeAll(async () => {
     driver = getDriver();
   });
   it('drop tables', async () => {
     await dropTables();
   });
-  it('v1 vc+ld+json', async () => {
+  it('v1 minimal', async () => {
     const query = fs
         .readFileSync(
             path.resolve(__dirname, './__fixtures__/vc.v1.minimal.cypher'),
