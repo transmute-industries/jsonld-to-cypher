@@ -19,6 +19,10 @@
   },
   "nodes": [
     {
+      "id": "<urn:uuid:123:_:c14n0>:_:c14n1",
+      "label": "Resource"
+    },
+    {
       "id": "did:example:123",
       "https://industry.example/vocab#bar": "baz",
       "label": "DID"
@@ -40,18 +44,6 @@
   ],
   "links": [
     {
-      "definition": "https://industry.example/vocab#property",
-      "source": "urn:uuid:123",
-      "label": "Property",
-      "target": "urn:uuid:123:_:c14n0"
-    },
-    {
-      "definition": "https://industry.example/vocab#foo",
-      "source": "urn:uuid:123",
-      "label": "Foo",
-      "target": "urn:uuid:123:_:c14n1"
-    },
-    {
       "definition": "https://industry.example/vocab#list",
       "source": "urn:uuid:123:_:c14n0",
       "label": "List",
@@ -61,6 +53,12 @@
       "definition": "https://industry.example/vocab#list",
       "source": "urn:uuid:123:_:c14n0",
       "label": "List",
+      "target": "<urn:uuid:123:_:c14n0>:_:c14n1"
+    },
+    {
+      "definition": "https://industry.example/vocab#foo",
+      "source": "urn:uuid:123:_:c14n1",
+      "label": "Foo",
       "target": "urn:uuid:123:_:c14n1"
     }
   ]

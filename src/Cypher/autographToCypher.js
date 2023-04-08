@@ -14,7 +14,7 @@ const getTypedValue = (v) => {
 const setProperties = (name, entry) => {
   let properties = '';
   // expect at least id and label, hence 2 below
-  if (Object.keys(entry).length > 2) {
+  if (Object.keys(entry).length > 1) {
     const {id, label, target, source, ...props} = entry;
     const keys = Object.keys(props);
     const statements = [];

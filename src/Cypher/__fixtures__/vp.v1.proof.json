@@ -7,26 +7,15 @@
       "@context": ["https://www.w3.org/2018/credentials/v1"],
       "type": ["VerifiableCredential"],
       "issuer": "https://example.edu/issuers/111",
-      "issuanceDate": "2010-01-01T19:23:24Z",
-      "credentialSubject": {
-        "id": "did:example:333"
-      }
+      "issuanceDate": "2010-01-01T19:23:24Z"
     },
     {
       "@context": ["https://www.w3.org/2018/credentials/v1"],
       "type": ["VerifiableCredential"],
-      "issuer": "https://example.edu/issuers/222",
-      "issuanceDate": "2010-01-01T19:23:24Z",
-      "credentialSubject": {
-        "id": "did:example:444"
-      }
+      "issuer": "https://example.edu/issuers/222"
     }
   ],
   "proof": {
-    "type": "Ed25519Signature2018",
-    "created": "2023-04-07T22:57:31Z",
-    "verificationMethod": "did:example:111#key-0",
-    "proofPurpose": "assertionMethod",
-    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..UGl8mW4rHgk0FJW3BXTteFxwZ9PnteyOiv9QBl2KNCOKhhxzVgA-Cl2qxxK_ITTd5R-F6ICFtWVqB0IkwVcuBg"
+    "type": "Ed25519Signature2018"
   }
 }

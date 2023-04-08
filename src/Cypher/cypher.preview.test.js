@@ -47,7 +47,7 @@ it('v1 verifiable presentation', async () => {
   );
 });
 
-it('v1 verifiable presentation with proof', async () => {
+it.only('v1 verifiable presentation with proof', async () => {
   const query = await Cypher.fromDocument(
       require('./__fixtures__/vp.v1.proof.json'),
       {
