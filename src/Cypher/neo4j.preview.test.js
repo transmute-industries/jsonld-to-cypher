@@ -14,10 +14,20 @@ describe('preview', () => {
   it('drop tables', async () => {
     await dropTables();
   });
-  it('v1 minimal', async () => {
+  it('v1 credential', async () => {
     const query = fs
         .readFileSync(
             path.resolve(__dirname, './__fixtures__/vc.v1.minimal.cypher'),
+        )
+        .toString();
+    const session = driver.session();
+    await session.run(query);
+    await session.close();
+  });
+  it('v1 proof', async () => {
+    const query = fs
+        .readFileSync(
+            path.resolve(__dirname, './__fixtures__/vc.v1.proof.cypher'),
         )
         .toString();
     const session = driver.session();

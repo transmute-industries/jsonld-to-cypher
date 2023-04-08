@@ -18,3 +18,17 @@ it('v1 credential', async () => {
       query,
   );
 });
+
+it('v1 verifiable credential', async () => {
+  const query = await Cypher.fromDocument(
+      require('./__fixtures__/vc.v1.proof.json'),
+      {
+        id: 'urn:uuid:456', // these MUST be unique.
+        documentLoader,
+      },
+  );
+  fs.writeFileSync(
+      path.resolve(__dirname, './__fixtures__/vc.v1.proof.cypher'),
+      query,
+  );
+});
