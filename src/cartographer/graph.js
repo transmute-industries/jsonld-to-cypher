@@ -1,8 +1,62 @@
 /* eslint-disable max-len */
 const jsonld = require('jsonld');
-
+const _ = require('lodash');
 const tripleRegex =
   /^(?<subject>(<([^<>]+)>|^_:c14n\d+)) (?<predicate>(<([^<>]+)>)) (?<object>(.+))/;
+
+const getLabelFromIri = (iri) => {
+  return _.startCase(iri.split('/').pop().split('#').pop());
+};
+
+const isDidUrl = (iri) => {
+  return (
+    iri.startsWith('did:') &&
+    (iri.includes('#') || iri.includes('/') || iri.includes('?'))
+  );
+};
+
+const isDid = (iri) => {
+  return iri.startsWith('did:') && !isDidUrl(iri);
+};
+
+const isUrn = (iri) => {
+  return iri.startsWith('urn:');
+};
+
+const isUrl = (iri) => {
+  return iri.startsWith('http');
+};
+const getNodeLabel = (node) => {
+  if (node.label) {
+    return node.label;
+  }
+  if (isDid(node.id)) {
+    return 'DID';
+  }
+  if (isDidUrl(node.id)) {
+    return 'DID URL';
+  }
+  if (isUrn(node.id)) {
+    return 'URN';
+  }
+  if (isUrl(node.id)) {
+    return 'URL';
+  }
+  return 'Resource';
+};
+
+const setNodeLabelFromEdges = (graph) => {
+  // add a label to RDF types for easier querying
+  // we could add more specific types here...
+  // but that is a mistake.
+  // That kind of thing belongs at a different layer
+  // like after importing data...
+  graph.links.forEach((link) => {
+    if (link.label === 'Type') {
+      graph.nodes[link.target].label = 'Type';
+    }
+  });
+};
 
 const getObjectValue = (str) => {
   const removeEscapedQuotes = (str) => {
@@ -79,10 +133,6 @@ const parseNQuad = (nquad) => {
   );
 };
 
-const isUrl = (iri) => {
-  return iri.startsWith('http');
-};
-
 const getNQuads = async (doc, documentLoader) => {
   const canonized = await jsonld.canonize(doc, {
     algorithm: 'URDNA2015',
@@ -124,35 +174,100 @@ const addGraphEdge = ({graph, source, target, label, definition}) => {
   );
 };
 
+const updateObjectType = ({
+  graph,
+  subject,
+  predicate,
+  object,
+  objectType,
+  objectValue,
+}) => {
+  if (isUrl(objectType)) {
+    addGraphNode({graph, id: objectType});
+    addGraphEdge({
+      graph,
+      label: getLabelFromIri(objectType),
+      source: object,
+      definition: predicate,
+      target: objectType,
+    });
+  }
+};
+
+const updateObjectValue = ({
+  graph,
+  subject,
+  predicate,
+  object,
+  objectType,
+  objectValue,
+}) => {
+  addGraphNodeProperty(graph, object, predicate, objectValue);
+  if (isUrl(objectValue)) {
+    addGraphNode({graph, id: objectValue});
+    addGraphEdge({
+      graph,
+      label: getLabelFromIri(predicate),
+      source: object,
+      definition: predicate,
+      target: objectValue,
+    });
+  }
+};
+
 const updateGraph = (graph, nquad) => {
   const statement = parseNQuad(nquad);
   console.log(statement);
   const {subject, predicate, object, objectType, objectValue} = statement;
   addGraphNode({graph, id: subject});
-  addGraphNode({graph, id: predicate});
+  // uncomment to add predicates as nodes
+  // addGraphNode({graph, id: predicate});
   addGraphNode({graph, id: object});
+  if (!objectType && !objectValue) {
+    addGraphEdge({
+      graph,
+      label: getLabelFromIri(predicate),
+      source: subject,
+      definition: predicate,
+      target: object,
+    });
+  }
   if (objectType) {
-    if (isUrl(objectType)) {
-      addGraphNode({graph, id: objectType});
-    } else {
-      // we rarely care about object types...
-      // because RDF types are sad.
-      console.log('🔥', {objectType});
-    }
+    updateObjectType({
+      graph,
+      subject,
+      predicate,
+      object,
+      objectType,
+      objectValue,
+    });
   }
   if (objectValue) {
-    addGraphNodeProperty(graph, object, predicate, objectValue);
-    if (isUrl(objectValue)) {
-      addGraphNode({graph, id: objectValue});
-    } else {
-      // console.log('🔥', {objectValue});
-    }
+    updateObjectValue({
+      graph,
+      subject,
+      predicate,
+      object,
+      objectType,
+      objectValue,
+    });
   }
-  addGraphEdge({
-    graph,
-    source: subject,
-    definition: predicate,
-    target: object,
+};
+
+const removeEmptyBlankNodes = (graph) => {
+  const blankNodes = graph.nodes
+      .filter((n) => n.id.includes('_:c14n') && Object.keys(n).length === 2)
+      .map((n) => n.id);
+  blankNodes.forEach((id) => {
+    const edges = graph.links.find((e) => {
+      return e.source === id || e.target === id;
+    });
+    // remove blank nodes with no edges
+    if (edges === undefined) {
+      graph.nodes = graph.nodes.filter((n) => {
+        return n.id !== id;
+      });
+    }
   });
 };
 
@@ -165,7 +280,12 @@ const graph = async (doc, {documentLoader, id}) => {
     updateGraph(graph, nquad);
   });
   console.log(nquads);
+  setNodeLabelFromEdges(graph);
   graph.nodes = Object.values(graph.nodes);
+  graph.nodes = graph.nodes.map((n) => {
+    return {...n, label: getNodeLabel(n)};
+  });
+  removeEmptyBlankNodes(graph);
   return graph;
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 const documentLoader = require('../documentLoader');
-const autograph = require('../autograph');
+const autograph = require('../cartographer');
 const autographToCypher = require('./autographToCypher');
 // const jsonWebSigantureToDocument = require('./jsonWebSigantureToDocument');
 
