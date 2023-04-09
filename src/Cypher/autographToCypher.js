@@ -13,9 +13,9 @@ const getTypedValue = (v) => {
 
 const setProperties = (name, entry) => {
   let properties = '';
-  // expect at least id and label, hence 2 below
+  // expect at least id and labels, hence 2 below
   if (Object.keys(entry).length > 1) {
-    const {id, label, target, source, ...props} = entry;
+    const {id, labels, target, source, ...props} = entry;
     const keys = Object.keys(props);
     const statements = [];
     for (const i in keys) {
@@ -32,8 +32,9 @@ const addNodes = (graph, query) => {
   const nodes = {};
   for (const i in graph.nodes) {
     const node = graph.nodes[i];
-    const {id, label} = node;
+    const {id, labels} = node;
     nodes[id] = `n${i}`;
+    const label = Array.isArray(labels) ? labels.join('`:`') : labels;
     query += `MERGE (n${i}:\`${label}\`{id:"${id}"}) \n`;
     query += setProperties(`n${i}`, node);
   }

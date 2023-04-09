@@ -1,21 +1,41 @@
 {
   "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "id": "urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb",
   "type": ["VerifiablePresentation"],
-  "holder": "did:example:555",
+  "holder": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
   "verifiableCredential": [
     {
-      "@context": ["https://www.w3.org/2018/credentials/v1"],
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://w3id.org/vc-revocation-list-2020/v1"
+      ],
+      "id": "urn:uuid:4f1eabd0-76b7-4c8b-be72-a125b8bb9c48",
       "type": ["VerifiableCredential"],
-      "issuer": "https://example.edu/issuers/111",
-      "issuanceDate": "2010-01-01T19:23:24Z"
-    },
-    {
-      "@context": ["https://www.w3.org/2018/credentials/v1"],
-      "type": ["VerifiableCredential"],
-      "issuer": "https://example.edu/issuers/222"
+      "issuer": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+      "issuanceDate": "2010-01-01T19:23:24Z",
+      "credentialStatus": {
+        "id": "https://api.did.actor/revocation-lists/1.json#0",
+        "type": "RevocationList2020Status",
+        "revocationListIndex": 0,
+        "revocationListCredential": "https://api.did.actor/revocation-lists/1.json"
+      },
+      "credentialSubject": { "id": "did:example:123" },
+      "proof": {
+        "type": "Ed25519Signature2018",
+        "created": "2022-05-07T15:30:56Z",
+        "verificationMethod": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+        "proofPurpose": "assertionMethod",
+        "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..GgO_6jlepqqhXbeSqLCfp4NEnzqi4JTmwNCDQT2hi9TR2nhQ8NhY9CTjssXrsxTSYNPED1MVmCll7Hsj33KYDQ"
+      }
     }
   ],
   "proof": {
-    "type": "Ed25519Signature2018"
+    "type": "Ed25519Signature2018",
+    "created": "2023-04-09T13:56:20Z",
+    "verificationMethod": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+    "proofPurpose": "authentication",
+    "challenge": "76f80bbc-c61c-4776-a2e9-49c239d57d6b",
+    "domain": "example.verifier",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..HHnnJSadPRJ7-mwuuEvRod-h9u9DjVMaqZ23NAjA8YSH-QcyH_EbC1jadFsc_042wDH9f3qGDcW-ncTIarCPBA"
   }
 }

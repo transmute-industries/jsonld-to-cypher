@@ -26,9 +26,18 @@ const isUrn = (iri) => {
 const isUrl = (iri) => {
   return iri.startsWith('http');
 };
+
+const isBlankNode = (iri) => {
+  return iri.includes('_:c14n');
+};
+
+const isIri = (iri) => {
+  return isDid(iri) || isDidUrl(iri) || isUrl(iri) || isUrn(iri);
+};
+
 const getNodeLabel = (node) => {
-  if (node.label) {
-    return node.label;
+  if (isBlankNode(node.id)) {
+    return 'Blank Node';
   }
   if (isDid(node.id)) {
     return 'DID';
@@ -51,20 +60,29 @@ const setNodeLabelFromEdges = (graph) => {
   // but that is a mistake.
   // That kind of thing belongs at a different layer
   // like after importing data...
+  const knownLabels = [
+    'Type',
+    'Issuer',
+    'Holder',
+    'Credential Subject',
+    'Verifiable Credential',
+    'Verifiable Presentation',
+  ];
   graph.links.forEach((link) => {
-    if (link.label === 'Type') {
-      graph.nodes[link.target].label = 'Type';
+    if (knownLabels.includes(link.label)) {
+      if (!graph.nodes[link.target].labels.includes(link.label)) {
+        graph.nodes[link.target].labels.push(link.label);
+      }
     }
   });
 };
-
+const removeEscapedQuotes = (str) => {
+  if (str.startsWith('"') && str.endsWith('"')) {
+    return str.substring(1, str.length - 1);
+  }
+  return str;
+};
 const getObjectValue = (str) => {
-  const removeEscapedQuotes = (str) => {
-    if (str.startsWith('"') && str.endsWith('"')) {
-      return str.substring(1, str.length - 1);
-    }
-    return str;
-  };
   const [primitive] = str.split('^^');
   if (str.includes('http://www.w3.org/2001/XMLSchema#integer')) {
     return parseInt(removeEscapedQuotes(primitive));
@@ -115,7 +133,7 @@ const parseNQuad = (nquad) => {
   predicate = removeAngleBrackets(predicate).trim();
   objectGraph = removeAngleBrackets(objectGraph).trim();
   objectType = removeAngleBrackets(objectType).trim();
-  objectValue = removeAngleBrackets(objectValue).trim();
+  objectValue = removeEscapedQuotes(removeAngleBrackets(objectValue).trim());
   if (objectType === '') {
     objectType = undefined;
   }
@@ -150,7 +168,7 @@ const getNQuads = async (doc, documentLoader) => {
 
 const addGraphNode = ({graph, id}) => {
   graph.nodes[id] = {
-    ...(graph.nodes[id] || {id: id}),
+    ...(graph.nodes[id] || {id: id, labels: []}),
   };
 };
 
@@ -182,7 +200,7 @@ const updateObjectType = ({
   objectType,
   objectValue,
 }) => {
-  if (isUrl(objectType)) {
+  if (isIri(objectType)) {
     addGraphNode({graph, id: objectType});
     addGraphEdge({
       graph,
@@ -203,16 +221,34 @@ const updateObjectValue = ({
   objectValue,
 }) => {
   addGraphNodeProperty(graph, object, predicate, objectValue);
-  if (isUrl(objectValue)) {
+  if (isIri(objectValue)) {
     addGraphNode({graph, id: objectValue});
-    addGraphEdge({
-      graph,
-      label: getLabelFromIri(predicate),
-      source: object,
-      definition: predicate,
-      target: objectValue,
-    });
+    if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
+      addGraphEdge({
+        graph,
+        label: getLabelFromIri(objectValue),
+        source: subject,
+        definition: objectValue,
+        target: object,
+      });
+      addGraphEdge({
+        graph,
+        label: getLabelFromIri(predicate),
+        source: subject,
+        definition: predicate,
+        target: objectValue,
+      });
+    } else {
+      addGraphEdge({
+        graph,
+        label: getLabelFromIri(predicate),
+        source: object,
+        definition: predicate,
+        target: objectValue,
+      });
+    }
   }
+  // console.log('🔥', {subject, predicate, object, objectType, objectValue});
 };
 
 const updateGraph = (graph, nquad) => {
@@ -283,9 +319,16 @@ const graph = async (doc, {documentLoader, id}) => {
   setNodeLabelFromEdges(graph);
   graph.nodes = Object.values(graph.nodes);
   graph.nodes = graph.nodes.map((n) => {
-    return {...n, label: getNodeLabel(n)};
+    const defaultLabel = getNodeLabel(n);
+    const finalLabels =
+      n.labels.length >= 1 && defaultLabel === 'Blank Node' ?
+        n.labels :
+        [defaultLabel, ...n.labels];
+
+    return {...n, labels: finalLabels};
   });
   removeEmptyBlankNodes(graph);
+
   return graph;
 };
 
