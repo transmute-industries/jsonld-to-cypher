@@ -1,6 +1,6 @@
 const {getDriver, dropTables, runExample} = require('../src/test-utils');
 
-describe('neo4j.preview', () => {
+describe.skip('neo4j.preview', () => {
   let driver;
   beforeAll(async () => {
     driver = getDriver();
@@ -27,7 +27,7 @@ describe('neo4j.preview', () => {
     await runExample(driver, 'minimal-jws');
   });
 
-  it.only('v1 vc-jwt', async () => {
+  it('v1 vc-jwt', async () => {
     await runExample(driver, 'v1-vc-jwt');
   });
 

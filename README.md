@@ -27,7 +27,8 @@ npm i -g @transmute/jsonld-to-cypher@latest
 ```
 
 ```
-jsonld-to-cypher convert ./src/__fixtures__/vc.jwt  --type jws
+jsonld-to-cypher convert ./examples/minimal-vc/minimal-vc.json
+jsonld-to-cypher convert ./examples/v1-vc-jwt/v1-vc-jwt.jwt -- --type jwt
 ```
 
 ### Library
@@ -57,8 +58,16 @@ const { cypher, graph } = await Cypher.fromDocument({
 ```
 npm i
 npm t
+```
 
-npm run jsonld-to-cypher convert ./src/__fixtures__/vc.jwt  -- --type jws
+#### Testing CLI
+
+```
+npm run jsonld-to-cypher convert ./examples/minimal-vc/minimal-vc.json
+
+jq -r '.jws' ./examples/v1-vc-jwt/v1-vc-jwt.json > ./examples/v1-vc-jwt/v1-vc-jwt.jwt
+
+npm run jsonld-to-cypher convert ./examples/v1-vc-jwt/v1-vc-jwt.jwt -- --type jwt
 ```
 
 ### Installing Neo4j Desktop

@@ -1,9 +1,6 @@
 const getGraphFromDocument = require('../src/Cypher/getGraphFromDocument');
 const documentLoader = require('../src/documentLoader');
 
-const fs = require('fs');
-const path = require('path');
-
 it('sanity', async () => {
   const doc = {
     '@context': ['https://www.w3.org/2018/credentials/v1'],
