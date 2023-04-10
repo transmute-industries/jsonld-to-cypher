@@ -126,8 +126,10 @@ const parseNQuad = (nquad) => {
       objectType = '';
     }
   }
-  if (predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type') {
-    objectType = '';
+  if (object.includes('^^')) {
+    objectValue = getObjectValue(object) || '';
+    objectType = object.split('^^')[1].trim();
+    objectGraph = subject;
   }
   subject = removeAngleBrackets(subject).trim();
   predicate = removeAngleBrackets(predicate).trim();
@@ -253,7 +255,7 @@ const updateObjectValue = ({
 
 const updateGraph = (graph, nquad) => {
   const statement = parseNQuad(nquad);
-  console.log(statement);
+  // console.log(statement);
   const {subject, predicate, object, objectType, objectValue} = statement;
   addGraphNode({graph, id: subject});
   // uncomment to add predicates as nodes
@@ -333,7 +335,7 @@ const graph = async (doc, {documentLoader, id}) => {
   nquads.forEach((nquad) => {
     updateGraph(graph, nquad);
   });
-  console.log(nquads);
+  // console.log(nquads);
   setNodeLabelFromEdges(graph);
   graph.nodes = Object.values(graph.nodes);
   graph.nodes = graph.nodes.map((n) => {

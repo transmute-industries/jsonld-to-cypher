@@ -53,10 +53,19 @@ const addEdges = (graph, nodes, query) => {
   return query;
 };
 
+const removeEmptyLines = (query) => {
+  return query
+      .split('\n')
+      .filter((line) => line !== '')
+      .join('\n');
+};
+
 const jsonGraphToCypher = async (graph) => {
   let {nodes, query} = addNodes(graph, ``);
   query = addEdges(graph, nodes, query);
   query += `RETURN ${Object.values(nodes)}\n`;
+  query = removeEmptyLines(query);
+  query += '\n';
   return query;
 };
 

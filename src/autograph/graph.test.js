@@ -30,7 +30,8 @@ it('sanity', async () => {
     id: 'urn:uuid:🔥',
     documentLoader,
   });
-  console.log(JSON.stringify(simple, null, 2));
+  // console.log(JSON.stringify(simple, null, 2));
+  expect(simple).toBeDefined();
 });
 
 // required because of esm
