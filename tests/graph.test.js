@@ -1,4 +1,4 @@
-const graph = require('../src/autograph/graph');
+const getGraphFromDocument = require('../src/Cypher/getGraphFromDocument');
 const documentLoader = require('../src/documentLoader');
 
 const fs = require('fs');
@@ -26,7 +26,7 @@ it('sanity', async () => {
       type: 'Ed25519Signature2018',
     },
   };
-  const simple = await graph(doc, {
+  const simple = await getGraphFromDocument(doc, {
     id: 'urn:uuid:🔥',
     documentLoader,
   });

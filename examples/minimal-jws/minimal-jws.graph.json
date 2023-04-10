@@ -1,0 +1,111 @@
+{
+  "id": "urn:example:minimal-jws",
+  "nodes": [
+    {
+      "id": "urn:example:minimal-jws:_:c14n0",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "🙋‍♀️",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "urn:example:minimal-jws:_:c14n1",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "ES256",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "urn:example:minimal-jws:_:c14n2",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://voc.example/boolean": true,
+      "https://voc.example/number": 42.5
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#boolean",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#double",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "It’s a dangerous business, Frodo, going out your door.",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "urn:example:minimal-jws:_:c14n3",
+      "labels": [
+        "Blank Node"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "urn:example:minimal-jws:_:c14n0",
+      "label": "Foo",
+      "definition": "https://voc.example/foo",
+      "target": "🙋‍♀️"
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n1",
+      "label": "Alg",
+      "definition": "https://voc.example/alg",
+      "target": "ES256"
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n2",
+      "label": "Boolean",
+      "definition": "https://voc.example/boolean",
+      "target": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n2",
+      "label": "Double",
+      "definition": "https://voc.example/number",
+      "target": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n2",
+      "label": "Object",
+      "definition": "https://voc.example/object",
+      "target": "urn:example:minimal-jws:_:c14n0"
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n2",
+      "label": "String",
+      "definition": "https://voc.example/string",
+      "target": "It’s a dangerous business, Frodo, going out your door."
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n3",
+      "label": "Protected Claim Set",
+      "definition": "https://voc.example/protectedClaimSet",
+      "target": "urn:example:minimal-jws:_:c14n2"
+    },
+    {
+      "source": "urn:example:minimal-jws:_:c14n3",
+      "label": "Protected Header",
+      "definition": "https://voc.example/protectedHeader",
+      "target": "urn:example:minimal-jws:_:c14n1"
+    }
+  ]
+}

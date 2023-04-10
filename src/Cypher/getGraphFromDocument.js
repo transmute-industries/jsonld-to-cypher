@@ -32,7 +32,10 @@ const isBlankNode = (iri) => {
 };
 
 const isIri = (iri) => {
-  return isDid(iri) || isDidUrl(iri) || isUrl(iri) || isUrn(iri);
+  if (typeof iri === 'string') {
+    return isDid(iri) || isDidUrl(iri) || isUrl(iri) || isUrn(iri);
+  }
+  return false;
 };
 
 const getNodeLabel = (node) => {
@@ -103,13 +106,22 @@ const isRdfNode = (str) => {
   return str.startsWith('<') && str.endsWith('>');
 };
 
-const parseNQuad = (nquad) => {
-  const removeAngleBrackets = (str) => {
+const removeAngleBrackets = (str) => {
+  if (typeof str === 'string') {
     if (isRdfNode(str)) {
       return str.substring(1, str.length - 1);
     }
-    return str;
-  };
+  }
+  return str;
+};
+
+const finalQuadValue = (data) => {
+  if (typeof data === 'string') {
+    return removeEscapedQuotes(removeAngleBrackets(data).trim());
+  }
+  return data;
+};
+const parseNQuad = (nquad) => {
   const match = nquad.match(tripleRegex);
   let {subject, predicate, object} = match.groups;
   let objectGraph = object;
@@ -131,11 +143,11 @@ const parseNQuad = (nquad) => {
     objectType = object.split('^^')[1].trim();
     objectGraph = subject;
   }
-  subject = removeAngleBrackets(subject).trim();
-  predicate = removeAngleBrackets(predicate).trim();
-  objectGraph = removeAngleBrackets(objectGraph).trim();
-  objectType = removeAngleBrackets(objectType).trim();
-  objectValue = removeEscapedQuotes(removeAngleBrackets(objectValue).trim());
+  subject = finalQuadValue(subject);
+  predicate = finalQuadValue(predicate);
+  objectGraph = finalQuadValue(objectGraph);
+  objectType = finalQuadValue(objectType);
+  objectValue = finalQuadValue(objectValue);
   if (objectType === '') {
     objectType = undefined;
   }
@@ -327,7 +339,7 @@ const requireAbsoluteNodes = (graph) => {
   });
 };
 
-const graph = async (doc, {documentLoader, id}) => {
+const getGraphFromDocument = async (doc, {documentLoader, id}) => {
   const nodes = {};
   const links = [];
   const graph = {id, nodes, links};
@@ -352,4 +364,4 @@ const graph = async (doc, {documentLoader, id}) => {
   return graph;
 };
 
-module.exports = graph;
+module.exports = getGraphFromDocument;

@@ -48,7 +48,13 @@ const opts = {
 const runExample = async (driver, example) => {
   opts.id = `urn:example:${example}`;
   const doc = readExample(example);
-  const {cypher, graph} = await Cypher.fromDocument(doc, opts);
+  let cypher;
+  let graph;
+  if (doc.jws) {
+    ;({cypher, graph} = await Cypher.fromJsonWebSignature(doc.jws, opts));
+  } else {
+    ;({cypher, graph} = await Cypher.fromDocument(doc, opts));
+  }
   writeExampleResult({example, cypher, graph});
   await runQuery(driver, cypher);
 };

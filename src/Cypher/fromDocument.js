@@ -1,10 +1,10 @@
 const documentLoader = require('../documentLoader');
-const autograph = require('../autograph');
-const autographToCypher = require('./autographToCypher');
+const getGraphFromDocument = require('./getGraphFromDocument');
+const getCypherFromGraph = require('./getCypherFromGraph');
 
 const fromDocument = async (document, options = {documentLoader}) => {
-  const graph = await autograph(document, options);
-  const cypher = await autographToCypher(graph, options);
+  const graph = await getGraphFromDocument(document, options);
+  const cypher = await getCypherFromGraph(graph, options);
   return {cypher, graph};
 };
 

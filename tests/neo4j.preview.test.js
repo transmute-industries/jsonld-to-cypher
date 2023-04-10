@@ -4,9 +4,6 @@ describe('neo4j.preview', () => {
   let driver;
   beforeAll(async () => {
     driver = getDriver();
-  });
-
-  it('drop tables', async () => {
     await dropTables();
   });
 
@@ -24,6 +21,14 @@ describe('neo4j.preview', () => {
 
   it('verifiable presentation with proof', async () => {
     await runExample(driver, 'proof-vp');
+  });
+
+  it('minimal json web signature', async () => {
+    await runExample(driver, 'minimal-jws');
+  });
+
+  it.only('v1 vc-jwt', async () => {
+    await runExample(driver, 'v1-vc-jwt');
   });
 
   afterAll(async () => {
