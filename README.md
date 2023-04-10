@@ -53,6 +53,36 @@ const { cypher, graph } = await Cypher.fromDocument({
 })
 ```
 
+### Action
+
+```yml
+name: Demo
+on: [workflow_dispatch]
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    name: Merge
+    steps:
+      - name: Merge Query from Document
+        uses: transmute-industries/jsonld-to-cypher@v0.2.1
+        id: merge
+        with:
+          neo4j-uri: ${{ secrets.NEO4J_URI }}
+          neo4j-user: ${{ secrets.NEO4J_USERNAME }}
+          neo4j-password: ${{ secrets.NEO4J_PASSWORD }}
+          operation: merge
+          document: |
+            {
+              "@context": ["https://www.w3.org/2018/credentials/v1"],
+              "type": ["VerifiableCredential"],
+              "issuer": "https://example.edu/issuers/565049",
+              "issuanceDate": "2010-01-01T19:23:24Z",
+              "credentialSubject": {
+                "id": "did:example:ebfeb1f712ebc6f1c276e12ec21"
+              }
+            }
+```
+
 ### Development
 
 ```
