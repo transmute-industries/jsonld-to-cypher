@@ -1,6 +1,6 @@
 name: Action
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   neo4j-merge-documents-local:
