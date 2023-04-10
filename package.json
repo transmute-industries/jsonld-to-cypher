@@ -8,7 +8,6 @@
     "test-ci": "CI=true dotenv -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
     "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
     "jsonld-to-cypher": "node ./src/cli.js",
-    "preview:neo4j": "npm t cypher.preview.test.js && npm t neo4j.preview.test.js",
     "build": "ncc build ./action/index.js --license licenses.txt",
     "coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --ci --coverage",
     "prerelease": "npm run build",
