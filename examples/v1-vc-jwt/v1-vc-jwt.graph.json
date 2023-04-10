@@ -1,0 +1,583 @@
+{
+  "id": "urn:example:v1-vc-jwt",
+  "nodes": [
+    {
+      "id": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
+      "labels": [
+        "URN"
+      ],
+      "https://www.w3.org/2018/credentials#issuanceDate": "2010-01-01T19:23:24Z"
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n5",
+      "labels": [
+        "Credential Subject"
+      ]
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL",
+      "labels": [
+        "DID",
+        "Issuer"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n0",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://voc.example/price": 99.99
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#boolean",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#double",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "EUR",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "Offer",
+      "labels": [
+        "Resource",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n1",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "https://schema.org/GeoCoordinates",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "40.75",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "-73.98",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n10",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n9",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://voc.example/price": 100
+    },
+    {
+      "id": "Product",
+      "labels": [
+        "Resource",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n11",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n13",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://voc.example/nbf": 1262373804
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n4",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n12",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "https://schema.org/Place",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "Empire State Building",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#integer",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n14",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://schema.org/price": 99.99
+    },
+    {
+      "id": "https://schema.org/Offer",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n2",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "https://voc.example/GeoCoordinates",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n3",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "https://voc.example/Place",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "ES256K",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL#zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL",
+      "labels": [
+        "DID URL"
+      ]
+    },
+    {
+      "id": "https://schema.org/Product",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n6",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://schema.org/price": 100
+    },
+    {
+      "id": "2022-10-08T18:52:38.220Z",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n8",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "USD",
+      "labels": [
+        "Resource"
+      ]
+    },
+    {
+      "id": "urn:example:v1-vc-jwt:_:c14n7",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "https://voc.example/Organization",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "https://schema.org/Organization",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiableCredential"
+    },
+    {
+      "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
+      "label": "Credential Subject",
+      "definition": "https://www.w3.org/2018/credentials#credentialSubject",
+      "target": "urn:example:v1-vc-jwt:_:c14n5"
+    },
+    {
+      "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
+      "label": "Date Time",
+      "definition": "https://www.w3.org/2018/credentials#issuanceDate",
+      "target": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    {
+      "source": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd",
+      "label": "Issuer",
+      "definition": "https://www.w3.org/2018/credentials#issuer",
+      "target": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n0",
+      "label": "Boolean",
+      "definition": "https://voc.example/isFamilyFriendly",
+      "target": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n0",
+      "label": "Double",
+      "definition": "https://voc.example/price",
+      "target": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n0",
+      "label": "Price Currency",
+      "definition": "https://voc.example/priceCurrency",
+      "target": "EUR"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n0",
+      "label": "Type",
+      "definition": "https://voc.example/type",
+      "target": "Offer"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n1",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://schema.org/GeoCoordinates"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n1",
+      "label": "Latitude",
+      "definition": "https://schema.org/latitude",
+      "target": "40.75"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n1",
+      "label": "Longitude",
+      "definition": "https://schema.org/longitude",
+      "target": "-73.98"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n10",
+      "label": "Offers",
+      "definition": "https://voc.example/offers",
+      "target": "urn:example:v1-vc-jwt:_:c14n0"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n10",
+      "label": "Offers",
+      "definition": "https://voc.example/offers",
+      "target": "urn:example:v1-vc-jwt:_:c14n9"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n10",
+      "label": "Type",
+      "definition": "https://voc.example/type",
+      "target": "Product"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n11",
+      "label": "Protected Claim Set",
+      "definition": "https://voc.example/protectedClaimSet",
+      "target": "urn:example:v1-vc-jwt:_:c14n13"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n11",
+      "label": "Protected Header",
+      "definition": "https://voc.example/protectedHeader",
+      "target": "urn:example:v1-vc-jwt:_:c14n4"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n12",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://schema.org/Place"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n12",
+      "label": "Geo",
+      "definition": "https://schema.org/geo",
+      "target": "urn:example:v1-vc-jwt:_:c14n1"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n12",
+      "label": "Name",
+      "definition": "https://schema.org/name",
+      "target": "Empire State Building"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n13",
+      "label": "Iss",
+      "definition": "https://voc.example/iss",
+      "target": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n13",
+      "label": "Jti",
+      "definition": "https://voc.example/jti",
+      "target": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n13",
+      "label": "Integer",
+      "definition": "https://voc.example/nbf",
+      "target": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n13",
+      "label": "Sub",
+      "definition": "https://voc.example/sub",
+      "target": "urn:example:v1-vc-jwt:_:c14n10"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n13",
+      "label": "Vc",
+      "definition": "https://voc.example/vc",
+      "target": "urn:uuid:0be1de75-61b9-42c7-949e-fc97096848dd"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n14",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://schema.org/Offer"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n14",
+      "label": "Boolean",
+      "definition": "https://schema.org/isFamilyFriendly",
+      "target": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n14",
+      "label": "Double",
+      "definition": "https://schema.org/price",
+      "target": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n14",
+      "label": "Price Currency",
+      "definition": "https://schema.org/priceCurrency",
+      "target": "EUR"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n2",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://voc.example/GeoCoordinates"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n2",
+      "label": "Latitude",
+      "definition": "https://voc.example/latitude",
+      "target": "40.75"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n2",
+      "label": "Longitude",
+      "definition": "https://voc.example/longitude",
+      "target": "-73.98"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n3",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://voc.example/Place"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n3",
+      "label": "Geo",
+      "definition": "https://voc.example/geo",
+      "target": "urn:example:v1-vc-jwt:_:c14n2"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n3",
+      "label": "Name",
+      "definition": "https://voc.example/name",
+      "target": "Empire State Building"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n4",
+      "label": "Alg",
+      "definition": "https://voc.example/alg",
+      "target": "ES256K"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n4",
+      "label": "Kid",
+      "definition": "https://voc.example/kid",
+      "target": "did:key:zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL#zQ3shrnCZq3R7vLvDeWQFnxz5HMKqP9JoiMonzYJB4TGYnftL"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n5",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://schema.org/Product"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n5",
+      "label": "Offers",
+      "definition": "https://schema.org/offers",
+      "target": "urn:example:v1-vc-jwt:_:c14n14"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n5",
+      "label": "Offers",
+      "definition": "https://schema.org/offers",
+      "target": "urn:example:v1-vc-jwt:_:c14n6"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n6",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://schema.org/Offer"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n6",
+      "label": "Availability Ends",
+      "definition": "https://schema.org/availabilityEnds",
+      "target": "2022-10-08T18:52:38.220Z"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n6",
+      "label": "Offered By",
+      "definition": "https://schema.org/offeredBy",
+      "target": "urn:example:v1-vc-jwt:_:c14n8"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n6",
+      "label": "Integer",
+      "definition": "https://schema.org/price",
+      "target": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n6",
+      "label": "Price Currency",
+      "definition": "https://schema.org/priceCurrency",
+      "target": "USD"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n7",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://voc.example/Organization"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n7",
+      "label": "Founding Location",
+      "definition": "https://voc.example/foundingLocation",
+      "target": "urn:example:v1-vc-jwt:_:c14n3"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n8",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://schema.org/Organization"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n8",
+      "label": "Founding Location",
+      "definition": "https://schema.org/foundingLocation",
+      "target": "urn:example:v1-vc-jwt:_:c14n12"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n9",
+      "label": "Availability Ends",
+      "definition": "https://voc.example/availabilityEnds",
+      "target": "2022-10-08T18:52:38.220Z"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n9",
+      "label": "Offered By",
+      "definition": "https://voc.example/offeredBy",
+      "target": "urn:example:v1-vc-jwt:_:c14n7"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n9",
+      "label": "Integer",
+      "definition": "https://voc.example/price",
+      "target": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n9",
+      "label": "Price Currency",
+      "definition": "https://voc.example/priceCurrency",
+      "target": "USD"
+    },
+    {
+      "source": "urn:example:v1-vc-jwt:_:c14n9",
+      "label": "Type",
+      "definition": "https://voc.example/type",
+      "target": "Offer"
+    }
+  ]
+}

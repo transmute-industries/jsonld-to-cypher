@@ -1,13 +1,12 @@
 const jose = require('jose');
 const uuid = require('uuid');
-const preferences = require('./preferences');
 
-const fromVerification = async ({payload, protectedHeader}) => {
+const getLinkedDataFromDecoded = async ({payload, protectedHeader}) => {
   const id = `urn:uuid:${uuid.v4()}`;
   const protectedClaimSet = JSON.parse(new TextDecoder().decode(payload));
   const intermediateObject = {
     '@context': {
-      '@vocab': preferences.defaultVocabulary,
+      '@vocab': 'https://voc.example/',
       '@base': id,
     },
     protectedHeader,
@@ -16,13 +15,13 @@ const fromVerification = async ({payload, protectedHeader}) => {
   return intermediateObject;
 };
 
-const jsonWebSigantureToDocument = async (jws) => {
+const getLinkedDataFromJws = async (jws) => {
   const [encodedHeader, encodedPayload] = jws.split('.');
   const protectedHeader = JSON.parse(
       new TextDecoder().decode(jose.base64url.decode(encodedHeader)),
   );
   const payload = jose.base64url.decode(encodedPayload);
-  return fromVerification({protectedHeader, payload});
+  return getLinkedDataFromDecoded({protectedHeader, payload});
 };
 
-module.exports = jsonWebSigantureToDocument;
+module.exports = getLinkedDataFromJws;

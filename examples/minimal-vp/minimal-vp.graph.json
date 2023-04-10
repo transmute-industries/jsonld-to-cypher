@@ -1,0 +1,93 @@
+{
+  "id": "urn:example:minimal-vp",
+  "nodes": [
+    {
+      "id": "urn:example:minimal-vp:_:c14n1",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://www.w3.org/2018/credentials#issuanceDate": "2010-01-01T19:23:24Z"
+    },
+    {
+      "id": "urn:example:minimal-vp:_:c14n0",
+      "labels": [
+        "Verifiable Credential"
+      ],
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "https://www.w3.org/2018/credentials#credentialSubject": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+      "https://www.w3.org/2018/credentials#issuer": "https://example.edu/issuers/565049"
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+      "labels": [
+        "DID",
+        "Credential Subject"
+      ]
+    },
+    {
+      "id": "https://example.edu/issuers/565049",
+      "labels": [
+        "URL",
+        "Issuer"
+      ]
+    },
+    {
+      "id": "urn:example:minimal-vp:_:c14n2",
+      "labels": [
+        "Blank Node"
+      ]
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiablePresentation",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "urn:example:minimal-vp:_:c14n1",
+      "label": "Verifiable Credential",
+      "definition": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "target": "urn:example:minimal-vp:_:c14n0"
+    },
+    {
+      "source": "urn:example:minimal-vp:_:c14n1",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiableCredential"
+    },
+    {
+      "source": "urn:example:minimal-vp:_:c14n0",
+      "label": "Credential Subject",
+      "definition": "https://www.w3.org/2018/credentials#credentialSubject",
+      "target": "did:example:ebfeb1f712ebc6f1c276e12ec21"
+    },
+    {
+      "source": "urn:example:minimal-vp:_:c14n0",
+      "label": "Issuer",
+      "definition": "https://www.w3.org/2018/credentials#issuer",
+      "target": "https://example.edu/issuers/565049"
+    },
+    {
+      "source": "urn:example:minimal-vp:_:c14n2",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiablePresentation"
+    },
+    {
+      "source": "urn:example:minimal-vp:_:c14n2",
+      "label": "Verifiable Credential",
+      "definition": "https://www.w3.org/2018/credentials#verifiableCredential",
+      "target": "urn:example:minimal-vp:_:c14n0"
+    }
+  ]
+}

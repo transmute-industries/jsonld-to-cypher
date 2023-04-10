@@ -1,0 +1,65 @@
+{
+  "id": "urn:example:minimal-vc",
+  "nodes": [
+    {
+      "id": "urn:example:minimal-vc:_:c14n0",
+      "labels": [
+        "Blank Node"
+      ],
+      "https://www.w3.org/2018/credentials#issuanceDate": "2010-01-01T19:23:24Z"
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+      "labels": [
+        "DID",
+        "Credential Subject"
+      ]
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "https://example.edu/issuers/565049",
+      "labels": [
+        "URL",
+        "Issuer"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "urn:example:minimal-vc:_:c14n0",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiableCredential"
+    },
+    {
+      "source": "urn:example:minimal-vc:_:c14n0",
+      "label": "Credential Subject",
+      "definition": "https://www.w3.org/2018/credentials#credentialSubject",
+      "target": "did:example:ebfeb1f712ebc6f1c276e12ec21"
+    },
+    {
+      "source": "urn:example:minimal-vc:_:c14n0",
+      "label": "Date Time",
+      "definition": "https://www.w3.org/2018/credentials#issuanceDate",
+      "target": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    {
+      "source": "urn:example:minimal-vc:_:c14n0",
+      "label": "Issuer",
+      "definition": "https://www.w3.org/2018/credentials#issuer",
+      "target": "https://example.edu/issuers/565049"
+    }
+  ]
+}

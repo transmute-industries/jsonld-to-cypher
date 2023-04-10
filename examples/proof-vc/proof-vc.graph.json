@@ -1,0 +1,131 @@
+{
+  "id": "urn:example:proof-vc",
+  "nodes": [
+    {
+      "id": "urn:uuid:000",
+      "labels": [
+        "URN"
+      ],
+      "https://www.w3.org/2018/credentials#issuanceDate": "2010-01-01T19:23:24Z"
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vc:_:c14n1",
+      "labels": [
+        "Blank Node"
+      ],
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://w3id.org/security#Ed25519Signature2018",
+      "https://w3id.org/security#jws": "eyJhbGc..tWVqB0IkwVcuBg",
+      "https://w3id.org/security#proofPurpose": "https://w3id.org/security#assertionMethod",
+      "https://w3id.org/security#verificationMethod": "did:example:111#key-0"
+    },
+    {
+      "id": "did:example:222",
+      "labels": [
+        "DID",
+        "Credential Subject"
+      ]
+    },
+    {
+      "id": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "did:example:111",
+      "labels": [
+        "DID",
+        "Issuer"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vc:_:c14n0",
+      "labels": [
+        "Blank Node"
+      ],
+      "http://purl.org/dc/terms/created": "2023-04-07T22:57:31Z"
+    },
+    {
+      "id": "https://w3id.org/security#Ed25519Signature2018",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "https://w3id.org/security#assertionMethod",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "did:example:111#key-0",
+      "labels": [
+        "DID URL"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "urn:uuid:000",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiableCredential"
+    },
+    {
+      "source": "urn:uuid:000",
+      "label": "Proof",
+      "definition": "https://w3id.org/security#proof",
+      "target": "urn:example:proof-vc:_:c14n1"
+    },
+    {
+      "source": "urn:uuid:000",
+      "label": "Credential Subject",
+      "definition": "https://www.w3.org/2018/credentials#credentialSubject",
+      "target": "did:example:222"
+    },
+    {
+      "source": "urn:uuid:000",
+      "label": "Date Time",
+      "definition": "https://www.w3.org/2018/credentials#issuanceDate",
+      "target": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    {
+      "source": "urn:uuid:000",
+      "label": "Issuer",
+      "definition": "https://www.w3.org/2018/credentials#issuer",
+      "target": "did:example:111"
+    },
+    {
+      "source": "urn:example:proof-vc:_:c14n0",
+      "label": "Ed 25519 Signature 2018",
+      "definition": "https://w3id.org/security#Ed25519Signature2018",
+      "target": "urn:example:proof-vc:_:c14n1"
+    },
+    {
+      "source": "urn:example:proof-vc:_:c14n0",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://w3id.org/security#Ed25519Signature2018"
+    },
+    {
+      "source": "urn:example:proof-vc:_:c14n1",
+      "label": "Proof Purpose",
+      "definition": "https://w3id.org/security#proofPurpose",
+      "target": "https://w3id.org/security#assertionMethod"
+    },
+    {
+      "source": "urn:example:proof-vc:_:c14n1",
+      "label": "Verification Method",
+      "definition": "https://w3id.org/security#verificationMethod",
+      "target": "did:example:111#key-0"
+    }
+  ]
+}

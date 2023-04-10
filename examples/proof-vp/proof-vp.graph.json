@@ -1,0 +1,266 @@
+{
+  "id": "urn:example:proof-vp",
+  "nodes": [
+    {
+      "id": "https://api.did.actor/revocation-lists/1.json#0",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vp:_:c14n0",
+      "labels": [
+        "Verifiable Credential"
+      ],
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "https://w3id.org/vc-revocation-list-2020#revocationListCredential": "https://api.did.actor/revocation-lists/1.json",
+      "https://www.w3.org/2018/credentials#credentialStatus": "https://api.did.actor/revocation-lists/1.json#0",
+      "https://www.w3.org/2018/credentials#credentialSubject": "did:example:123",
+      "https://www.w3.org/2018/credentials#issuer": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn"
+    },
+    {
+      "id": "https://w3id.org/vc-revocation-list-2020#RevocationList2020Status",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "https://api.did.actor/revocation-lists/1.json",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb",
+      "labels": [
+        "URN"
+      ]
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiablePresentation",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vp:_:c14n2",
+      "labels": [
+        "Blank Node"
+      ],
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://w3id.org/security#Ed25519Signature2018",
+      "https://w3id.org/security#challenge": "76f80bbc-c61c-4776-a2e9-49c239d57d6b",
+      "https://w3id.org/security#domain": "example.verifier",
+      "https://w3id.org/security#jws": "eyJhbGciOiJFZERTQSIsImI2.._EbC1jadFsc_042wDH9f3qGDcW-ncTIarCPBA",
+      "https://w3id.org/security#proofPurpose": "https://w3id.org/security#authenticationMethod",
+      "https://w3id.org/security#verificationMethod": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn"
+    },
+    {
+      "id": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+      "labels": [
+        "DID",
+        "Holder",
+        "Issuer"
+      ]
+    },
+    {
+      "id": "urn:uuid:4f1eabd0-76b7-4c8b-be72-a125b8bb9c48",
+      "labels": [
+        "URN"
+      ],
+      "https://www.w3.org/2018/credentials#issuanceDate": "2010-01-01T19:23:24Z"
+    },
+    {
+      "id": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vp:_:c14n3",
+      "labels": [
+        "Blank Node"
+      ],
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "https://w3id.org/security#Ed25519Signature2018",
+      "https://w3id.org/security#jws": "eyJhbGciOiJFZE..YNPED1MVmCll7Hsj33KYDQ",
+      "https://w3id.org/security#proofPurpose": "https://w3id.org/security#assertionMethod",
+      "https://w3id.org/security#verificationMethod": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn"
+    },
+    {
+      "id": "did:example:123",
+      "labels": [
+        "DID",
+        "Credential Subject"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vp:_:c14n1",
+      "labels": [
+        "Blank Node"
+      ],
+      "http://purl.org/dc/terms/created": "2022-05-07T15:30:56Z"
+    },
+    {
+      "id": "https://w3id.org/security#Ed25519Signature2018",
+      "labels": [
+        "URL",
+        "Type"
+      ]
+    },
+    {
+      "id": "https://w3id.org/security#assertionMethod",
+      "labels": [
+        "URL"
+      ]
+    },
+    {
+      "id": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn",
+      "labels": [
+        "DID URL"
+      ]
+    },
+    {
+      "id": "urn:example:proof-vp:_:c14n4",
+      "labels": [
+        "Blank Node"
+      ],
+      "http://purl.org/dc/terms/created": "2023-04-09T13:56:20Z"
+    },
+    {
+      "id": "https://w3id.org/security#authenticationMethod",
+      "labels": [
+        "URL"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "https://api.did.actor/revocation-lists/1.json#0",
+      "label": "Revocation List 2020 Status",
+      "definition": "https://w3id.org/vc-revocation-list-2020#RevocationList2020Status",
+      "target": "urn:example:proof-vp:_:c14n0"
+    },
+    {
+      "source": "https://api.did.actor/revocation-lists/1.json#0",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://w3id.org/vc-revocation-list-2020#RevocationList2020Status"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n0",
+      "label": "Revocation List Credential",
+      "definition": "https://w3id.org/vc-revocation-list-2020#revocationListCredential",
+      "target": "https://api.did.actor/revocation-lists/1.json"
+    },
+    {
+      "source": "urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiablePresentation"
+    },
+    {
+      "source": "urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb",
+      "label": "Proof",
+      "definition": "https://w3id.org/security#proof",
+      "target": "urn:example:proof-vp:_:c14n2"
+    },
+    {
+      "source": "urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb",
+      "label": "Holder",
+      "definition": "https://www.w3.org/2018/credentials#holder",
+      "target": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn"
+    },
+    {
+      "source": "urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb",
+      "label": "Verifiable Credential",
+      "definition": "https://www.w3.org/2018/credentials#verifiableCredential",
+      "target": "urn:example:proof-vp:_:c14n0"
+    },
+    {
+      "source": "urn:uuid:4f1eabd0-76b7-4c8b-be72-a125b8bb9c48",
+      "label": "Verifiable Credential",
+      "definition": "https://www.w3.org/2018/credentials#VerifiableCredential",
+      "target": "urn:example:proof-vp:_:c14n0"
+    },
+    {
+      "source": "urn:uuid:4f1eabd0-76b7-4c8b-be72-a125b8bb9c48",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://www.w3.org/2018/credentials#VerifiableCredential"
+    },
+    {
+      "source": "urn:uuid:4f1eabd0-76b7-4c8b-be72-a125b8bb9c48",
+      "label": "Proof",
+      "definition": "https://w3id.org/security#proof",
+      "target": "urn:example:proof-vp:_:c14n3"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n0",
+      "label": "Credential Status",
+      "definition": "https://www.w3.org/2018/credentials#credentialStatus",
+      "target": "https://api.did.actor/revocation-lists/1.json#0"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n0",
+      "label": "Credential Subject",
+      "definition": "https://www.w3.org/2018/credentials#credentialSubject",
+      "target": "did:example:123"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n0",
+      "label": "Issuer",
+      "definition": "https://www.w3.org/2018/credentials#issuer",
+      "target": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n1",
+      "label": "Ed 25519 Signature 2018",
+      "definition": "https://w3id.org/security#Ed25519Signature2018",
+      "target": "urn:example:proof-vp:_:c14n3"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n1",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://w3id.org/security#Ed25519Signature2018"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n3",
+      "label": "Proof Purpose",
+      "definition": "https://w3id.org/security#proofPurpose",
+      "target": "https://w3id.org/security#assertionMethod"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n3",
+      "label": "Verification Method",
+      "definition": "https://w3id.org/security#verificationMethod",
+      "target": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n4",
+      "label": "Ed 25519 Signature 2018",
+      "definition": "https://w3id.org/security#Ed25519Signature2018",
+      "target": "urn:example:proof-vp:_:c14n2"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n4",
+      "label": "Type",
+      "definition": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "target": "https://w3id.org/security#Ed25519Signature2018"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n2",
+      "label": "Proof Purpose",
+      "definition": "https://w3id.org/security#proofPurpose",
+      "target": "https://w3id.org/security#authenticationMethod"
+    },
+    {
+      "source": "urn:example:proof-vp:_:c14n2",
+      "label": "Verification Method",
+      "definition": "https://w3id.org/security#verificationMethod",
+      "target": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn"
+    }
+  ]
+}

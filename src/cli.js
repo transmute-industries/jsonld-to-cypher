@@ -3,10 +3,11 @@
 const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
+const uuid = require('uuid');
 const {hideBin} = require('yargs/helpers');
 const documentLoader = require('./documentLoader');
 
-const lib = require('./index');
+const {Cypher} = require('./index');
 
 const readFile = (argv, argName) => {
   try {
@@ -42,31 +43,38 @@ yargs(hideBin(process.argv))
         'transform a document into a cypher query',
         () => {},
         async (argv) => {
-          const {type, sourceGraphId = false} = argv;
+          const {type, graphId} = argv;
           let doc;
           // console.log(argv);
           let cypher = '';
           if (type === 'json') {
-            doc = readJsonFromPath(argv, 'document');
-            cypher = await lib.Cypher.fromDocument(
-                doc,
-                {documentLoader, sourceGraphId},
-            );
+            doc = readJsonFromPath(argv, 'document')
+            ;({cypher} = await Cypher.fromDocument(doc, {
+              documentLoader,
+              id: graphId,
+            }));
           }
-          if (type === 'jws') {
-            doc = readFile(argv, 'document');
-            cypher = await lib.Cypher.fromJsonWebSignature(
-                doc,
-                {documentLoader, sourceGraphId},
-            );
+          if (type === 'jwt') {
+            doc = readFile(argv, 'document')
+            ;({cypher} = await Cypher.fromJsonWebSignature(doc, {
+              documentLoader,
+              id: graphId,
+            }));
           }
           console.log(cypher);
         },
     )
     .option('type', {
       alias: 't',
-      describe: 'type of file',
+      describe: 'A type of file to transform',
       demandOption: true,
+      default: 'json',
+    })
+    .option('graphId', {
+      alias: 'g',
+      describe: 'A unique identifier for the graph',
+      demandOption: true,
+      default: `urn:uuid:${uuid.v4()}`,
     })
     .demandCommand(1)
     .parse();

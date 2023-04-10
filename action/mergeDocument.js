@@ -5,8 +5,8 @@ const mergeDocument = async (document, {url, username, password}) => {
   const driver = neo4j.driver(url, neo4j.auth.basic(username, password));
   const session = driver.session();
   // dangerous af.
-  const query = await Cypher.fromDocument(document);
-  await session.run(query, {
+  const {cypher} = await Cypher.fromDocument(document);
+  await session.run(cypher, {
     // No params => injection vulnerable...
     // nameParam: 'Alice',
   });
