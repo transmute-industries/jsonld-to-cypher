@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "dotenv -e .env -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest",
-    "test-ci": "dotenv -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
+    "test-ci": "CI=true dotenv -v NODE_NO_WARNINGS=1 -v NODE_OPTIONS=--experimental-vm-modules jest --ci --coverage",
     "shove": "git add -A ; git commit -m ':rocket:' ; git push origin main",
     "jsonld-to-cypher": "node ./src/cli.js",
     "preview:neo4j": "npm t cypher.preview.test.js && npm t neo4j.preview.test.js",

@@ -56,7 +56,9 @@ const runExample = async (driver, example) => {
     ;({cypher, graph} = await Cypher.fromDocument(doc, opts));
   }
   writeExampleResult({example, cypher, graph});
-  await runQuery(driver, cypher);
+  if (!process.env.CI) {
+    await runQuery(driver, cypher);
+  }
 };
 
 module.exports = {

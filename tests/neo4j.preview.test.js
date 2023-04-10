@@ -1,10 +1,12 @@
 const {getDriver, dropTables, runExample} = require('../src/test-utils');
 
-describe.skip('neo4j.preview', () => {
+describe('neo4j.preview', () => {
   let driver;
   beforeAll(async () => {
-    driver = getDriver();
-    await dropTables();
+    if (!process.env.CI) {
+      driver = getDriver();
+      await dropTables();
+    }
   });
 
   it('minimal verifiable credential', async () => {
@@ -32,6 +34,8 @@ describe.skip('neo4j.preview', () => {
   });
 
   afterAll(async () => {
-    await driver.close();
+    if (!process.env.CI) {
+      await driver.close();
+    }
   });
 });
