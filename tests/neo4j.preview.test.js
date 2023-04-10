@@ -18,6 +18,14 @@ describe('neo4j.preview', () => {
     await runExample(driver, 'proof-vc');
   });
 
+  it('minimal verifiable presentation', async () => {
+    await runExample(driver, 'minimal-vp');
+  });
+
+  it('verifiable presentation with proof', async () => {
+    await runExample(driver, 'proof-vp');
+  });
+
   afterAll(async () => {
     await driver.close();
   });

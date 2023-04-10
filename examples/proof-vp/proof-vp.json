@@ -23,19 +23,19 @@
       "proof": {
         "type": "Ed25519Signature2018",
         "created": "2022-05-07T15:30:56Z",
-        "verificationMethod": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+        "verificationMethod": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn",
         "proofPurpose": "assertionMethod",
-        "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..GgO_6jlepqqhXbeSqLCfp4NEnzqi4JTmwNCDQT2hi9TR2nhQ8NhY9CTjssXrsxTSYNPED1MVmCll7Hsj33KYDQ"
+        "jws": "eyJhbGciOiJFZE..YNPED1MVmCll7Hsj33KYDQ"
       }
     }
   ],
   "proof": {
     "type": "Ed25519Signature2018",
     "created": "2023-04-09T13:56:20Z",
-    "verificationMethod": "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
+    "verificationMethod": "did:key:z6MktiSzq..GznpicNiWfn#z6MktiSzqF9..UAGznpicNiWfn",
     "proofPurpose": "authentication",
     "challenge": "76f80bbc-c61c-4776-a2e9-49c239d57d6b",
     "domain": "example.verifier",
-    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..HHnnJSadPRJ7-mwuuEvRod-h9u9DjVMaqZ23NAjA8YSH-QcyH_EbC1jadFsc_042wDH9f3qGDcW-ncTIarCPBA"
+    "jws": "eyJhbGciOiJFZERTQSIsImI2.._EbC1jadFsc_042wDH9f3qGDcW-ncTIarCPBA"
   }
 }
