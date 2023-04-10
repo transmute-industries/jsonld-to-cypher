@@ -1,6 +1,6 @@
 MERGE (n0:`URL`{id:"https://api.did.actor/revocation-lists/1.json#0"}) 
 
-MERGE (n1:`Verifiable Credential`{id:"_:c14n0"}) 
+MERGE (n1:`Verifiable Credential`{id:"urn:uuid:0000:_:c14n0"}) 
   SET  n1.`http://www.w3.org/1999/02/22-rdf-syntax-ns#type`="https://www.w3.org/2018/credentials#VerifiableCredential"
   SET  n1.`https://w3id.org/vc-revocation-list-2020#revocationListCredential`="https://api.did.actor/revocation-lists/1.json"
   SET  n1.`https://www.w3.org/2018/credentials#credentialStatus`="https://api.did.actor/revocation-lists/1.json#0"
@@ -17,7 +17,7 @@ MERGE (n5:`URN`{id:"urn:uuid:1fe5c199-271b-4598-b2aa-528802efeaeb"})
 
 MERGE (n6:`URL`:`Type`{id:"https://www.w3.org/2018/credentials#VerifiablePresentation"}) 
 
-MERGE (n7:`Blank Node`{id:"_:c14n2"}) 
+MERGE (n7:`Blank Node`{id:"urn:uuid:0000:_:c14n2"}) 
   SET  n7.`http://purl.org/dc/terms/created`=datetime("2023-04-09T13:56:20Z")
   SET  n7.`http://www.w3.org/1999/02/22-rdf-syntax-ns#type`="https://w3id.org/security#Ed25519Signature2018"
   SET  n7.`https://w3id.org/security#challenge`="76f80bbc-c61c-4776-a2e9-49c239d57d6b"
@@ -31,7 +31,7 @@ MERGE (n9:`URN`{id:"urn:uuid:4f1eabd0-76b7-4c8b-be72-a125b8bb9c48"})
 
 MERGE (n10:`URL`:`Type`{id:"https://www.w3.org/2018/credentials#VerifiableCredential"}) 
 
-MERGE (n11:`Blank Node`{id:"_:c14n3"}) 
+MERGE (n11:`Blank Node`{id:"urn:uuid:0000:_:c14n3"}) 
   SET  n11.`http://purl.org/dc/terms/created`=datetime("2022-05-07T15:30:56Z")
   SET  n11.`http://www.w3.org/1999/02/22-rdf-syntax-ns#type`="https://w3id.org/security#Ed25519Signature2018"
   SET  n11.`https://w3id.org/security#jws`="eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..GgO_6jlepqqhXbeSqLCfp4NEnzqi4JTmwNCDQT2hi9TR2nhQ8NhY9CTjssXrsxTSYNPED1MVmCll7Hsj33KYDQ"
@@ -41,7 +41,7 @@ MERGE (n12:`DID`:`Credential Subject`{id:"did:example:123"})
 
 MERGE (n13:`URL`{id:"http://www.w3.org/2001/XMLSchema#dateTime"}) 
 
-MERGE (n14:`Blank Node`{id:"_:c14n1"}) 
+MERGE (n14:`Blank Node`{id:"urn:uuid:0000:_:c14n1"}) 
 
 MERGE (n15:`URL`:`Type`{id:"https://w3id.org/security#Ed25519Signature2018"}) 
 
@@ -49,7 +49,7 @@ MERGE (n16:`URL`{id:"https://w3id.org/security#authenticationMethod"})
 
 MERGE (n17:`DID URL`{id:"did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn"}) 
 
-MERGE (n18:`Blank Node`{id:"_:c14n4"}) 
+MERGE (n18:`Blank Node`{id:"urn:uuid:0000:_:c14n4"}) 
 
 MERGE (n19:`URL`{id:"https://w3id.org/security#assertionMethod"}) 
 

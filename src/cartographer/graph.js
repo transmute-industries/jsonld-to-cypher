@@ -307,6 +307,24 @@ const removeEmptyBlankNodes = (graph) => {
   });
 };
 
+const requireAbsoluteNodes = (graph) => {
+  graph.nodes = graph.nodes.map((n) => {
+    if (n.id.includes('_:c14n')) {
+      n.id = graph.id + ':' + n.id;
+    }
+    return n;
+  });
+  graph.links = graph.links.map((e) => {
+    if (e.source.includes('_:c14n')) {
+      e.source = graph.id + ':' + e.source;
+    }
+    if (e.target.includes('_:c14n')) {
+      e.target = graph.id + ':' + e.target;
+    }
+    return e;
+  });
+};
+
 const graph = async (doc, {documentLoader, id}) => {
   const nodes = {};
   const links = [];
@@ -328,7 +346,7 @@ const graph = async (doc, {documentLoader, id}) => {
     return {...n, labels: finalLabels};
   });
   removeEmptyBlankNodes(graph);
-
+  requireAbsoluteNodes(graph);
   return graph;
 };
 
