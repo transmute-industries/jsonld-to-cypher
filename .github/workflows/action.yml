@@ -3,7 +3,7 @@ name: Action
 on: [push]
 
 jobs:
-  merge-local:
+  neo4j-merge-documents-local:
     runs-on: ubuntu-latest
     name: Merge
     outputs:

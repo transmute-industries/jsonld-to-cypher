@@ -70,6 +70,12 @@ jq -r '.jws' ./examples/v1-vc-jwt/v1-vc-jwt.json > ./examples/v1-vc-jwt/v1-vc-jw
 npm run jsonld-to-cypher convert ./examples/v1-vc-jwt/v1-vc-jwt.jwt -- --type jwt
 ```
 
+#### Testing GitHub Action with Act
+
+```
+act -j neo4j-merge-documents-local --secret-file .env
+```
+
 ### Installing Neo4j Desktop
 
 See [https://neo4j.com](https://neo4j.com/).
