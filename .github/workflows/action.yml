@@ -1,6 +1,6 @@
 name: Action
 
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
   merge-local:
