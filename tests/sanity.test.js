@@ -1,4 +1,4 @@
-const {getDriver, dropTables} = require('../test-utils');
+const {getDriver, dropTables} = require('../src/test-utils');
 
 let driver;
 

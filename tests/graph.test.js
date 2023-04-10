@@ -1,5 +1,5 @@
-const graph = require('./graph');
-const documentLoader = require('../documentLoader');
+const graph = require('../src/autograph/graph');
+const documentLoader = require('../src/documentLoader');
 
 const fs = require('fs');
 const path = require('path');
