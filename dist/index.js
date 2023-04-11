@@ -5,13 +5,16 @@
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const neo4j = __nccwpck_require__(42934);
-const {Cypher} = __nccwpck_require__(4351);
+const uuid = __nccwpck_require__(75840);
 
+const {Cypher} = __nccwpck_require__(4351);
+const documentLoader = __nccwpck_require__(39604);
 const mergeDocument = async (document, {url, username, password}) => {
   const driver = neo4j.driver(url, neo4j.auth.basic(username, password));
   const session = driver.session();
+  const id = `urn:uuid:${uuid.v4()}`;
   // dangerous af.
-  const {cypher} = await Cypher.fromDocument(document);
+  const {cypher} = await Cypher.fromDocument(document, {id, documentLoader});
   await session.run(cypher, {
     // No params => injection vulnerable...
     // nameParam: 'Alice',
