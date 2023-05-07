@@ -1,3 +1,3 @@
 const Cypher = require('./Cypher');
-
-module.exports = {Cypher};
+const documentLoader = require('./documentLoader');
+module.exports = {Cypher, documentLoader};
