@@ -94492,7 +94492,7 @@ const documentLoader = __nccwpck_require__(39604);
 const getGraphFromDocument = __nccwpck_require__(64700);
 const getCypherFromGraph = __nccwpck_require__(66907);
 
-const fromDocument = async (document, options = {documentLoader}) => {
+const fromDocument = async (document, options = {id: '', documentLoader}) => {
   const graph = await getGraphFromDocument(document, options);
   const cypher = await getCypherFromGraph(graph, options);
   return {cypher, graph};
@@ -95048,8 +95048,8 @@ module.exports = documentLoader;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const Cypher = __nccwpck_require__(31116);
-
-module.exports = {Cypher};
+const documentLoader = __nccwpck_require__(39604);
+module.exports = {Cypher, documentLoader};
 
 
 /***/ }),
