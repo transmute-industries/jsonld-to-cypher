@@ -3,6 +3,8 @@ const jsonld = require('jsonld');
 const _ = require('lodash');
 const {NQuads} = require('rdf-canonize');
 
+const structuredClone = (obj) => JSON.parse(JSON.stringify(obj));
+
 const getLabelFromIri = (iri) => {
   return _.startCase(iri.split('/').pop().split('#').pop());
 };
