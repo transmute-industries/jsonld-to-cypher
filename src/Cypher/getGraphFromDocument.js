@@ -171,12 +171,12 @@ const fixPresentationGraph = (graph) => {
   return graph;
 };
 
-const getGraphFromDocument = async (doc, {documentLoader, id}) => {
-  const nodes = {};
-  const links = [];
+const getGraphFromDocument = async (doc, {id, documentLoader}) => {
   if (doc.id) {
     id = doc.id;
   }
+  const nodes = {};
+  const links = [];
   const graph = {id, nodes, links};
   const proofs = {};
   const credentialIds = [];
@@ -208,20 +208,22 @@ const getGraphFromDocument = async (doc, {documentLoader, id}) => {
   for (let i = 0; i < keys.length; i++) {
     const id = keys[i];
     const proof = proofs[id];
-    const proofId = proof.id || id + ':proof:' + i;
-    addGraphNode({graph, id: proofId});
-    graph.nodes[proofId] = {
-      ...graph.nodes[proofId],
-      ...proof,
-      labels: [proof.type],
-    };
-    addGraphEdge({
-      graph,
-      label: 'proof',
-      source: id,
-      definition: 'https://w3id.org/security#proof',
-      target: proofId,
-    });
+    if (proof) {
+      const proofId = proof.id || id + ':proof:' + i;
+      addGraphNode({graph, id: proofId});
+      graph.nodes[proofId] = {
+        ...graph.nodes[proofId],
+        ...proof,
+        labels: [proof.type],
+      };
+      addGraphEdge({
+        graph,
+        label: 'proof',
+        source: id,
+        definition: 'https://w3id.org/security#proof',
+        target: proofId,
+      });
+    }
   }
   if (credentialIds.length) {
     credentialIds.forEach((credentialId) => {
