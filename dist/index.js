@@ -94619,6 +94619,8 @@ const jsonld = __nccwpck_require__(11171);
 const _ = __nccwpck_require__(90250);
 const {NQuads} = __nccwpck_require__(43);
 
+const structuredClone = (obj) => JSON.parse(JSON.stringify(obj));
+
 const getLabelFromIri = (iri) => {
   return _.startCase(iri.split('/').pop().split('#').pop());
 };
